@@ -6,7 +6,7 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-    <header class="border-b bg-[#1A1A1E] text-white">
+    <header class=" bg-[#1A1A1E] text-white">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex items-center justify-between py-4">
                 <div class="flex-1 flex items-center">
