@@ -6,13 +6,13 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-    <header class="border-b">
+    <header class="border-b bg-[#1A1A1E] text-white">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex items-center justify-between py-4">
                 <div class="flex-1 flex items-center">
-                    <?php if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) { the_custom_logo(); } else { ?>
-                        <a href="<?php echo esc_url( home_url('/') ); ?>" class="text-xl font-semibold">Coldchain</a>
-                    <?php } ?>
+                    <a href="<?php echo esc_url( home_url('/') ); ?>" class="inline-flex items-center">
+                        <img src="<?php echo esc_url( get_template_directory_uri() . '/images/logo.svg' ); ?>" alt="Coldchain" class="h-15 w-auto" />
+                    </a>
                 </div>
 
                 <nav class="flex-1">
