@@ -6,8 +6,8 @@ get_header();
 ?>
 
 <div class="">
-    <?php get_template_part('template-parts/test.php'); ?>
-    <?php get_template_part('template-parts/'); ?>
+    <?php get_template_part('template-parts/test'); ?>
+   
    
 </div>
 
