@@ -27,3 +27,4 @@ function coldchain_development_assets() {
 
 }
 add_action( 'wp_enqueue_scripts', 'coldchain_development_assets' );
+

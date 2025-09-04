@@ -8,3 +8,7 @@ Version: 1.0
 License: GNU General Public License v2 or later
 Text Domain: coldchain-development
 */
+
+.font-family-impact {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+}
