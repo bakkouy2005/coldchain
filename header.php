@@ -28,7 +28,7 @@
                 </nav>
 
                 <div class="flex-1 flex justify-end">
-                    <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Contact</a>
+                    <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Meld je nu aan!</a>
                 </div>
             </div>
         </div>
