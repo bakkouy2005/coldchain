@@ -1,8 +1,5 @@
-<?php
-wp_footer();
-?>
 <footer class="bg-zinc-900 text-zinc-300">
-  <div class="max-w-7xl mx-auto px-4 py-16">
+  <div class="container mx-auto px-4 py-16">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
       <!-- Contact -->
       <div>
@@ -85,7 +82,7 @@ wp_footer();
     <!-- Bottom bar -->
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <img src="<?php echo esc_url( get_theme_file_uri('/assets/images/logo.svg') ); ?>" alt="<?php bloginfo('name'); ?> logo" class="h-8">
+        <img src="<?php echo esc_url( get_theme_file_uri('images/logo.svg') ); ?>" alt="<?php bloginfo('name'); ?> logo" class="h-8">
         <span class="sr-only"><?php bloginfo('name'); ?></span>
       </div>
       <p class="text-sm text-zinc-500">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></p>
@@ -94,10 +91,6 @@ wp_footer();
 
   <?php wp_footer(); ?>
 </footer>
-</body>
-</html>
-
-
 </body>
 </html>
 

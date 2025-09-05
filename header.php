@@ -8,7 +8,7 @@
 </head>
 <body <?php body_class(); ?>>
     <header class=" bg-[#1A1A1E] text-white">
-        <div class="max-w-6xl mx-auto px-4">
+        <div class="container mx-auto px-4">
             <div class="flex items-center justify-between py-4">
                 <div class="flex-1 flex items-center">
                     <a href="<?php echo esc_url( home_url('/') ); ?>" class="inline-flex items-center">

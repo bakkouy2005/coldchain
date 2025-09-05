@@ -5,12 +5,13 @@ if( $services ):
     $cards = $services['cards'];
 ?>
 <section class="py-16 bg-[#1A1A1E] text-white text-center">
+  <div class="container mx-auto px-4">
     <?php if($section_title): ?>
         <h2 class="text-2xl font-bold mb-10"><?php echo esc_html($section_title); ?></h2>
     <?php endif; ?>
 
     <?php if($cards): ?>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <?php foreach( $cards as $card ): 
                 $icon_class = $card['icon_class'];
                 $title = $card['title'];
@@ -42,6 +43,7 @@ if( $services ):
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
+  </div>
 </section>
 <?php endif; ?>
 

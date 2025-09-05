@@ -10,7 +10,7 @@ if( $hero ):
         
         <div class="bg-black/40 absolute inset-0"></div> <!-- overlay -->
         
-        <div class="relative z-10 mb-12 sm:mb-16 lg:mb-20 px-4">
+        <div class="relative z-10 mb-12 sm:mb-16 lg:mb-20">
             <h1 class="font-bold font-family-impact text-[#E7E7E7] text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-tight"><?php echo esc_html($hero_title); ?></h1>
             <p class="mt-4 font-family-impact text-[#E7E7E7] text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto"><?php echo esc_html($hero_subtitle); ?></p>
         </div>
