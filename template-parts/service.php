@@ -7,7 +7,7 @@ if( $services ):
 <section class="py-16 bg-[#1A1A1E] text-white text-center">
   <div class="container mx-auto px-4">
     <?php if($section_title): ?>
-        <h2 class="text-2xl font-bold mb-10"><?php echo esc_html($section_title); ?></h2>
+        <h2 class="text-4xl font-bold mb-10"><?php echo esc_html($section_title); ?></h2>
     <?php endif; ?>
 
     <?php if($cards): ?>
@@ -26,11 +26,11 @@ if( $services ):
                 <?php endif; ?>
 
                 <?php if($title): ?>
-                    <h3 class="font-bold text-lg mb-2"><?php echo esc_html($title); ?></h3>
+                    <h2 class="font-bold mb-3 text-2xl md:text-2xl lg:text-3xl"><?php echo esc_html($title); ?></h2>
                 <?php endif; ?>
 
                 <?php if($desc): ?>
-                    <p class="text-sm mb-4 flex-1 text-[#141414]"><?php echo esc_html($desc); ?></p>
+                    <p class="mb-6 flex-1 text-[#14141491] text-base md:text-lg lg:text-xl leading-relaxed"><?php echo esc_html($desc); ?></p>
                 <?php endif; ?>
 
                 <?php if($button && $button['text'] && $button['url']): ?>
