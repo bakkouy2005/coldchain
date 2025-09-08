@@ -16,7 +16,7 @@ if( $overons ) :
           src="<?php echo esc_url($img['url']); ?>" 
           alt="<?php echo esc_attr($img['alt']); ?>" 
           class="w-80 sm:w-[500px] md:w-[850px] lg:w-[900px] h-64 sm:h-80 md:h-[650px] lg:h-[700px] object-cover
-                 rounded-tl-[20%] rounded-tr-[60%] rounded-br-[25%] rounded-bl-[50%] 
+                 rounded-tl-[20%] rounded-tr-[60%] rounded-br-[10%] rounded-bl-[50%] 
                  shadow-lg transition-all duration-500"
         />
       </div>
