@@ -12,3 +12,7 @@ Text Domain: coldchain-development
 .font-family-impact {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
 }
+
+.half-circle-left {
+  clip-path: ellipse(70% 100% at 0% 50%);
+}
