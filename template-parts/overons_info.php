@@ -11,31 +11,31 @@ if ( $overons_info && is_array($overons_info) ) :
 ?>
 <section class="bg-white text-black relative overflow-hidden py-16 md:py-24 lg:py-28">
 
-  <!-- FOTO LINKS OP DESKTOP (smaller en iets naar links) -->
+  <!-- FOTO LINKS OP DESKTOP / TABLET -->
   <?php if ($img && ! empty($img['url'])) : ?>
-    <div class="hidden sm:block absolute top-0 left-0 h-full w-[50%] sm:w-[55%] md:w-[40%] lg:w-[35%] -left-4 sm:-left-6 md:-left-8 lg:-left-10">  
+    <div class="hidden sm:block absolute top-0 left-0 h-full w-[45vw] md:w-[40vw] lg:w-[35vw]">
       <img 
         src="<?php echo esc_url($img['url']); ?>" 
         alt="<?php echo esc_attr($img['alt']); ?>" 
-        class="h-full w-full object-cover"
+        class="h-full w-full object-cover object-center"
       />
     </div>
   <?php endif; ?>
 
   <!-- FOTO BOVENAAN OP MOBIEL -->
   <?php if ($img && ! empty($img['url'])) : ?>
-    <div class="sm:hidden w-full h-52 relative mb-6">
+    <div class="sm:hidden w-full h-48 relative mb-6">
       <img 
         src="<?php echo esc_url($img['url']); ?>" 
         alt="<?php echo esc_attr($img['alt']); ?>" 
-        class="w-full h-full object-cover"
+        class="w-full h-full object-cover object-center"
       />
     </div>
   <?php endif; ?>
 
   <!-- TEKST + KNOP -->
   <div class="container mx-auto relative z-10 flex items-center h-full">
-    <div class="flex flex-col justify-center max-w-2xl px-4 sm:px-6 md:pl-10 lg:pl-12 md:ml-auto"> <!-- Kleine aanpassing: iets meer padding-left -->
+    <div class="flex flex-col justify-center max-w-2xl px-4 sm:px-6 md:pl-10 lg:pl-12 md:ml-auto">
 
       <?php if ($title) : ?>
       <h2 class="text-2xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-snug">
