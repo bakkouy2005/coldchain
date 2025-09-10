@@ -26,9 +26,9 @@ $form_shortcode = get_field('contact_form_shortcode');
 
   <div class="relative">
     <div class="container mx-auto px-4">
-      <div class="flex items-center justify-start min-h-[600px]">
+      <div class="flex items-center justify-start min-h-[700px]">
         <div class="max-w-2xl text-left">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+      <h2 class="text-4xl md:text-6xl font-bold mb-4">
         <?php echo esc_html($hero_title); ?>
       </h2>
       <p class="text-lg md:text-xl">
@@ -44,7 +44,7 @@ $form_shortcode = get_field('contact_form_shortcode');
 <?php if ($hero_cards): ?>
   <section class="relative z-10 -mt-16">
     <div class="container mx-auto px-4">
-      <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-10">
+      <div class=" mx-auto grid grid-cols-1 sm:grid-cols-2 gap-10">
       <?php foreach ($hero_cards as $card): ?>
         <div class="bg-white shadow-xl p-10 md:p-12 rounded-xl text-center">
           <?php if ($card['icon_class']): ?>
@@ -70,10 +70,10 @@ $form_shortcode = get_field('contact_form_shortcode');
 
 <!-- CONTACT INFO BLOKKEN -->
 <?php if ($contact_infos): ?>
-  <section class="py-12 bg-gray-50">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-4">
+  <section class="py-12 ">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-4">
       <?php foreach ($contact_infos as $info): ?>
-        <div class="bg-white shadow p-6 rounded-md text-center">
+        <div class="bg-white shadow-xl p-12 rounded-md text-center">
           <?php if ($info['icon_class']): ?>
             <i class="<?php echo esc_attr($info['icon_class']); ?> text-2xl text-blue-600 mb-2"></i>
           <?php endif; ?>
@@ -91,9 +91,10 @@ $form_shortcode = get_field('contact_form_shortcode');
 
 <!-- CONTACT FORM -->
 <section class="py-12 bg-blue-900 text-white">
-  <div class="max-w-3xl mx-auto px-4">
-    <h3 class="text-2xl font-bold mb-6">Neem contact met ons op</h3>
-    <div class="bg-blue-800 p-6 rounded-lg shadow-lg">
+  <div class="container mx-auto px-5">
+    <div class=" mx-auto">
+    <h3 class="text-4xl font-bold mb-6">Neem contact met ons op</h3>
+      <div class=" p-6 rounded-lg shadow-lg">
       <?php if ($form_shortcode): ?>
         <?php echo do_shortcode($form_shortcode); ?>
       <?php else: ?>
@@ -113,6 +114,7 @@ $form_shortcode = get_field('contact_form_shortcode');
           <button type="submit" class="bg-blue-600 px-6 py-2 rounded-md hover:bg-blue-700">Verzenden</button>
         </form>
       <?php endif; ?>
+      </div>
     </div>
   </div>
 </section>
