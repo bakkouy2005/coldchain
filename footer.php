@@ -55,26 +55,33 @@
       </div>
 
       <!-- Nieuwsbrief -->
-      <div>
-        <h3 class="text-xl font-bold text-white mb-6">Nieuwsbrief</h3>
-        <form action="#" method="post" class="flex flex-col sm:flex-row sm:flex-wrap gap-3">
-          <label for="footer-email" class="sr-only">E-mail adres</label>
+
+        <div>
+         <h3 class="text-xl font-bold text-white mb-6">Nieuwsbrief</h3>
+         <div class="flex flex-col md:block lg:flex gap-3"> <!-- block alleen bij md (iPad) -->
+         <form action="#" method="post" class="flex-1">
+         <label for="footer-email" class="sr-only">E-mail adres</label>
           <input
-            id="footer-email"
-            name="email"
-            type="email"
-            required
-            placeholder="E-mail adres"
-            class="flex-1 min-w-0 px-4 py-3 rounded-lg bg-white text-zinc-900 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm sm:text-base"
-          >
-          <button
+          id="footer-email"
+          name="email"
+          type="email"
+          required
+          placeholder="E-mail adres"
+        class="w-full px-4 py-3 rounded-lg bg-white text-zinc-900 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm sm:text-base"
+      >
+    </form>
+         <button
             type="submit"
-            class="flex-shrink-0 px-5 py-3 rounded-lg bg-blue-900 text-white font-medium hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm sm:text-base"
-          >
-            Versturen
-          </button>
-        </form>
-      </div>
+            form="footer-email"
+             class="w-full mt-2 md:mt-0 lg:w-auto px-5 py-3 rounded-lg bg-blue-900 text-white font-medium hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm sm:text-base"
+             >
+             Versturen
+         </button>
+       </div>
+     </div>
+
+
+
     </div>
 
     <!-- Divider -->
