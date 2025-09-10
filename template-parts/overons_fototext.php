@@ -2,41 +2,50 @@
 $overons_fototext = get_field('overons_fototext');
 
 if ( $overons_fototext && is_array($overons_fototext) ) :
-    $img       = isset($overons_fototext['img']) ? $overons_fototext['img'] : null;        
-    $text      = isset($overons_fototext['text']) ? $overons_fototext['text'] : '';
-    $text_area = isset($overons_fototext['text_area']) ? $overons_fototext['text_area'] : '';
+    $img       = $overons_fototext['img'] ?? null;        
+    $text      = $overons_fototext['text'] ?? '';
+    $text_area = $overons_fototext['text_area'] ?? '';
 ?>
-<section class="bg-blue-900 text-white overflow-hidden ">
-  <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-16 relative">
+<section class="bg-blue-900 text-white relative py-16 sm:py-20 md:py-24 min-h-[450px] md:min-h-[500px] lg:min-h-[550px]">
 
-    <!-- Extra brede foto links -->
-    <?php if ($img && is_array($img) && ! empty($img['url'])) : ?>
-      <div class="relative w-full flex justify-start md:justify-end overflow-hidden md:order-2">
-        <img 
-          src="<?php echo esc_url($img['url']); ?>" 
-          alt="<?php echo esc_attr($img['alt']); ?>" 
-          class="w-80 sm:w-[500px] md:w-[850px] lg:w-[900px] h-64 sm:h-80 md:h-[650px] lg:h-[700px] object-cover md:ml-auto
-                 
-                 shadow-lg transition-all duration-500"
-        />
-      </div>
-    <?php endif; ?>
-
-    <!-- Tekst dichterbij foto -->
-    <div class="container mx-auto px-4 md:pl-36 lg:pl-64 xl:pl-[380px] 2xl:pl-[520px] flex flex-col justify-center mt-8 md:mt-0 md:order-1">
+  <!-- TEKST -->
+  <div class="container mx-auto px-4 relative z-10 flex items-center h-full">
+    <div class="max-w-2xl pt-24 md:pt-28">
       <?php if ($text) : ?>
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
+        <h2 class="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-semibold text-gray-100 mb-3 leading-snug">
           <?php echo esc_html($text); ?>
         </h2>
       <?php endif; ?>
 
       <?php if ($text_area) : ?>
-        <p class="text-base sm:text-lg md:text-lg leading-relaxed max-w-xl">
-          <?php echo esc_html($text_area); ?>
-        </p>
+        <div class="text-gray-200 leading-relaxed text-base sm:text-lg md:text-lg lg:text-xl">
+          <?php echo wpautop( wp_kses_post( $text_area ) ); ?>
+        </div>
       <?php endif; ?>
     </div>
-
   </div>
+
+  <!-- FOTO DESKTOP / TABLET -->
+  <?php if ($img && ! empty($img['url'])) : ?>
+    <div class="absolute top-0 right-0 h-full hidden sm:block w-[45vw] md:w-[40vw] lg:w-[35vw]">
+      <img 
+        src="<?php echo esc_url($img['url']); ?>" 
+        alt="<?php echo esc_attr($img['alt']); ?>" 
+        class="w-full h-full object-cover object-center"
+      />
+    </div>
+  <?php endif; ?>
+
+  <!-- FOTO MOBIEL -->
+  <?php if ($img && ! empty($img['url'])) : ?>
+    <div class="w-full h-48 sm:hidden">
+      <img 
+        src="<?php echo esc_url($img['url']); ?>" 
+        alt="<?php echo esc_attr($img['alt']); ?>" 
+        class="w-full h-full object-cover object-center"
+      />
+    </div>
+  <?php endif; ?>
+
 </section>
 <?php endif; ?>
