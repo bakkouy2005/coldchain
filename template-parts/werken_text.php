@@ -1,0 +1,46 @@
+<?php 
+$werken_text = get_field('werken_text');
+
+if ( $werken_text && is_array($werken_text) ) :
+    $img       = $werken_text['img'] ?? null;        
+    $text      = $werken_text['text'] ?? '';
+    $text_area = $werken_text['text_area'] ?? '';
+    $cards     = $werken_text['cards'];
+?>
+<section class="bg-white text-black py-16 md:py-24">
+  <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+
+    <!-- Tekst links -->
+    <div>
+      <?php if ($text) : ?>
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">
+          <?php echo esc_html($text); ?>
+        </h2>
+      <?php endif; ?>
+
+      <?php if ($text_area) : ?>
+        <div class="text-gray-800 leading-relaxed text-base md:text-lg">
+          <?php echo wpautop( wp_kses_post($text_area) ); ?>
+        </div>
+      <?php endif; ?>
+    </div>
+
+    <!-- Cards rechts -->
+    <?php if ($cards) : ?>
+    <div class="md:ml-8 grid auto-rows-max gap-4" style="font-weight: 500; grid-auto-flow: column; grid-template-rows: repeat(5, min-content);">
+      <?php foreach ($cards as $card) : ?>
+        <?php if (!empty($card['text'])) : ?>
+          <div class="flex items-start gap-3">
+            <i class="fa-solid fa-check text-green-600 mt-1"></i>
+            <p class="text-lg md:text-xl text-gray-900"> <!-- hier groter gemaakt -->
+              <?php echo esc_html($card['text']); ?>
+            </p>
+          </div>
+        <?php endif; ?>
+      <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+
+  </div>
+</section>
+<?php endif; ?> 
