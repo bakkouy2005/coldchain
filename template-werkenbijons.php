@@ -1,12 +1,13 @@
 <?php
-/* Template Name: Werken bij ons */
+/* Template Name: Werken_bij_ons */
 get_header();
 
 
 ?>
 
 <div class="">
-    <?php get_template_part('template-parts/test'); ?>
+    <?php get_template_part('template-parts/werken_bij_ons'); ?>
+     <?php get_template_part('template-parts/werken_text'); ?>
    
    
 </div>
