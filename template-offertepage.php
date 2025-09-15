@@ -137,12 +137,12 @@ get_header();
                 </div>
 
                 <div class="space-y-4">
-                    <input type="email" name="email" placeholder="<?php the_field('email_placeholder'); ?>" class="w-full p-3 border rounded" required>
-                    <input type="text" name="telefoon" placeholder="<?php the_field('telefoon_placeholder'); ?>" class="w-full p-3 border rounded" required>
+                    <input type="email" name="email" placeholder="<?php the_field('email_placeholder'); ?>" class="w-full p-3 border rounded bg-white text-black" required>
+                    <input type="text" name="telefoon" placeholder="<?php the_field('telefoon_placeholder'); ?>" class="w-full p-3 border rounded bg-white text-black" required>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="date" name="start_datum" class="p-3 border rounded" required>
-                        <input type="date" name="eind_datum" class="p-3 border rounded" required>
+                        <input type="date" name="start_datum" class="p-3 border rounded bg-white text-black" required>
+                        <input type="date" name="eind_datum" class="p-3 border rounded bg-white text-black" required>
                     </div>
                 </div>
 
