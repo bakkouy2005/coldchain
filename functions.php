@@ -72,3 +72,21 @@ function theme_enqueue_swiper() {
 add_action('wp_enqueue_scripts', 'theme_enqueue_swiper');
 
 
+// Tailwind classes for active menu item
+add_filter( 'nav_menu_link_attributes', function( $atts, $item ) {
+    $active_classes = 'text-blue-500';
+    $base_classes = 'text-white hover:text-blue-400 transition-colors';
+
+    $item_classes = is_array( $item->classes ) ? $item->classes : array();
+    $is_active = in_array( 'current-menu-item', $item_classes, true )
+        || in_array( 'current_page_item', $item_classes, true )
+        || in_array( 'current-menu-ancestor', $item_classes, true )
+        || in_array( 'current_page_ancestor', $item_classes, true )
+        || in_array( 'current-menu-parent', $item_classes, true );
+
+    $existing = isset( $atts['class'] ) ? trim( $atts['class'] ) : '';
+    $atts['class'] = trim( $existing . ' ' . ( $is_active ? $active_classes : $base_classes ) );
+
+    return $atts;
+}, 10, 2 );
+

@@ -1,3 +1,27 @@
+/* Reviews section wrapper styling */
+.reviews-section {
+  --reviews-bg: #EFEFEF; /* default dark blue */
+  background: var(--reviews-bg);
+  padding: 2rem 1rem;
+}
+
+/* Target likely card/review containers inside plugin output */
+.reviews-section [class*="card"]{
+
+  background-color: #d10000 !important;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.repocean-slider-main-v4 .repocean-content-wrapper {
+  max-width: 100% !important;
+}
+
+
+
+/* (Reverted) No width/background overrides for plugin wrappers */
+
 /*
 Theme Name: Coldchain Development
 Theme URI: http://voorbeeld.com

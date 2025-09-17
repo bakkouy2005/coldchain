@@ -31,7 +31,7 @@
 
                 <!-- Right: CTA + Mobile hamburger -->
                 <div class="flex items-center gap-3">
-                    <a href="#" class="hidden md:inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Meld je nu aan!</a>
+                    <a href="<?php echo esc_url( home_url('/offerte-page') ); ?>" class="hidden md:inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Meld je nu aan!</a>
                     <button id="mobile-nav-toggle" class="md:hidden inline-flex items-center justify-center p-2 rounded border border-white/20 hover:bg-white/10" aria-expanded="false" aria-controls="mobile-nav" aria-label="Menu">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -51,7 +51,7 @@
                             'fallback_cb'    => false,
                         ) );
                     ?>
-                    <a href="#" class="mt-3 inline-block w-full text-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Meld je nu aan!</a>
+                    <a href="<?php echo esc_url( home_url('/offerte-page') ); ?>" class="mt-3 inline-block w-full text-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Meld je nu aan!</a>
                 </div>
             </div>
         </div>

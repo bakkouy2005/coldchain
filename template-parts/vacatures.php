@@ -9,7 +9,7 @@ if ($vacatures_group) :
 <section class="py-16 bg-white">
   <div class="container mx-auto px-4">
     <?php if ($section_title) : ?>
-      <h2 class="text-4xl font-bold text-center mb-12">
+      <h2 class="text-4xl font-bold text-center mb-12 text-gray-700">
         <?php echo esc_html($section_title); ?>
       </h2>
     <?php endif; ?>
