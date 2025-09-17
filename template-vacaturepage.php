@@ -1,5 +1,5 @@
 <?php
-/* Template Name: vacatures_hero */
+/* Template Name: vacatures_overzicht */
 get_header();
 
 
