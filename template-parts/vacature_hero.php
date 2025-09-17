@@ -4,7 +4,7 @@ $vacature_hero = get_field('vacature_hero');
 if( $vacature_hero ) :
     $img       = $vacature_hero['img'];         
     $text      = $vacature_hero['text'];       
-    $text_area = $vacature_hero['text_area']; 
+    $location = $vacature_hero['location']; 
     $button    = $vacature_hero['button']; // hierin zit 'text' en 'url'
 ?>
 
@@ -20,12 +20,12 @@ if( $vacature_hero ) :
       <?php endif; ?>
 
       <!-- Tekst met icoon netjes uitgelijnd -->
-      <?php if($text_area): ?>
+      <?php if($location): ?>
         <div class="flex items-start space-x-4 opacity-90">
           <!-- Icoon uitgelijnd met eerste regel van de tekst -->
           <i class="fa-solid fa-location-dot text-white text-2xl flex-shrink-0"></i>
           <div class="flex-1 text-base md:text-lg leading-relaxed">
-            <?php echo wp_kses_post($text_area); ?>
+            <?php echo wp_kses_post($location); ?>
           </div>
         </div>
       <?php endif; ?>
