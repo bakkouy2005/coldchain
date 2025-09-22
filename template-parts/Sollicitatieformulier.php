@@ -1,4 +1,9 @@
+<?php
 
+get_header();
+?>
+
+<!-- Hele pagina achtergrond -->
 <div class="w-full min-h-screen flex flex-col bg-[#0A131F]">
 
     <!-- Container uitgelijnd met header/footer -->
@@ -159,3 +164,5 @@ document.getElementById('closePopup').addEventListener('click', function() {
 });
 </script>
 
+
+<?php get_footer(); ?>
