@@ -31,64 +31,9 @@ get_header();
         <div class="md:flex md:gap-8 items-start">
 
             <!-- Formuliervelden links -->
-            <form id="sollicitatie-form" class="flex-1 space-y-6 mb-8">
-
-                <!-- Rij 1: Voor- en Achternaam + E-mailadres -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-white font-medium mb-2">Voor- en Achternaam</label>
-                        <input type="text" name="naam" class="w-full p-3 rounded-lg bg-[#1C273B] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200" placeholder="Uw naam" required>
-                    </div>
-                    <div>
-                        <label class="block text-white font-medium mb-2">E-mailadres</label>
-                        <input type="email" name="email" class="w-full p-3 rounded-lg bg-[#1C273B] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200" placeholder="Uw e-mailadres" required>
-                    </div>
-                </div>
-
-                <!-- Rij 2: Woonplaats + Telefoonnummer -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-white font-medium mb-2">Woonplaats</label>
-                        <input type="text" name="woonplaats" class="w-full p-3 rounded-lg bg-[#1C273B] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200" placeholder="Uw woonplaats">
-                    </div>
-                    <div>
-                        <label class="block text-white font-medium mb-2">Telefoonnummer</label>
-                        <input type="text" name="telefoon" class="w-full p-3 rounded-lg bg-[#1C273B] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200" placeholder="Uw telefoonnummer">
-                    </div>
-                </div>
-
-                <!-- CV upload -->
-                <div>
-                    <label class="block text-white font-medium mb-2">CV Upload</label>
-                    <input type="file" name="cv" class="w-full p-3 rounded-lg bg-[#1C273B] text-white placeholder-gray-400 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200">
-                </div>
-
-                <!-- Bericht -->
-                <div class="md:w-3/4">
-                    <label class="block text-white font-medium mb-2">Bericht</label>
-                    <textarea name="bericht" class="w-full p-3 rounded-lg bg-[#1C273B] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200 min-h-[160px]" rows="6" placeholder="Uw bericht"></textarea>
-                </div>
-
-                <!-- Checkbox "Hoe mogen we u contacteren?" -->
-                <div class="mb-6">
-                    <p class="text-white font-medium mb-3">Hoe mogen we u contacteren?</p>
-                    <div class="flex gap-6">
-                        <?php
-                        $contact_options = ['Telefoon', 'Email', 'WhatsApp'];
-                        foreach($contact_options as $option): ?>
-                            <label class="flex items-center gap-2 text-white cursor-pointer hover:text-yellow-400 transition-colors">
-                                <input type="checkbox" name="contact_method[]" value="<?php echo strtolower($option); ?>" class="accent-blue-500 w-4 h-4">
-                                <span class="select-none"><?php echo $option; ?></span>
-                            </label>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-
-                <!-- Verstuur knop -->
-                <div>
-                    <button type="submit" class="px-8 py-2 rounded-lg font-bold text-white bg-[#004DFF] hover:bg-[#FDB314] transition-all duration-300 shadow-md hover:shadow-lg">Verstuur</button>
-                </div>
-            </form>
+            <div id="sollicitatie-form" class="flex-1 space-y-6 mb-8">
+                <?php if ( function_exists('advanced_form') ) { advanced_form('form_68cd65b633b84'); } ?>
+            </div>
 
             <!-- Afbeelding + tip rechts -->
             <div class="mt-6 md:mt-0 md:w-1/3 space-y-6">
@@ -130,38 +75,64 @@ get_header();
 </div>
 
 <script>
-document.getElementById('sollicitatie-form').addEventListener('submit', function(e) {
-    e.preventDefault(); // voorkom echte submit voor demo
+document.getElementById('closePopup')?.addEventListener('click', function() {
     const popup = document.getElementById('popup');
     const content = document.getElementById('popupContent');
-
-    // toon overlay
-    popup.classList.remove('hidden');
-    popup.classList.add('flex');
-
-    // kleine vertraging voor animatie
-    setTimeout(() => {
-        content.classList.remove('translate-y-10', 'opacity-0');
-        content.classList.add('translate-y-0', 'opacity-100');
-    }, 50);
-});
-
-// Sluit knop
-document.getElementById('closePopup').addEventListener('click', function() {
-    const popup = document.getElementById('popup');
-    const content = document.getElementById('popupContent');
-
-    // terug animatie
+    if (!popup || !content) return;
     content.classList.add('translate-y-10', 'opacity-0');
     content.classList.remove('translate-y-0', 'opacity-100');
-
-    // na animatie overlay verbergen en pagina refresh
     setTimeout(() => {
         popup.classList.add('hidden');
         popup.classList.remove('flex');
-        location.reload(); // refresh de pagina
+        location.reload();
     }, 500);
 });
+
+// Toon popup bij succesvolle Advanced Forms submissie
+(function() {
+    const wrapper = document.getElementById('sollicitatie-form');
+    if (!wrapper) return;
+
+    const showPopup = () => {
+        const popup = document.getElementById('popup');
+        const content = document.getElementById('popupContent');
+        if (!popup || !content) return;
+        popup.classList.remove('hidden');
+        popup.classList.add('flex');
+        setTimeout(() => {
+            content.classList.remove('translate-y-10', 'opacity-0');
+            content.classList.add('translate-y-0', 'opacity-100');
+        }, 50);
+    };
+
+    // 1) Directe check: staat er een success-notice in de form?
+    const successSelector = '.af-notice-success, .af-success, .acf-notice.-success, .acf-success-message, .message.success';
+    if (wrapper.querySelector(successSelector)) {
+        showPopup();
+        return;
+    }
+
+    // 2) URL parameter check (bij non-AJAX submit)
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('af_success') || params.get('submitted') === 'true') {
+        showPopup();
+        return;
+    }
+
+    // 3) Observeer DOM voor AJAX success meldingen
+    const observer = new MutationObserver((mutations) => {
+        for (const m of mutations) {
+            if (m.addedNodes && m.addedNodes.length) {
+                if (wrapper.querySelector(successSelector)) {
+                    showPopup();
+                    observer.disconnect();
+                    break;
+                }
+            }
+        }
+    });
+    observer.observe(wrapper, { childList: true, subtree: true });
+})();
 </script>
 
 

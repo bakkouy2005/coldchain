@@ -90,3 +90,10 @@ add_filter( 'nav_menu_link_attributes', function( $atts, $item ) {
     return $atts;
 }, 10, 2 );
 
+add_action('acf/init', 'mijn_acf_form_init');
+function mijn_acf_form_init() {
+    // Zorg dat scripts/styles van ACF form worden geladen
+    acf_form_head();
+}
+
+

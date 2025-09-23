@@ -40,3 +40,267 @@ Text Domain: coldchain-development
 .half-circle-left {
   clip-path: ellipse(70% 100% at 0% 50%);
 }
+
+/* Advanced Forms Custom Styling - Job Application Form */
+.acf-form {
+  max-width: 100%;
+  margin: 0;
+}
+
+/* Form fields styling - Dark theme matching the image */
+.acf-form input[type="text"],
+.acf-form input[type="email"],
+.acf-form input[type="tel"],
+.acf-form input[type="url"],
+.acf-form input[type="password"],
+.acf-form input[type="number"],
+.acf-form input[type="date"],
+.acf-form input[type="time"],
+.acf-form select,
+.acf-form textarea {
+  width: 100%;
+  padding: 18px 20px; /* iets hoger */
+  border: 1px solid transparent; /* geen zichtbare lijnen/strepen */
+  border-radius: 8px; /* rounded-lg gevoel */
+  font-size: 16px;
+  background-color: #1C273B; /* zelfde als voorheen */
+  color: #ffffff;
+  transition: all 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.acf-form input::placeholder,
+.acf-form textarea::placeholder {
+  color: #9ca3af;
+}
+
+.acf-form input:focus,
+.acf-form select:focus,
+.acf-form textarea:focus {
+  outline: none;
+  border-color: #3b82f6; /* tailwind blue-500 */
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4); /* ring-2 */
+}
+
+/* Labels styling - White text for dark background */
+.acf-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+/* Submit button styling - Blue button like in image */
+.acf-form input[type="submit"],
+.acf-form .acf-button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: auto;
+  float: right;
+}
+
+.acf-form input[type="submit"]:hover,
+.acf-form .acf-button:hover {
+  background-color: #2563eb;
+}
+
+/* File upload styling */
+.acf-form input[type="file"] {
+  background-color: #1C273B;
+  border: 1px solid #23304a;
+  border-radius: 8px;
+  padding: 16px;
+  color: #ffffff;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Upload area styling */
+.acf-form .acf-file-upload {
+  background-color: #374151;
+  border: 0; /* geen streepjesrand */
+  border-radius: 6px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.acf-form .acf-file-upload-text {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* Checkbox and radio styling for contact preferences */
+.acf-form input[type="checkbox"],
+.acf-form input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  margin-bottom: 0;
+  background-color: #1C273B;
+  border: 1px solid #23304a;
+}
+
+.acf-form input[type="radio"] {
+  border-radius: 50%;
+}
+
+.acf-form input[type="checkbox"]:checked,
+.acf-form input[type="radio"]:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+/* Contact preference options styling */
+.acf-form .acf-field-group {
+  margin-bottom: 20px;
+}
+
+.acf-form .acf-radio-list,
+.acf-form .acf-checkbox-list {
+  display: flex;
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.acf-form .acf-radio-list label,
+.acf-form .acf-checkbox-list label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+/* Error messages */
+.acf-form .acf-error-message {
+  color: #f87171;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* Success messages */
+.acf-form .acf-success-message {
+  color: #34d399;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* Form wrapper - remove background since parent has it */
+.acf-form .acf-form-fields {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Textarea hogere minimumhoogte */
+#sollicitatie-form .acf-form textarea {
+  min-height: 160px;
+}
+
+/* Force textarea to be visible in all browsers (in case of conditional CSS) */
+#sollicitatie-form .acf-form .acf-field-textarea,
+#sollicitatie-form .acf-form .acf-field-textarea .acf-input,
+#sollicitatie-form .acf-form .acf-field-textarea textarea {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+}
+
+/* Enforce taller controls – override plugin defaults */
+#sollicitatie-form .acf-form .acf-input input[type="text"],
+#sollicitatie-form .acf-form .acf-input input[type="email"],
+#sollicitatie-form .acf-form .acf-input input[type="tel"],
+#sollicitatie-form .acf-form .acf-input input[type="url"],
+#sollicitatie-form .acf-form .acf-input input[type="password"],
+#sollicitatie-form .acf-form .acf-input input[type="number"],
+#sollicitatie-form .acf-form .acf-input input[type="date"],
+#sollicitatie-form .acf-form .acf-input input[type="time"],
+#sollicitatie-form .acf-form .acf-input select {
+  min-height: 48px !important; /* force higher field height */
+  padding: 14px 18px !important; /* ensure visual height */
+  line-height: 1.5 !important;
+  box-sizing: border-box;
+  font-size: 16px !important;
+}
+
+/* Privacy text styling */
+.acf-form .privacy-text {
+  color: #9ca3af;
+  font-size: 14px;
+  margin-top: 20px;
+  float: left;
+}
+
+/* Form row styling for two-column layout */
+.acf-form .acf-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* Clear floats */
+.acf-form::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ==========================
+   Advanced Forms grid layout
+   Make two columns on desktop inside our wrapper
+   ========================== */
+#sollicitatie-form .acf-form .acf-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  #sollicitatie-form .acf-form .acf-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+  /* Default: fields take half width on desktop */
+  #sollicitatie-form .acf-form .acf-fields > .acf-field {
+    grid-column: span 1;
+  }
+}
+
+/* Full-width fields */
+#sollicitatie-form .acf-form .acf-fields > .acf-field-textarea,
+#sollicitatie-form .acf-form .acf-fields > .acf-field-file,
+#sollicitatie-form .acf-form .acf-fields > .acf-field-checkbox,
+#sollicitatie-form .acf-form .acf-fields > .acf-field-radio,
+#sollicitatie-form .acf-form .acf-fields > .acf-field-message,
+#sollicitatie-form .acf-form .acf-fields > .acf-field-wysiwyg,
+#sollicitatie-form .acf-form .acf-fields > .acf-field-repeater,
+#sollicitatie-form .acf-form .acf-fields > .acf-field-flexible-content {
+  grid-column: 1 / -1;
+}
+
+/* Submit row full width */
+#sollicitatie-form .acf-form .acf-form-submit {
+  grid-column: 1 / -1;
+}
+
+/* Remove ACF default dividers/lines inside fields */
+#sollicitatie-form .acf-form .acf-fields,
+#sollicitatie-form .acf-form .acf-fields > .acf-field {
+  border: 0 !important;
+}
+#sollicitatie-form .acf-form .acf-field:before {
+  display: none !important;
+}
+#sollicitatie-form .acf-form hr {
+  display: none;
+}
