@@ -8,7 +8,7 @@ if( $vacature_hero ) :
     $button    = $vacature_hero['button']; // hierin zit 'text' en 'url'
 ?>
 
-<section class="relative bg-[#243866] overflow-hidden">
+<section class="relative bg-[#0A131F] overflow-hidden">
   <div class="container mx-auto relative z-10 px-6 md:px-12 py-16">
     <div class="max-w-3xl text-white space-y-8">
 

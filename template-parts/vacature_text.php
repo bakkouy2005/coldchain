@@ -8,7 +8,7 @@ if( $vacature_text ):
     $repeater2 = $vacature_text['repeater2'] ?? [];
 ?>
 
-<section class="relative bg-white overflow-hidden">
+<section class="relative bg-[#101E31] overflow-hidden">
   <div class="container mx-auto px-6 md:px-12 py-16">
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
@@ -16,7 +16,7 @@ if( $vacature_text ):
       <!-- LEFT COLUMN -->
       <div>
         <?php if( !empty($text1) ): ?>
-          <h3 class="text-center text-3xl md:text-4xl font-bold text-gray-900 mb-12">
+          <h3 class="text-center text-3xl md:text-4xl font-bold text-white mb-12">
             <?php echo esc_html($text1); ?>
           </h3>
         <?php endif; ?>
@@ -32,9 +32,9 @@ if( $vacature_text ):
                 ?>
                   <div class="flex items-start space-x-3">
                     <?php if(!empty($icon_class1)): ?>
-                      <i class="<?php echo esc_attr($icon_class1); ?> text-black text-xl mt-1"></i>
+                      <i class="<?php echo esc_attr($icon_class1); ?> text-[#CACFD6] text-xl mt-1"></i>
                     <?php endif; ?>
-                    <p class="text-gray-800 text-lg md:text-xl leading-relaxed">
+                    <p class="text-[#CACFD6] text-lg md:text-xl leading-relaxed">
                       <?php echo wp_kses_post($text_area1); ?>
                     </p>
                   </div>
@@ -48,7 +48,7 @@ if( $vacature_text ):
       <!-- RIGHT COLUMN -->
       <div>
         <?php if( !empty($text2) ): ?>
-          <h3 class="text-center text-3xl md:text-4xl font-bold text-gray-900 mb-12">
+          <h3 class="text-center text-3xl md:text-4xl font-bold text-white mb-12">
             <?php echo esc_html($text2); ?>
           </h3>
         <?php endif; ?>
@@ -64,9 +64,9 @@ if( $vacature_text ):
                 ?>
                   <div class="flex items-start space-x-3">
                     <?php if(!empty($icon_class2)): ?>
-                      <i class="<?php echo esc_attr($icon_class2); ?> text-black text-xl mt-1"></i>
+                      <i class="<?php echo esc_attr($icon_class2); ?> text-[#CACFD6] text-xl mt-1"></i>
                     <?php endif; ?>
-                    <p class="text-gray-800 text-lg md:text-xl leading-relaxed">
+                    <p class="text-[#CACFD6] text-lg md:text-xl leading-relaxed">
                       <?php echo wp_kses_post($text_area2); ?>
                     </p>
                   </div>

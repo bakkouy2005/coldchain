@@ -7,7 +7,7 @@ if( $vacature_info ):
     $text_area = $vacature_info['text_area'] ?? '';
     $button = $vacature_info['button'] ?? '';
 ?>
-<section class="relative bg-white overflow-hidden">
+<section class="relative bg-[#101E31] overflow-hidden">
   <div class="container mx-auto px-6 md:px-12 py-16">
 
     <!-- Subtiele lijn boven de content -->
@@ -18,7 +18,7 @@ if( $vacature_info ):
 
       <!-- Titel -->
       <?php if( !empty($text) ): ?>
-        <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900 leading-tight text-left">
+        <h2 class="text-2xl md:text-4xl font-extrabold text-[#CACFD6] leading-tight text-left">
           <?php echo esc_html($text); ?>
         </h2>
       <?php endif; ?>
@@ -30,7 +30,7 @@ if( $vacature_info ):
         $short_text = implode(' ', array_slice($words, 0, $max_words));
         $is_truncated = count($words) > $max_words;
         ?>
-        <div class="relative text-base md:text-lg text-gray-700 leading-relaxed">
+        <div class="relative text-base md:text-lg text-[#CACFD6] leading-relaxed">
           <?php if ( $is_truncated ): ?>
             <!-- Korte tekst -->
             <div class="text-area-short">
