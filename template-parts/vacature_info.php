@@ -31,16 +31,24 @@ if( $vacature_info ):
         $is_truncated = count($words) > $max_words;
         ?>
         <div class="relative text-base md:text-lg text-gray-700 leading-relaxed">
-          <div class="text-area-short <?php echo $is_truncated ? '' : 'hidden'; ?>">
-            <?php echo wp_kses_post($short_text); ?><?php echo $is_truncated ? '...' : ''; ?>
-          </div>
-          <?php if($is_truncated): ?>
+          <?php if ( $is_truncated ): ?>
+            <!-- Korte tekst -->
+            <div class="text-area-short">
+              <?php echo wp_kses_post($short_text); ?>...
+            </div>
+            <!-- Volledige tekst -->
             <div class="text-area-full hidden">
               <?php echo wp_kses_post($text_area); ?>
             </div>
+            <!-- Knop -->
             <button class="mt-2 text-blue-600 font-semibold hover:underline read-more-btn">
               Lees meer
             </button>
+          <?php else: ?>
+            <!-- Als de tekst kort is: toon direct alles zonder knop -->
+            <div>
+              <?php echo wp_kses_post($text_area); ?>
+            </div>
           <?php endif; ?>
         </div>
       <?php endif; ?>
