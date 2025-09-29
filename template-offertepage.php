@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
 get_header(); 
 ?>
 
-<section class="bg-blue-900 text-white py-12">
+<section class="bg-[#0A131F] text-white py-12">
   <div class="container mx-auto px-4">
     <h1 class="text-3xl md:text-4xl font-bold mb-4"><?php the_field('pagina_titel'); ?></h1>
     <p class="mb-6"><?php the_field('intro_tekst'); ?></p>
@@ -89,7 +89,7 @@ get_header();
             ✅ <?php the_field('success_bericht'); ?>
         </div>
     <?php else : ?>
-        <form method="POST" class="space-y-6 text-white">
+        <form id="offerte-form" method="POST" class="space-y-6 text-white">
             <input type="hidden" name="offerte_step" value="<?php echo $current_step; ?>">
 
             <?php if ($current_step === 1) : ?>
@@ -103,7 +103,7 @@ get_header();
                 <h3 class="text-2xl md:text-3xl font-semibold mb-3"><?php the_field('stap_1_titel'); ?></h3>
 
                 <div class="space-y-4">
-                    <select name="dienst" class="w-full p-3 border rounded bg-white text-black" required>
+                    <select name="dienst" class="w-full p-3 rounded" required>
                         <option value=""><?php the_field('selecteer_dienst_placeholder'); ?></option>
                         <?php if(have_rows('diensten')): while(have_rows('diensten')): the_row(); ?>
                             <option value="<?= esc_attr(get_sub_field('dienst_naam')) ?>"><?= esc_html(get_sub_field('dienst_naam')) ?></option>
@@ -111,19 +111,19 @@ get_header();
                     </select>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" name="laadplaats" placeholder="<?php the_field('laadplaats_placeholder'); ?>" class="p-3 border rounded bg-white text-black" required>
-                        <input type="text" name="losplaats" placeholder="<?php the_field('losplaats_placeholder'); ?>" class="p-3 border rounded bg-white text-black" required>
+                        <input type="text" name="laadplaats" placeholder="<?php the_field('laadplaats_placeholder'); ?>" class="p-3 rounded" required>
+                        <input type="text" name="losplaats" placeholder="<?php the_field('losplaats_placeholder'); ?>" class="p-3 rounded" required>
                     </div>
 
-                    <input type="date" name="datum" class="p-3 border rounded bg-white text-black w-full" required>
+                    <input type="date" name="datum" class="p-3 rounded w-full" required>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="number" name="pallets" placeholder="<?php the_field('pallets_placeholder'); ?>" class="p-3 border rounded bg-white text-black" required>
-                        <input type="number" name="gewicht" placeholder="<?php the_field('gewicht_placeholder'); ?>" class="p-3 border rounded bg-white text-black" required>
+                        <input type="number" name="pallets" placeholder="<?php the_field('pallets_placeholder'); ?>" class="p-3 rounded" required>
+                        <input type="number" name="gewicht" placeholder="<?php the_field('gewicht_placeholder'); ?>" class="p-3 rounded" required>
                     </div>
 
-                    <input type="text" name="afmeting" placeholder="<?php the_field('afmeting_placeholder'); ?>" class="w-full p-3 border rounded bg-white text-black">
-                    <textarea name="omschrijving" placeholder="<?php the_field('omschrijving_placeholder'); ?>" class="w-full p-3 border rounded bg-white text-black min-h-[140px]"></textarea>
+                    <input type="text" name="afmeting" placeholder="<?php the_field('afmeting_placeholder'); ?>" class="w-full p-3 rounded">
+                    <textarea name="omschrijving" placeholder="<?php the_field('omschrijving_placeholder'); ?>" class="w-full p-3 rounded min-h-[140px]"></textarea>
                 </div>
 
                 <button type="submit" class="bg-blue-800 text-white px-6 py-3 rounded hover:bg-blue-800">Volgende</button>
@@ -137,12 +137,12 @@ get_header();
                 </div>
 
                 <div class="space-y-4">
-                    <input type="email" name="email" placeholder="<?php the_field('email_placeholder'); ?>" class="w-full p-3 border rounded bg-white text-black" required>
-                    <input type="text" name="telefoon" placeholder="<?php the_field('telefoon_placeholder'); ?>" class="w-full p-3 border rounded bg-white text-black" required>
+                    <input type="email" name="email" placeholder="<?php the_field('email_placeholder'); ?>" class="w-full p-3 rounded" required>
+                    <input type="text" name="telefoon" placeholder="<?php the_field('telefoon_placeholder'); ?>" class="w-full p-3 rounded" required>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="date" name="start_datum" class="p-3 border rounded bg-white text-black" required>
-                        <input type="date" name="eind_datum" class="p-3 border rounded bg-white text-black" required>
+                        <input type="date" name="start_datum" class="p-3 rounded" required>
+                        <input type="date" name="eind_datum" class="p-3 rounded" required>
                     </div>
                 </div>
 

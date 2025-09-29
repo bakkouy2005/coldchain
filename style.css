@@ -204,6 +204,8 @@ Text Domain: coldchain-development
 /* Textarea hogere minimumhoogte */
 #sollicitatie-form .acf-form textarea {
   min-height: 160px;
+  max-height: 240px; /* Tailwind-like max-h-60 */
+  overflow-y: auto;  /* Tailwind-like overflow-y-auto */
 }
 
 /* Force textarea to be visible in all browsers (in case of conditional CSS) */
@@ -293,6 +295,39 @@ Text Domain: coldchain-development
   grid-column: 1 / -1;
 }
 
+/* ==========================
+   Offerte form styling to match sollicitatie form
+   ========================== */
+#offerte-form input[type="text"],
+#offerte-form input[type="email"],
+#offerte-form input[type="tel"],
+#offerte-form input[type="url"],
+#offerte-form input[type="password"],
+#offerte-form input[type="number"],
+#offerte-form input[type="date"],
+#offerte-form input[type="time"],
+#offerte-form select,
+#offerte-form textarea {
+  width: 100%;
+  padding: 16px 18px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #1C273B;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+#offerte-form input:focus,
+#offerte-form select:focus,
+#offerte-form textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+}
+
+#offerte-form textarea { min-height: 160px; max-height: 240px; overflow-y: auto; }
+
 /* Remove ACF default dividers/lines inside fields */
 #sollicitatie-form .acf-form .acf-fields,
 #sollicitatie-form .acf-form .acf-fields > .acf-field {
@@ -303,4 +338,10 @@ Text Domain: coldchain-development
 }
 #sollicitatie-form .acf-form hr {
   display: none;
+}
+
+/* Hide vacature_functie field (wrapper) completely so it doesn't affect layout */
+.af-field-vacature_functie,
+.acf-field[data-name="vacature_functie"] {
+  display: none !important;
 }

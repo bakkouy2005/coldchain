@@ -62,6 +62,11 @@ function coldchain_development_assets() {
     // Je eigen theme CSS (style.css)
     wp_enqueue_style( 'mijn-style', get_stylesheet_uri(), array(), wp_get_theme()->get('Version') );
 
+    // Theme JavaScript (character limit & counters)
+    $theme_js_path = get_stylesheet_directory() . '/js/java.js';
+    $theme_js_uri  = get_stylesheet_directory_uri() . '/js/java.js';
+    $theme_js_ver  = file_exists( $theme_js_path ) ? filemtime( $theme_js_path ) : null;
+    wp_enqueue_script( 'coldchain-main-js', $theme_js_uri, array(), $theme_js_ver, true );
 }
 add_action( 'wp_enqueue_scripts', 'coldchain_development_assets' );
 
@@ -95,5 +100,15 @@ function mijn_acf_form_init() {
     // Zorg dat scripts/styles van ACF form worden geladen
     acf_form_head();
 }
+
+add_filter('af/field/value/name=vacature_functie', function($value, $field, $form, $args) {
+    if (isset($_GET['id'])) {
+        $vacature_id = absint($_GET['id']);
+        if ($vacature_id) {
+            return get_the_title($vacature_id);
+        }
+    }
+    return $value;
+}, 10, 4);
 
 
