@@ -30,27 +30,34 @@
       <div>
         <h3 class="text-xl font-bold text-white mb-6">Vacatures</h3>
         <ul class="space-y-5">
-          <li class="flex gap-3 sm:gap-4">
-            <img src="<?php echo esc_url( get_theme_file_uri('/assets/images/vac1.jpg') ); ?>" alt="Vacature 1" class="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover flex-shrink-0">
-            <div>
-              <p class="text-white font-medium leading-tight text-sm sm:text-base">Vacature 1</p>
-              <p class="text-zinc-400 text-xs sm:text-sm">Nam, verum veriae repro ellam, volenihicid et,</p>
-            </div>
-          </li>
-          <li class="flex gap-3 sm:gap-4">
-            <img src="<?php echo esc_url( get_theme_file_uri('/assets/images/vac2.jpg') ); ?>" alt="Vacature 2" class="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover flex-shrink-0">
-            <div>
-              <p class="text-white font-medium leading-tight text-sm sm:text-base">Vacature 2</p>
-              <p class="text-zinc-400 text-xs sm:text-sm">Nam, verum veriae repro ellam, volenihicid et,</p>
-            </div>
-          </li>
-          <li class="flex gap-3 sm:gap-4">
-            <img src="<?php echo esc_url( get_theme_file_uri('/assets/images/vac3.jpg') ); ?>" alt="Vacature 3" class="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover flex-shrink-0">
-            <div>
-              <p class="text-white font-medium leading-tight text-sm sm:text-base">Vacature 3</p>
-              <p class="text-zinc-400 text-xs sm:text-sm">Nam, verum veriae repro ellam, volenihicid et,</p>
-            </div>
-          </li>
+        <?php
+  $vacatures = new WP_Query(array(
+    'post_type' => 'vacature', // aangepast naar jouw plugin post type
+    'posts_per_page' => 3
+  ));
+  if ($vacatures->have_posts()) :
+    while ($vacatures->have_posts()) : $vacatures->the_post();
+?>
+  <li class="flex gap-3 sm:gap-4">
+  <?php 
+$img = get_field('img'); 
+if ($img) : ?>
+  <img src="<?php echo esc_url($img['sizes']['thumbnail']); ?>" 
+       alt="<?php echo esc_attr($img['alt']); ?>" 
+       class="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover flex-shrink-0">
+<?php endif; ?>
+    <div>
+      <p class="text-white font-medium leading-tight text-sm sm:text-base"><?php the_title(); ?></p>
+      <p class="text-zinc-400 text-xs sm:text-sm"><?php echo wp_trim_words(get_the_excerpt(), 12); ?></p>
+    </div>
+  </li>
+<?php
+    endwhile;
+    wp_reset_postdata();
+  else :
+    echo '<li class="text-zinc-400">Geen vacatures beschikbaar</li>';
+  endif;
+?>
         </ul>
       </div>
 

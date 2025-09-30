@@ -6,7 +6,7 @@ if ( $overons_fototext && is_array($overons_fototext) ) :
     $text      = $overons_fototext['text'] ?? '';
     $text_area = $overons_fototext['text_area'] ?? '';
 ?>
-<section class="bg-blue-900 text-white relative py-16 sm:py-20 md:py-24 min-h-[450px] md:min-h-[500px] lg:min-h-[550px]">
+<section class="bg-[#0A131F] text-white relative py-16 sm:py-20 md:py-24 min-h-[450px] md:min-h-[500px] lg:min-h-[550px]">
 
   <!-- TEKST -->
   <div class="container mx-auto px-4 relative z-10 flex items-center h-full">

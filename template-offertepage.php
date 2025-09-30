@@ -30,6 +30,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
         ]);
 
         $offerte = $_SESSION['offerte'];
+
+        // 1) Save to database as custom post type 'offerte'
+        $title_email = !empty($offerte['email']) ? $offerte['email'] : 'onbekend';
+        $title_time  = current_time('mysql');
+        $post_id = wp_insert_post(array(
+            'post_type'   => 'offerte',
+            'post_status' => 'private',
+            'post_title'  => sprintf('Offerte van %s (%s)', $title_email, $title_time),
+            'post_content'=> '',
+        ));
+        if ($post_id && !is_wp_error($post_id)) {
+            foreach ($offerte as $key => $value) {
+                update_post_meta($post_id, $key, $value);
+            }
+        }
+
+        // 2) Email recipient and subject
         $to = get_field('email_ontvanger', 'option') ?: get_bloginfo('admin_email');
         $subject = "Nieuwe offerte aanvraag van " . $offerte['email'];
 

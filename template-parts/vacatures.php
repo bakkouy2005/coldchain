@@ -2,7 +2,9 @@
 // Vacatures query
 $args = array(
   'post_type'      => 'vacature',
-  'posts_per_page' => -1,
+  'posts_per_page' => 8,
+  'orderby'        => 'date',
+  'order'          => 'DESC',
 );
 $vacatures = new WP_Query($args);
 
@@ -27,7 +29,7 @@ if ($vacatures->have_posts()) :
               $button    = get_field('button');
             ?>
             <div class="swiper-slide py-3">
-              <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col h-full min-h-[520px]">
+              <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col h-[600px]">
                 <?php if ($img) : ?>
                   <div class="h-48 w-full overflow-hidden">
                     <img src="<?php echo esc_url($img['url']); ?>" 
@@ -42,7 +44,9 @@ if ($vacatures->have_posts()) :
                   <?php endif; ?>
 
                   <?php if ($text_area) : ?>
-                    <p class="text-gray-600 mb-6 flex-grow"><?php echo esc_html($text_area); ?></p>
+                    <p class="text-gray-600 mb-6 flex-grow line-clamp-5 overflow-hidden text-ellipsis">
+                      <?php echo esc_html( wp_trim_words( $text_area, 30, '...' ) ); ?>
+                    </p>
                   <?php endif; ?>
 
                   <?php if ($button) : ?>
@@ -115,7 +119,7 @@ if ($vacatures->have_posts()) :
             $text_area = get_field('text_area');
             $button    = get_field('button');
           ?>
-          <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col h-full min-h-[520px]">
+          <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col h-[600px]">
             <?php if ($img) : ?>
               <div class="h-48 w-full overflow-hidden">
                 <img src="<?php echo esc_url($img['url']); ?>" 
@@ -130,7 +134,9 @@ if ($vacatures->have_posts()) :
               <?php endif; ?>
 
               <?php if ($text_area) : ?>
-                <p class="text-gray-600 mb-6 flex-grow"><?php echo esc_html($text_area); ?></p>
+                <p class="text-gray-600 mb-6 flex-grow line-clamp-5 overflow-hidden text-ellipsis">
+                  <?php echo esc_html( wp_trim_words( $text_area, 30, '...' ) ); ?>
+                </p>
               <?php endif; ?>
 
               <?php if ($button) : ?>
