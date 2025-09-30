@@ -9,7 +9,7 @@ if ( $overons_info && is_array($overons_info) ) :
     $btn_label = isset($button['text']) ? $button['text'] : '';
     $btn_url   = isset($button['url']) ? $button['url'] : '';
 ?>
-<section class="bg-white text-black relative min-h-[450px] md:min-h-[500px] lg:min-h-[550px] flex items-center overflow-hidden">
+<section class="bg-white text-black relative min-h-[450px] md:min-h-[500px] lg:min-h-[550px] sm:flex sm:items-center overflow-hidden">
 
   <!-- FOTO LINKS OP DESKTOP / TABLET -->
   <?php if ($img && ! empty($img['url'])) : ?>
@@ -35,7 +35,11 @@ if ( $overons_info && is_array($overons_info) ) :
 
   <!-- TEKST + KNOP -->
   <div class="container mx-auto px-6 relative z-10 flex items-center">
-    <div class="flex flex-col justify-center max-w-2xl ml-[45rem] md:ml-[45rem] lg:ml-[42rem]">
+    <div class="flex flex-col justify-center max-w-2xl
+                ml-0
+                sm:ml-[calc(45vw+1rem)]
+                md:ml-[45rem]
+                lg:ml-[42rem]">
 
       <?php if ($title) : ?>
       <h2 class="text-2xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-snug">

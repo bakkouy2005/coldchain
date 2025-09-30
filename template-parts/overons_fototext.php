@@ -6,11 +6,22 @@ if ( $overons_fototext && is_array($overons_fototext) ) :
     $text      = $overons_fototext['text'] ?? '';
     $text_area = $overons_fototext['text_area'] ?? '';
 ?>
-<section class="bg-[#0A131F] text-white relative py-12 sm:py-16 md:py-20 min-h-[450px] md:min-h-[500px] lg:min-h-[550px]">
+<section class="bg-[#0A131F] text-white relative min-h-[450px] md:min-h-[500px] lg:min-h-[550px] sm:flex sm:items-center">
+
+  <!-- FOTO OP MOBIEL BOVENAAN -->
+  <?php if ($img && ! empty($img['url'])) : ?>
+    <div class="sm:hidden w-full h-48 relative">
+      <img 
+        src="<?php echo esc_url($img['url']); ?>" 
+        alt="<?php echo esc_attr($img['alt']); ?>" 
+        class="w-full h-full object-cover object-center"
+      />
+    </div>
+  <?php endif; ?>
 
   <!-- TEKST -->
   <div class="container mx-auto px-4 relative z-10 flex items-center h-full">
-    <div class="max-w-2xl pt-12 md:pt-16">
+    <div class="max-w-2xl py-12 sm:py-16 md:py-20">
       <?php if ($text) : ?>
         <h2 class="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-semibold text-gray-100 mb-3 leading-snug">
           <?php echo esc_html($text); ?>
@@ -27,18 +38,7 @@ if ( $overons_fototext && is_array($overons_fototext) ) :
 
   <!-- FOTO DESKTOP / TABLET -->
   <?php if ($img && ! empty($img['url'])) : ?>
-    <div class="absolute top-0 right-0 h-full hidden sm:block w-[45vw] md:w-[40vw] lg:w-[35vw]">
-      <img 
-        src="<?php echo esc_url($img['url']); ?>" 
-        alt="<?php echo esc_attr($img['alt']); ?>" 
-        class="w-full h-full object-cover object-center"
-      />
-    </div>
-  <?php endif; ?>
-
-  <!-- FOTO MOBIEL -->
-  <?php if ($img && ! empty($img['url'])) : ?>
-    <div class="w-full h-48 sm:hidden">
+    <div class="hidden sm:block absolute top-0 right-0 h-full w-[45vw] md:w-[40vw] lg:w-[35vw]">
       <img 
         src="<?php echo esc_url($img['url']); ?>" 
         alt="<?php echo esc_attr($img['alt']); ?>" 
