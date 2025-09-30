@@ -9,19 +9,19 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
     $btn_label = $button['text'] ?? '';
     $btn_url   = $button['url'] ?? '';
 ?>
-<section class="bg-[#0A131F] text-white relative overflow-hidden py-16 sm:py-20 md:py-24 lg:py-28 min-h-[450px] md:min-h-[500px] lg:min-h-[550px]">
+<section class="bg-[#0A131F] text-white relative overflow-hidden min-h-[450px] md:min-h-[500px] lg:min-h-[550px] sm:flex sm:items-center">
 
-  <!-- Tekst links -->
+  <!-- Tekst (altijd zichtbaar, op mobiel boven) -->
   <div class="container mx-auto px-4 relative z-10 flex items-center h-full">
-    <div class="max-w-xl">
+    <div class="max-w-xl sm:max-w-[55%] md:max-w-[60%] lg:max-w-xl py-12 sm:py-16 md:py-20">
       <?php if ($title) : ?>
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 leading-snug ">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-snug">
           <?php echo esc_html($title); ?>
         </h2>
       <?php endif; ?>
 
       <?php if ($text_area) : ?>
-        <div class="text-gray-200 leading-relaxed text-base sm:text-lg md:text-lg lg:text-xl mb-6">
+        <div class="text-gray-200 leading-relaxed text-lg sm:text-xl md:text-xl lg:text-2xl mb-6">
           <?php echo wpautop( wp_kses_post( $text_area ) ); ?>
         </div>
       <?php endif; ?>
@@ -35,9 +35,9 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
     </div>
   </div>
 
-  <!-- Afbeelding rechts (volledige hoogte) -->
+  <!-- Afbeelding rechts op tablet/desktop -->
   <?php if ($img && ! empty($img['url'])) : ?>
-    <div class="absolute top-0 right-0 h-full hidden sm:block w-[45vw] md:w-[40vw] lg:w-[35vw]">
+    <div class="hidden sm:block absolute top-0 right-0 h-full w-[45vw] md:w-[40vw] lg:w-[35vw]">
       <img 
         src="<?php echo esc_url($img['url']); ?>" 
         alt="<?php echo esc_attr($img['alt']); ?>" 
@@ -46,9 +46,9 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
     </div>
   <?php endif; ?>
 
-  <!-- Afbeelding bovenaan op mobiel -->
+  <!-- Afbeelding onderaan op mobiel -->
   <?php if ($img && ! empty($img['url'])) : ?>
-    <div class="w-full h-48 sm:hidden">
+    <div class="sm:hidden w-full h-48">
       <img 
         src="<?php echo esc_url($img['url']); ?>" 
         alt="<?php echo esc_attr($img['alt']); ?>" 
