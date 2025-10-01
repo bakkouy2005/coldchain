@@ -27,20 +27,20 @@ if ( $werken_text && is_array($werken_text) ) :
 
     <!-- Cards rechts -->
     <?php if ($cards) : ?>
-    <div class="md:ml-8 grid auto-rows-max gap-4" style="font-weight: 500; grid-auto-flow: column; grid-template-rows: repeat(5, min-content);">
-      <?php foreach ($cards as $card) : ?>
-        <?php if (!empty($card['text'])) : ?>
-          <div class="flex items-start gap-3">
-            <i class="fa-solid fa-check text-green-600 mt-1"></i>
-            <p class="text-lg md:text-xl text-gray-900"> <!-- hier groter gemaakt -->
-              <?php echo esc_html($card['text']); ?>
-            </p>
-          </div>
-        <?php endif; ?>
-      <?php endforeach; ?>
-    </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <?php foreach ($cards as $card) : ?>
+          <?php if (!empty($card['text'])) : ?>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-green-600 mt-1"></i>
+              <p class="text-lg md:text-xl text-gray-900 font-medium">
+                <?php echo esc_html($card['text']); ?>
+              </p>
+            </div>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      </div>
     <?php endif; ?>
 
   </div>
 </section>
-<?php endif; ?> 
+<?php endif; ?>
