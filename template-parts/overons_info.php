@@ -34,12 +34,8 @@ if ( $overons_info && is_array($overons_info) ) :
   <?php endif; ?>
 
   <!-- TEKST + KNOP -->
-  <div class="container mx-auto px-6 relative z-10 flex items-center">
-    <div class="flex flex-col justify-center max-w-2xl
-                ml-0
-                sm:ml-[calc(45vw+1rem)]
-                md:ml-[45rem]
-                lg:ml-[42rem]">
+  <div class="container mx-auto px-6 relative z-10 sm:flex sm:items-center">
+    <div class="flex flex-col justify-center max-w-2xl ml-0 sm:ml-[calc(45vw+1rem)] md:ml-[calc(45vw+2rem)] lg:ml-[calc(35vw+3rem)]">
 
       <?php if ($title) : ?>
       <h2 class="text-2xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-snug">
