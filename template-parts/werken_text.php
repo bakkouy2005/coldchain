@@ -27,12 +27,16 @@ if ( $werken_text && is_array($werken_text) ) :
 
     <!-- Cards rechts -->
     <?php if ($cards) : ?>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- houdt 2 kolommen vanaf tablet/laptop; pas gerust aan naar jouw wens -->
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
         <?php foreach ($cards as $card) : ?>
           <?php if (!empty($card['text'])) : ?>
-            <div class="flex items-start gap-3">
-              <i class="fa-solid fa-check text-green-600 mt-1"></i>
-              <p class="text-lg md:text-xl text-gray-900 font-medium">
+            <!-- min-w-0 is essentieel om wrappen toe te laten in flex-context -->
+            <div class="flex items-start gap-3 min-w-0">
+              <i class="fa-solid fa-check text-green-600 mt-1 flex-none"></i>
+              <!-- Tablet (sm/md): forceer woordbreking; Laptop/Desktop (lg+): weer normaal -->
+              <p class="w-full max-w-full min-w-0 text-lg md:text-xl text-gray-900 font-medium
+                         sm:break-all md:break-all lg:break-normal">
                 <?php echo esc_html($card['text']); ?>
               </p>
             </div>
