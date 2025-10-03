@@ -29,9 +29,9 @@ if ($vacatures->have_posts()) :
               $button    = get_field('button');
             ?>
             <div class="swiper-slide py-3">
-              <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col h-[600px]">
+              <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col h-[520px] sm:h-[500px] md:h-[480px] lg:h-[500px] xl:h-[520px]">
                 <?php if ($img) : ?>
-                  <div class="h-48 w-full overflow-hidden">
+                  <div class="h-40 sm:h-48 md:h-56 w-full overflow-hidden">
                     <img src="<?php echo esc_url($img['url']); ?>" 
                          alt="<?php echo esc_attr($img['alt']); ?>" 
                          class="w-full h-full object-cover">
@@ -40,18 +40,18 @@ if ($vacatures->have_posts()) :
 
                 <div class="p-6 flex flex-col flex-grow">
                   <?php if ($text) : ?>
-                    <h3 class="text-xl font-semibold mb-3"><?php echo esc_html($text); ?></h3>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-semibold mb-3"><?php echo esc_html($text); ?></h3>
                   <?php endif; ?>
 
                   <?php if ($text_area) : ?>
-                    <p class="text-gray-600 mb-6 flex-grow line-clamp-5 overflow-hidden text-ellipsis">
+                    <p class="text-gray-600 text-sm sm:text-base md:text-lg mb-6 flex-grow line-clamp-5 overflow-hidden text-ellipsis">
                       <?php echo esc_html( wp_trim_words( $text_area, 30, '...' ) ); ?>
                     </p>
                   <?php endif; ?>
 
                   <?php if ($button) : ?>
                     <a href="<?php echo site_url('/vacatures-pagina?id=' . get_the_ID()); ?>"
-   class="mt-auto inline-block bg-blue-900 text-white font-medium px-5 py-3 rounded-lg shadow hover:bg-blue-800 transition duration-300 ease-in-out">
+   class="mt-auto inline-block bg-blue-900 text-white font-medium px-4 py-2 sm:px-5 sm:py-3 rounded-lg shadow hover:bg-blue-800 transition duration-300 ease-in-out text-sm sm:text-base">
    Bekijk vacature
 </a>
                   <?php endif; ?>
@@ -62,7 +62,6 @@ if ($vacatures->have_posts()) :
         </div>
 
         <!-- Navigatie -->
-        <div class="swiper-pagination mt-6"></div>
         <div class="swiper-button-prev w-12 h-12 rounded-full bg-black/80 hover:bg-black text-white flex items-center justify-center shadow-lg">
           <i class="fa-solid fa-arrow-left"></i>
         </div>
@@ -93,7 +92,6 @@ if ($vacatures->have_posts()) :
                 loop: false,
                 slidesPerView: 1,
                 spaceBetween: 24,
-                pagination: { el: el.querySelector('.swiper-pagination'), clickable: true },
                 navigation: { nextEl: el.querySelector('.swiper-button-next'), prevEl: el.querySelector('.swiper-button-prev') },
                 breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
               });
@@ -119,9 +117,9 @@ if ($vacatures->have_posts()) :
             $text_area = get_field('text_area');
             $button    = get_field('button');
           ?>
-          <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col h-[600px]">
+          <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col h-[520px] sm:h-[500px] md:h-[480px] lg:h-[500px] xl:h-[520px]">
             <?php if ($img) : ?>
-              <div class="h-48 w-full overflow-hidden">
+              <div class="h-40 sm:h-48 md:h-56 w-full overflow-hidden">
                 <img src="<?php echo esc_url($img['url']); ?>" 
                      alt="<?php echo esc_attr($img['alt']); ?>" 
                      class="w-full h-full object-cover">
@@ -130,11 +128,11 @@ if ($vacatures->have_posts()) :
 
             <div class="p-6 flex flex-col flex-grow">
               <?php if ($text) : ?>
-                <h3 class="text-xl font-semibold mb-3"><?php echo esc_html($text); ?></h3>
+                <h3 class="text-lg sm:text-xl md:text-2xl font-semibold mb-3"><?php echo esc_html($text); ?></h3>
               <?php endif; ?>
 
               <?php if ($text_area) : ?>
-                <p class="text-gray-600 mb-6 flex-grow line-clamp-5 overflow-hidden text-ellipsis">
+                <p class="text-gray-600 text-sm sm:text-base md:text-lg mb-6 flex-grow line-clamp-5 overflow-hidden text-ellipsis">
                   <?php echo esc_html( wp_trim_words( $text_area, 30, '...' ) ); ?>
                 </p>
               <?php endif; ?>
@@ -142,7 +140,7 @@ if ($vacatures->have_posts()) :
               <?php if ($button) : ?>
                 <a href="<?php echo esc_url($button['url']); ?>"
                    target="<?php echo esc_attr($button['target']); ?>"
-                   class="mt-auto inline-block bg-blue-900 text-white font-medium px-5 py-3 rounded-lg shadow hover:bg-blue-800 transition duration-300 ease-in-out">
+                   class="mt-auto inline-block bg-blue-900 text-white font-medium px-4 py-2 sm:px-5 sm:py-3 rounded-lg shadow hover:bg-blue-800 transition duration-300 ease-in-out text-sm sm:text-base">
                   <?php echo esc_html($button['title']); ?>
                 </a>
               <?php endif; ?>

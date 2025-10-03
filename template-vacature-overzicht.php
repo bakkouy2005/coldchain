@@ -110,6 +110,8 @@ get_header();
     </div>
 </main>
 
+
+
 <script>
 const slider = document.getElementById('vacature-slider');
 const paginationContainer = document.getElementById('pagination');

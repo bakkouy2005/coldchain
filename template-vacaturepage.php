@@ -50,22 +50,24 @@ setup_postdata($vacature_post);
     ?>
     <section class="relative bg-[#0A131F] overflow-hidden ">
       <div class="container mx-auto relative z-10 px-6 md:px-12 py-16">
-        <div class="max-w-3xl text-white space-y-8">
-          <?php if($text): ?>
-            <h2 class="text-3xl md:text-5xl font-extrabold leading-tight"><?php echo esc_html($text); ?></h2>
-          <?php endif; ?>
-          <?php if($location): ?>
-            <div class="flex items-start space-x-4 opacity-90">
-              <i class="fa-solid fa-location-dot text-white text-2xl flex-shrink-0"></i>
-              <div class="flex-1 text-base md:text-lg leading-relaxed"><?php echo wp_kses_post($location); ?></div>
-            </div>
-          <?php endif; ?>
-          <?php if($resolved_url): ?>
-            <a href="<?php echo site_url('/solicitatie-formulier?id=' . $vacature_post->ID); ?>"
-   class="inline-block bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] text-[#243866] font-semibold px-8 py-4 rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
-   Solliciteer nu
-</a>
-          <?php endif; ?>
+        <div class="w-full md:w-1/2">
+          <div class="max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl text-white space-y-8 pr-4 sm:pr-8 md:pr-12 lg:pr-16 xl:pr-20">
+            <?php if($text): ?>
+              <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight"><?php echo esc_html($text); ?></h2>
+            <?php endif; ?>
+            <?php if($location): ?>
+              <div class="flex items-start space-x-4 opacity-90">
+                <i class="fa-solid fa-location-dot text-white text-2xl flex-shrink-0"></i>
+                <div class="flex-1 text-base md:text-lg leading-relaxed"><?php echo wp_kses_post($location); ?></div>
+              </div>
+            <?php endif; ?>
+            <?php if($resolved_url): ?>
+              <a href="<?php echo site_url('/solicitatie-formulier?id=' . $vacature_post->ID); ?>"
+     class="inline-block bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] text-[#243866] font-semibold px-8 py-4 rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
+     Solliciteer nu
+  </a>
+            <?php endif; ?>
+          </div>
         </div>
       </div>
       <?php if(!empty($img) && !empty($img['url'])): ?>
@@ -75,8 +77,8 @@ setup_postdata($vacature_post);
         </div>
       <?php endif; ?>
       <?php if(!empty($img) && !empty($img['url'])): ?>
-        <div class="absolute top-0 right-0 h-full hidden md:block">
-          <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="object-cover md:h-[420px] md:w-[680px]">
+        <div class="absolute top-0 right-0 h-full hidden md:block md:w-2/5 lg:w-[550px] xl:w-[650px]">
+          <img src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="w-full h-full object-cover">
         </div>
       <?php endif; ?>
     </section>
@@ -202,7 +204,9 @@ setup_postdata($vacature_post);
         });
       </script>
     </section>
+
     <?php endif; ?>
+    <?php get_template_part('template-parts/vacatures'); ?>
   </div>
 
 <?php

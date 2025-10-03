@@ -11,8 +11,12 @@ if( $hero ):
         <div class="bg-black/40 absolute inset-0"></div> <!-- overlay -->
         
         <div class="relative z-10 mb-10 sm:mb-14 lg:mb-16">
-            <h1 class="font-bold font-family-impact text-[#E7E7E7] break-words leading-tight text-xl sm:text-4xl md:text-6xl lg:text-8xl tracking-wide sm:tracking-wider lg:tracking-widest"><?php echo esc_html($hero_title); ?></h1>
-            <p class="mt-2 font-family-impact text-[#E7E7E7] leading-snug text-base sm:text-xl md:text-3xl lg:text-4xl max-w-4xl mx-auto tracking-normal sm:tracking-wide md:tracking-wider"><?php echo esc_html($hero_subtitle); ?></p>
+            <h1 class="font-bold font-family-impact text-[#E7E7E7] break-words leading-tight text-xl sm:text-4xl md:text-6xl lg:text-8xl tracking-wide sm:tracking-wider lg:tracking-widest">
+                <?php echo esc_html($hero_title); ?>
+            </h1>
+            <p class="mt-3 font-family-impact text-[#E7E7E7] leading-snug text-base sm:text-xl md:text-3xl lg:text-4xl max-w-4xl mx-auto tracking-normal sm:tracking-wide md:tracking-wider">
+                <?php echo esc_html($hero_subtitle); ?>
+            </p>
         </div>
     </section>
 <?php endif; ?>

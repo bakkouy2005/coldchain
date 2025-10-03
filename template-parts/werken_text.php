@@ -32,11 +32,10 @@ if ( $werken_text && is_array($werken_text) ) :
         <?php foreach ($cards as $card) : ?>
           <?php if (!empty($card['text'])) : ?>
             <!-- min-w-0 is essentieel om wrappen toe te laten in flex-context -->
-            <div class="flex items-start gap-3 min-w-0">
-              <i class="fa-solid fa-check text-green-600 mt-1 flex-none"></i>
+            <div class="flex items-center gap-3 min-w-0 transition-all duration-300 ease-in-out">
+              <i class="fa-solid fa-check text-green-600 flex-none"></i>
               <!-- Tablet (sm/md): forceer woordbreking; Laptop/Desktop (lg+): weer normaal -->
-              <p class="w-full max-w-full min-w-0 text-lg md:text-xl text-gray-900 font-medium
-                         sm:break-all md:break-all lg:break-normal">
+              <p class="w-full max-w-full min-w-0 text-lg md:text-xl text-gray-900 font-medium break-words">
                 <?php echo esc_html($card['text']); ?>
               </p>
             </div>
