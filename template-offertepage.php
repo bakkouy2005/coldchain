@@ -79,16 +79,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
 
         // Bevestigingsmail naar gebruiker
         $confirm_subject = "Bevestiging van uw offerte aanvraag - Coldchain Logistic Services";
-        $confirm_message = '
-        <html>
-        <body style="font-family: Arial, sans-serif;">
-          <img src="' . get_template_directory_uri() . '/assets/images/logo.svg" alt="Coldchain Logo" style="max-width:150px; margin-bottom:20px;">
-          <p>Beste klant,</p>
-          <p>Bedankt voor uw offerte-aanvraag bij Coldchain Logistic Services. Wij hebben uw aanvraag ontvangen en nemen spoedig contact met u op.</p>
-          <p>Met vriendelijke groet,<br>Het Coldchain Team</p>
-        </body>
-        </html>
-        ';
+        $confirm_message = '<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bevestiging Offerte Aanvraag</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .header img {
+            max-width: 150px;
+        }
+        .content {
+            font-size: 16px;
+            color: #333333;
+            line-height: 1.5;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777777;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="' . get_template_directory_uri() . '/assets/images/logo.svg" alt="Coldchain Logo" />
+        </div>
+        <div class="content">
+            <p>Beste klant,</p>
+            <p>Bedankt voor uw offerte-aanvraag bij Coldchain Logistic Services. Wij hebben uw aanvraag ontvangen en nemen spoedig contact met u op.</p>
+            <p>Met vriendelijke groet,<br />Het Coldchain Team</p>
+        </div>
+        <div class="footer">
+            <p>&copy; ' . date("Y") . ' Coldchain Logistic Services. Alle rechten voorbehouden.</p>
+        </div>
+    </div>
+</body>
+</html>
+';
+
         wp_mail($offerte['email'], $confirm_subject, $confirm_message, $headers);
 
         unset($_SESSION['offerte']);
