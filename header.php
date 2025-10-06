@@ -51,7 +51,7 @@
                             'fallback_cb'    => false,
                         ) );
                     ?>
-                    <a href="<?php echo esc_url( home_url('/offerte-page') ); ?>" class="mt-3 inline-block w-full text-center bg-blue-600 text-white px-3 sm:px-4 py-2 rounded text-sm sm:text-base hover:bg-blue-700">Offerte aanrvagen</a>
+                    <a href="<?php echo esc_url( home_url('/offerte-page/') ); ?>" class="mt-3 inline-block w-full text-center bg-blue-600 text-white px-3 sm:px-4 py-2 rounded text-sm sm:text-base hover:bg-blue-700">Offerte aanrvagen</a>
                 </div>
             </div>
         </div>
