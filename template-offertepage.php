@@ -108,7 +108,7 @@ get_header();
 
     <?php if (!empty($success)) : ?>
         <div class="bg-green-100 text-green-800 p-4 rounded">
-            ✅ <?php the_field('success_bericht'); ?>
+            ✅n <?php the_field('success_bericht'); ?>
         </div>
     <?php else : ?>
         <form id="offerte-form" method="POST" class="space-y-6 text-white">
