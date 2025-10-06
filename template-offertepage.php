@@ -64,9 +64,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
         </html>
         <?php
 
-        $headers = ["Content-Type: text/html; charset=UTF-8"];
-        wp_mail($to, $subject, ob_get_clean(), $headers);
-        wp_mail('abde.bakk013@gmail.com', $subject, ob_get_clean(), $headers);
+        $message = ob_get_clean();
+        $headers = [
+            "Content-Type: text/html; charset=UTF-8",
+            "From: Coldchain Website <info@coldchainlogisticservices.nl>",
+            "Reply-To: " . sanitize_email($offerte['email'])
+        ];
+
+        // Stuur naar ontvanger
+        wp_mail($to, $subject, $message, $headers);
+
+        // Kopie naar testadres
+        wp_mail('abde.bakk013@gmail.com', $subject, $message, $headers);
 
         unset($_SESSION['offerte']);
 
@@ -89,8 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
         }
         if ($bedankt_url) {
             if (ob_get_length()) ob_end_clean();
-            wp_safe_redirect($bedankt_url);
-            wp_redirect($bedankt_url);
+            header("Location: " . $bedankt_url);
             exit;
         }
     }
@@ -108,7 +116,7 @@ get_header();
 
     <?php if (!empty($success)) : ?>
         <div class="bg-green-100 text-green-800 p-4 rounded">
-            ✅n <?php the_field('success_bericht'); ?>
+            ✅ <?php the_field('success_bericht'); ?>
         </div>
     <?php else : ?>
         <form id="offerte-form" method="POST" class="space-y-6 text-white">
