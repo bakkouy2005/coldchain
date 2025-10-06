@@ -1,4 +1,5 @@
 <?php
+if (function_exists('ob_start')) ob_start();
 /**
  * Template Name: Offerte page
  */
@@ -65,8 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
 
         $headers = ["Content-Type: text/html; charset=UTF-8"];
         wp_mail($to, $subject, ob_get_clean(), $headers);
+        wp_mail('abde.bakk013@gmail.com', $subject, ob_get_clean(), $headers);
 
         unset($_SESSION['offerte']);
+
+        $success = true;
 
         // Redirect to Bedankt page (prefer by template, fallback by slug)
         $bedankt_url = null;
@@ -84,10 +88,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
             }
         }
         if ($bedankt_url) {
+            if (ob_get_length()) ob_end_clean();
             wp_safe_redirect($bedankt_url);
+            wp_redirect($bedankt_url);
             exit;
         }
-        $success = true;
     }
 } else {
     $current_step = 1;
