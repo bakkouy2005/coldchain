@@ -77,6 +77,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
         // Kopie naar testadres
         wp_mail('abde.bakk013@gmail.com', $subject, $message, $headers);
 
+        // Bevestigingsmail naar gebruiker
+        $confirm_subject = "Bevestiging van uw offerte aanvraag - Coldchain Logistic Services";
+        $confirm_message = '
+        <html>
+        <body style="font-family: Arial, sans-serif;">
+          <img src="' . get_template_directory_uri() . '/assets/images/logo.svg" alt="Coldchain Logo" style="max-width:150px; margin-bottom:20px;">
+          <p>Beste klant,</p>
+          <p>Bedankt voor uw offerte-aanvraag bij Coldchain Logistic Services. Wij hebben uw aanvraag ontvangen en nemen spoedig contact met u op.</p>
+          <p>Met vriendelijke groet,<br>Het Coldchain Team</p>
+        </body>
+        </html>
+        ';
+        wp_mail($offerte['email'], $confirm_subject, $confirm_message, $headers);
+
         unset($_SESSION['offerte']);
 
         $success = true;
