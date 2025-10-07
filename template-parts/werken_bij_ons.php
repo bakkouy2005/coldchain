@@ -7,7 +7,7 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
     $text_area = $werken_bij_ons['text_area'] ?? '';
     // Button via ACF niet meer nodig
 
-    // Vind de pagina met het vacature overzicht template en gebruik die URL altijd
+    // Vind de pagina met het Vacature_overzicht_pagina template of slug fallback
     $overview_page_url = '';
     $vacature_overzicht_pages = get_pages([
         'meta_key'   => '_wp_page_template',
@@ -15,8 +15,15 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
         'post_status'=> 'publish',
         'number'     => 1,
     ]);
+
     if (!empty($vacature_overzicht_pages)) {
         $overview_page_url = get_permalink($vacature_overzicht_pages[0]->ID);
+    } else {
+        // Fallback: probeer op basis van slug
+        $overview_page = get_page_by_path('vacature-overzicht');
+        if ($overview_page) {
+            $overview_page_url = get_permalink($overview_page->ID);
+        }
     }
 ?>
 <section class="bg-[#0A131F] text-white relative overflow-hidden min-h-[450px] md:min-h-[500px] lg:min-h-[550px] sm:flex sm:items-center">
