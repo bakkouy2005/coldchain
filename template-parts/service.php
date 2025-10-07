@@ -18,24 +18,33 @@ if( $services ):
                 $desc = $card['description'];
                 $button = $card['button'];
             ?>
-            <div class="bg-white text-black rounded-xl shadow p-4 sm:p-6 flex flex-col">
+            <div class="relative overflow-hidden bg-white text-black rounded-xl border border-black/5 shadow p-6 sm:p-8 flex flex-col min-h-[280px] text-left">
+                <!-- Blauwe diagonale strook rechts -->
+                <div aria-hidden="true" class="pointer-events-none absolute top-[-3rem] bottom-[-3rem] right-[-3rem] w-48 bg-[#5AA3D5] skew-x-[-18deg]"></div>
+
+                <!-- Icoon in de blauwe strook -->
                 <?php if($icon_class): ?>
-                    <div class="text-blue-800 text-5xl mb-4">
+                    <div class="absolute right-6 top-6 text-white/95 text-4xl sm:text-5xl rotate-[-15deg] drop-shadow">
                         <i class="<?php echo esc_attr($icon_class); ?>"></i>
                     </div>
                 <?php endif; ?>
 
+                <!-- Inhoud links -->
                 <?php if($title): ?>
-                    <h2 class="font-bold mb-2 sm:mb-3 text-xl sm:text-2xl lg:text-3xl"><?php echo esc_html($title); ?></h2>
+                    <h3 class="font-bold text-[22px] sm:text-2xl leading-tight mb-3 sm:mb-4 pr-20">
+                        <?php echo esc_html($title); ?>
+                    </h3>
                 <?php endif; ?>
 
                 <?php if($desc): ?>
-                    <p class="mb-4 sm:mb-6 flex-1 text-[#14141491] text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed"><?php echo esc_html($desc); ?></p>
+                    <p class="text-[#141414]/80 text-[15px] sm:text-base leading-[1.7] mb-6 pr-24 max-w-[42ch]">
+                        <?php echo esc_html($desc); ?>
+                    </p>
                 <?php endif; ?>
 
-                <?php if($button && $button['text'] && $button['url']): ?>
-                    <a href="<?php echo esc_url($button['url']); ?>" 
-                       class="mt-auto inline-block bg-blue-800 text-white px-3 py-2 sm:px-4 sm:py-2 rounded text-sm sm:text-base">
+                <?php if($button && !empty($button['text']) && !empty($button['url'])): ?>
+                    <a href="<?php echo esc_url($button['url']); ?>"
+                       class="inline-block self-start bg-[#5AA3D5] text-white font-semibold rounded-md px-5 py-3 text-sm sm:text-base shadow hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[#5AA3D5] focus:ring-offset-2 focus:ring-offset-white transition">
                         <?php echo esc_html($button['text']); ?>
                     </a>
                 <?php endif; ?>

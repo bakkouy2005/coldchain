@@ -5,6 +5,7 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
     $img       = $werken_bij_ons['img'] ?? null;        
     $title     = $werken_bij_ons['text'] ?? '';
     $text_area = $werken_bij_ons['text_area'] ?? '';
+    $link      = $werken_bij_ons['link'] ?? null;
     // Button via ACF niet meer nodig
 
     // Vind de pagina met het Vacature_overzicht_pagina template of slug fallback
@@ -55,10 +56,18 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
       <?php endif; ?>
 
       
-        <a href="<?php echo get_permalink( get_page_by_path( 'Vacature_overzicht_pagina' ) ); ?>" 
-           class="inline-block px-6 py-3 rounded-lg bg-white text-blue-900 font-semibold hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white mt-6">
-          <?php echo esc_html__('Bekijk vacature', 'coldchain-development'); ?>
-        </a>
+  <?php if ($link && isset($link['url'], $link['title'])) : ?>
+    <a href="<?php echo esc_url($link['url']); ?>" 
+       class="inline-block px-6 py-3 rounded-lg bg-white text-blue-900 font-semibold hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white mt-6"
+       target="<?php echo esc_attr($link['target'] ?? '_self'); ?>">
+      <?php echo esc_html($link['title']); ?>
+    </a>
+  <?php else : ?>
+    <a href="<?php echo get_permalink(get_page_by_path('Vacature_overzicht_pagina')); ?>" 
+       class="inline-block px-6 py-3 rounded-lg bg-white text-blue-900 font-semibold hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white mt-6">
+      <?php echo esc_html__('Bekijk vacature', 'coldchain-development'); ?>
+    </a>
+  <?php endif; ?>
       
     </div>
   </div>
