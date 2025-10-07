@@ -78,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
         wp_mail('abde.bakk013@gmail.com', $subject, $message, $headers);
 
         // Bevestigingsmail naar gebruiker
+        $logo_url = get_template_directory_uri() . '/images/logo.svg';
         $confirm_subject = "Bevestiging van uw offerte aanvraag - Coldchain Logistic Services";
         $confirm_message = '<!DOCTYPE html>
 <html lang="nl" style="margin:0; padding:0;">
@@ -94,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="max-width:600px; background-color:#0a131f; border-radius:8px;">
                     <tr>
                         <td align="center" style="padding: 30px 0;">
-                            <img src="https://coldchainlogisticservices.nl/wp-content/uploads/2025/10/logo.png" alt="Coldchain Logo" width="150" style="display:block; border:0; outline:none; text-decoration:none;">
+                            <img src="' . esc_url($logo_url) . '" alt="Coldchain Logo" width="150" style="display:block; border:0; outline:none; text-decoration:none;">
                         </td>
                     </tr>
                     <tr>
@@ -114,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
                     </tr>
                     <tr>
                         <td align="center" style="padding: 0 30px 30px 30px;">
-                            <img src="https://coldchainlogisticservices.nl/wp-content/uploads/2025/10/truck.png" alt="Truck illustration" width="280" style="display:block; border:0; outline:none; text-decoration:none; margin:0 auto;">
+                            <img src="http://test.coldchainlogisticservices.nl/wp-content/uploads/2025/10/ChatGPT-Image-6-okt-2025-15_52_23.png" alt="Truck illustration" width="280" style="display:block; border:0; outline:none; text-decoration:none; margin:0 auto;">
                         </td>
                     </tr>
                     <tr>
