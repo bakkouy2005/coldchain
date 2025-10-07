@@ -2,6 +2,65 @@
 /**
  * Template Name: Contact
  */
+add_action('admin_post_nopriv_send_contact_form', 'handle_contact_form');
+add_action('admin_post_send_contact_form', 'handle_contact_form');
+
+function handle_contact_form() {
+    $fields = [
+        'naam' => sanitize_text_field($_POST['naam'] ?? ''),
+        'achternaam' => sanitize_text_field($_POST['achternaam'] ?? ''),
+        'bedrijfsnaam' => sanitize_text_field($_POST['bedrijfsnaam'] ?? ''),
+        'email' => sanitize_email($_POST['email'] ?? ''),
+        'telefoon' => sanitize_text_field($_POST['telefoon'] ?? ''),
+        'postcode' => sanitize_text_field($_POST['postcode'] ?? ''),
+        'straat' => sanitize_text_field($_POST['straat'] ?? ''),
+        'huisnummer' => sanitize_text_field($_POST['huisnummer'] ?? ''),
+        'bericht' => sanitize_textarea_field($_POST['omschrijving'] ?? '')
+    ];
+
+    $admin_email = 'abde.bakk013@gmail.com';
+    $subject_admin = 'Nieuwe contactaanvraag via Coldchain Website';
+    $headers = [
+        'Content-Type: text/html; charset=UTF-8',
+        'From: Coldchain Website <info@coldchainlogisticservices.nl>',
+        'Reply-To: ' . $fields['email']
+    ];
+
+    ob_start();
+    ?>
+    <html>
+    <body style="font-family: Arial, sans-serif; background-color: #0A131F; color: white; padding: 40px;">
+        <h2 style="color: #00aaff;">Nieuwe contactaanvraag</h2>
+        <p><strong>Naam:</strong> <?php echo esc_html($fields['naam']); ?></p>
+        <p><strong>Achternaam:</strong> <?php echo esc_html($fields['achternaam']); ?></p>
+        <p><strong>Bedrijfsnaam:</strong> <?php echo esc_html($fields['bedrijfsnaam']); ?></p>
+        <p><strong>Email:</strong> <?php echo esc_html($fields['email']); ?></p>
+        <p><strong>Telefoon:</strong> <?php echo esc_html($fields['telefoon']); ?></p>
+        <p><strong>Postcode:</strong> <?php echo esc_html($fields['postcode']); ?></p>
+        <p><strong>Straat en huisnummer:</strong> <?php echo esc_html($fields['straat'] . ' ' . $fields['huisnummer']); ?></p>
+        <p><strong>Bericht:</strong> <?php echo nl2br(esc_html($fields['bericht'])); ?></p>
+    </body>
+    </html>
+    <?php
+    $message_admin = ob_get_clean();
+
+    // E-mail naar admin
+    wp_mail($admin_email, $subject_admin, $message_admin, $headers);
+
+    // Bevestigingsmail voor gebruiker
+    $confirm_subject = 'Bevestiging van uw contactaanvraag - Coldchain Logistic Services';
+    ob_start();
+    include get_template_directory() . '/emails/contact-confirm-template.php'; // gebruik dezelfde template als offerte
+    $confirm_message = ob_get_clean();
+    wp_mail($fields['email'], $confirm_subject, $confirm_message, $headers);
+
+    // Redirect naar bedanktpage
+    $bedankt_page = get_page_by_path('bedankt');
+    $bedankt_url = $bedankt_page ? get_permalink($bedankt_page) : home_url('/');
+    echo '<!DOCTYPE html><html lang="nl"><head><meta http-equiv="refresh" content="0;url=' . esc_url($bedankt_url) . '"><script>window.location.href="' . esc_url($bedankt_url) . '";</script></head><body style="background:#0A131F;color:#fff;text-align:center;padding:50px;">U wordt doorgestuurd...<a href="' . esc_url($bedankt_url) . '" style="color:#00aaff;">Klik hier</a>.</body></html>';
+    exit;
+}
+
 get_header();
 
 // Hero ACF velden
@@ -99,8 +158,32 @@ $contact_infos = get_field('contact_infos');
             <input id="naam" type="text" name="naam" class="w-full p-3 rounded-md border" placeholder="Voer uw naam in" required>
           </div>
           <div>
+            <label for="achternaam" class="block text-sm font-semibold text-gray-700 mb-1">Achternaam</label>
+            <input id="achternaam" type="text" name="achternaam" class="w-full p-3 rounded-md border" placeholder="Voer uw achternaam in" required>
+          </div>
+          <div>
+            <label for="bedrijfsnaam" class="block text-sm font-semibold text-gray-700 mb-1">Bedrijfsnaam</label>
+            <input id="bedrijfsnaam" type="text" name="bedrijfsnaam" class="w-full p-3 rounded-md border" placeholder="Voer uw bedrijfsnaam in">
+          </div>
+          <div>
             <label for="email" class="block text-sm font-semibold text-gray-700 mb-1">E-mail</label>
             <input id="email" type="email" name="email" class="w-full p-3 rounded-md border" placeholder="Voer uw e-mail in" required>
+          </div>
+          <div>
+            <label for="telefoon" class="block text-sm font-semibold text-gray-700 mb-1">Telefoon</label>
+            <input id="telefoon" type="text" name="telefoon" class="w-full p-3 rounded-md border" placeholder="Voer uw telefoonnummer in">
+          </div>
+          <div>
+            <label for="postcode" class="block text-sm font-semibold text-gray-700 mb-1">Postcode</label>
+            <input id="postcode" type="text" name="postcode" class="w-full p-3 rounded-md border" placeholder="Voer uw postcode in">
+          </div>
+          <div>
+            <label for="straat" class="block text-sm font-semibold text-gray-700 mb-1">Straat</label>
+            <input id="straat" type="text" name="straat" class="w-full p-3 rounded-md border" placeholder="Voer uw straatnaam in">
+          </div>
+          <div>
+            <label for="huisnummer" class="block text-sm font-semibold text-gray-700 mb-1">Huisnummer</label>
+            <input id="huisnummer" type="text" name="huisnummer" class="w-full p-3 rounded-md border" placeholder="Voer uw huisnummer in">
           </div>
           <div>
             <label for="omschrijving" class="block text-sm font-semibold text-gray-700 mb-1">Omschrijving</label>
