@@ -11,7 +11,7 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
     $overview_page_url = '';
     $vacature_overzicht_pages = get_pages([
         'meta_key'   => '_wp_page_template',
-        'meta_value' => 'template-Vacature_overzicht.php',
+        'meta_value' => 'template-vacature_overzicht.php',
         'post_status'=> 'publish',
         'number'     => 1,
     ]);
