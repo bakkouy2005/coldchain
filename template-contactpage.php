@@ -52,9 +52,63 @@ function handle_contact_form() {
 
     // Bevestigingsmail voor gebruiker
     $confirm_subject = 'Bevestiging van uw contactaanvraag - Coldchain Logistic Services';
-    ob_start();
-    include get_template_directory() . '/emails/contact-confirm-template.php'; // gebruik dezelfde template als offerte
-    $confirm_message = ob_get_clean();
+    $logo_url = get_template_directory_uri() . '/images/logo.svg';
+    $confirm_message = '
+    <html lang="nl" style="margin:0; padding:0;">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bevestiging Contact Aanvraag</title>
+    </head>
+    <body style="margin:0; padding:0; background-color:#0a131f; font-family: Arial, sans-serif; color:#ffffff;">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#0a131f; padding:40px 0;">
+            <tr>
+                <td align="center">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="max-width:600px; background-color:#0a131f; border-radius:8px; text-align:center; padding: 30px;">
+                        <tr>
+                            <td style="padding-bottom: 30px;">
+                                <img src="' . esc_url($logo_url) . '" alt="Coldchain Logo" width="150" style="display:block; border:0; outline:none; text-decoration:none; margin: 0 auto;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 26px; font-weight: 700; padding-bottom: 20px;">
+                                Beste klant,
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 16px; font-weight: 400; line-height: 1.6; color: #cccccc; padding-bottom: 30px; max-width:480px; margin: 0 auto;">
+                                Bedankt voor uw aanvraag bij Cold-chain Logistic Services. Wij hebben uw aanvraag ontvangen en nemen zo snel mogelijk contact met u op.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-bottom: 30px;">
+                                <img src="http://test.coldchainlogisticservices.nl/wp-content/uploads/2025/10/ChatGPT-Image-6-okt-2025-15_52_23.png" alt="Truck illustration" width="280" style="display:block; border:0; outline:none; text-decoration:none; margin: 0 auto;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 15px; font-weight: 400; color: #cccccc; padding-bottom: 10px;">
+                                Met vriendelijke groet,<br>
+                                Het team van Cold-Chain Logistik Services
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 14px; color: #808080;">
+                                Als u nog vragen hebt neem dan contact op met: <a href="mailto:info@coldchailogistikservices.nl" style="color: #808080; text-decoration: none;">info@coldchailogistikservices.nl</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 30px; border-top:1px solid #1f2a47; font-size: 14px; color: #666e85;">
+                                &copy; ' . date("Y") . ' Coldchain Logistic Services. Alle rechten voorbehouden.
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+    </html>
+    ';
     wp_mail($fields['email'], $confirm_subject, $confirm_message, $headers);
 
     // Redirect naar bedanktpage
