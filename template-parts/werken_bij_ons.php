@@ -36,12 +36,12 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
         </div>
       <?php endif; ?>
 
-      <?php if ($overview_page_url) : ?>
+      
         <a href="<?php echo esc_url($overview_page_url); ?>" 
            class="inline-block px-6 py-3 rounded-lg bg-white text-blue-900 font-semibold hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white mt-6">
           <?php echo esc_html__('Bekijk vacature', 'coldchain-development'); ?>
         </a>
-      <?php endif; ?>
+      
     </div>
   </div>
 
