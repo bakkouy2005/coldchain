@@ -9,12 +9,23 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
 
     // Vind de pagina met het Vacature_overzicht_pagina template of slug fallback
     $overview_page_url = '';
+
     $vacature_overzicht_pages = get_pages([
         'meta_key'   => '_wp_page_template',
-        'meta_value' => 'template-vacature-overzicht.php',
+        'meta_value' => 'template-Vacature_overzicht_pagina.php',
         'post_status'=> 'publish',
         'number'     => 1,
     ]);
+
+    // Fallback lowercase (voor Strato)
+    if (empty($vacature_overzicht_pages)) {
+        $vacature_overzicht_pages = get_pages([
+            'meta_key'   => '_wp_page_template',
+            'meta_value' => 'template-vacature_overzicht_pagina.php',
+            'post_status'=> 'publish',
+            'number'     => 1,
+        ]);
+    }
 
     if (!empty($vacature_overzicht_pages)) {
         $overview_page_url = get_permalink($vacature_overzicht_pages[0]->ID);
