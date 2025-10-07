@@ -92,37 +92,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#0a131f; padding:40px 0;">
         <tr>
             <td align="center">
-                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="max-width:600px; background-color:#0a131f; border-radius:8px;">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="max-width:600px; background-color:#0a131f; border-radius:8px; text-align:center; padding: 30px;">
                     <tr>
-                        <td align="center" style="padding: 30px 0;">
-                            <img src="' . esc_url($logo_url) . '" alt="Coldchain Logo" width="150" style="display:block; border:0; outline:none; text-decoration:none;">
+                        <td style="padding-bottom: 30px;">
+                            <img src="' . esc_url($logo_url) . '" alt="Coldchain Logo" width="150" style="display:block; border:0; outline:none; text-decoration:none; margin: 0 auto;">
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" style="padding: 0 30px 20px 30px;">
-                            <h1 style="margin:0; font-size:24px; font-weight:bold; color:#ffffff;">Bedankt voor uw offerte-aanvraag</h1>
+                        <td style="font-size: 26px; font-weight: 700; padding-bottom: 20px;">
+                            Beste klant,
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" style="padding: 0 30px 30px 30px;">
-                            <p style="margin:0; font-size:16px; line-height:24px; color:#cccccc; max-width:480px;">
-                                Beste klant,<br><br>
-                                Wij hebben uw aanvraag ontvangen en nemen spoedig contact met u op.<br><br>
-                                Met vriendelijke groet,<br>
-                                Het Coldchain Team
-                            </p>
+                        <td style="font-size: 16px; font-weight: 400; line-height: 1.6; color: #cccccc; padding-bottom: 30px; max-width:480px; margin: 0 auto;">
+                            Bedankt voor uw aanvraag bij Cold-chain Logistic Services. Wij hebben uw aanvraag ontvangen en nemen zo snel mogelijk contact met u op.
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" style="padding: 0 30px 30px 30px;">
-                            <img src="http://test.coldchainlogisticservices.nl/wp-content/uploads/2025/10/ChatGPT-Image-6-okt-2025-15_52_23.png" alt="Truck illustration" width="280" style="display:block; border:0; outline:none; text-decoration:none; margin:0 auto;">
+                        <td style="padding-bottom: 30px;">
+                            <img src="http://test.coldchainlogisticservices.nl/wp-content/uploads/2025/10/ChatGPT-Image-6-okt-2025-15_52_23.png" alt="Truck illustration" width="280" style="display:block; border:0; outline:none; text-decoration:none; margin: 0 auto;">
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" style="padding: 20px 30px; border-top:1px solid #1f2a47;">
-                            <p style="margin:0; font-size:14px; color:#666e85;">
-                                &copy; ' . date("Y") . ' Coldchain Logistic Services. Alle rechten voorbehouden.
-                            </p>
+                        <td style="font-size: 15px; font-weight: 400; color: #cccccc; padding-bottom: 10px;">
+                            Met vriendelijke groet,<br>
+                            Het team van Cold-Chain Logistik Services
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 14px; color: #808080;">
+                            Als u nog vragen hebt neem dan contact op met: <a href="mailto:info@coldchailogistikservices.nl" style="color: #808080; text-decoration: none;">info@coldchailogistikservices.nl</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 30px; border-top:1px solid #1f2a47; font-size: 14px; color: #666e85;">
+                            &copy; ' . date("Y") . ' Coldchain Logistic Services. Alle rechten voorbehouden.
                         </td>
                     </tr>
                 </table>
