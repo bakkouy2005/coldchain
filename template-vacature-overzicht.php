@@ -13,7 +13,7 @@ get_header();
         $hero_area  = $hero['text_area'];
     ?>
     <!-- Hero sectie -->
-    <section class="relative w-full h-[250px] md:h-[350px] lg:h-[400px]">
+    <section id="vacature_overzicht_hero" class="relative w-full h-[250px] md:h-[350px] lg:h-[400px]">
         <?php if (!empty($hero_img)): ?>
             <img src="<?php echo esc_url($hero_img['url']); ?>" 
                  alt="<?php echo esc_attr($hero_text); ?>" 
