@@ -5,8 +5,7 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
     $img       = $werken_bij_ons['img'] ?? null;        
     $title     = $werken_bij_ons['text'] ?? '';
     $text_area = $werken_bij_ons['text_area'] ?? '';
-    $button    = isset($werken_bij_ons['button']) && is_array($werken_bij_ons['button']) ? $werken_bij_ons['button'] : [];
-    $btn_label = $button['text'] ?? '';
+    // Button via ACF niet meer nodig
 
     // Vind de pagina met het vacature overzicht template en gebruik die URL altijd
     $overview_page_url = '';
@@ -37,10 +36,10 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
         </div>
       <?php endif; ?>
 
-      <?php if ($btn_label && $overview_page_url) : ?>
+      <?php if ($overview_page_url) : ?>
         <a href="<?php echo esc_url($overview_page_url); ?>" 
            class="inline-block px-6 py-3 rounded-lg bg-white text-blue-900 font-semibold hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white mt-6">
-          <?php echo esc_html($btn_label); ?>
+          <?php echo esc_html__('Bekijk vacatures', 'coldchain-development'); ?>
         </a>
       <?php endif; ?>
     </div>
