@@ -160,7 +160,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
         }
         if ($bedankt_url) {
             if (ob_get_length()) ob_end_clean();
-            header("Location: " . $bedankt_url);
+
+            echo '<!DOCTYPE html>
+            <html lang="nl">
+            <head>
+                <meta http-equiv="refresh" content="0;url=' . esc_url($bedankt_url) . '">
+                <script>
+                    window.location.href = "' . esc_url($bedankt_url) . '";
+                </script>
+            </head>
+            <body style="font-family: Arial, sans-serif; background-color: #0A131F; color: white; text-align: center; padding: 50px;">
+                <p>U wordt doorgestuurd naar de bedanktpagina...</p>
+                <p><a href="' . esc_url($bedankt_url) . '" style="color:#00aaff;">Klik hier als dit te lang duurt</a>.</p>
+            </body>
+            </html>';
             exit;
         }
     }
