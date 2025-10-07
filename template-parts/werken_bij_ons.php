@@ -55,7 +55,7 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
       <?php endif; ?>
 
       
-        <a href="<?php echo esc_url($overview_page_url); ?>" 
+        <a href="<?php echo get_permalink( get_page_by_path( 'Vacature_overzicht_pagina' ) ); ?>" 
            class="inline-block px-6 py-3 rounded-lg bg-white text-blue-900 font-semibold hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white mt-6">
           <?php echo esc_html__('Bekijk vacature', 'coldchain-development'); ?>
         </a>
