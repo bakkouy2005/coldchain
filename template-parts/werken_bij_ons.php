@@ -8,6 +8,18 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
     $button    = isset($werken_bij_ons['button']) && is_array($werken_bij_ons['button']) ? $werken_bij_ons['button'] : [];
     $btn_label = $button['text'] ?? '';
     $btn_url   = $button['url'] ?? '';
+
+    // Vind de pagina met het vacature overzicht template en gebruik die URL altijd
+    $overview_page_url = '';
+    $vacature_overzicht_pages = get_pages([
+        'meta_key'   => '_wp_page_template',
+        'meta_value' => 'template-vacature-overzicht.php',
+        'post_status'=> 'publish',
+        'number'     => 1,
+    ]);
+    if (!empty($vacature_overzicht_pages)) {
+        $overview_page_url = get_permalink($vacature_overzicht_pages[0]->ID);
+    }
 ?>
 <section class="bg-[#0A131F] text-white relative overflow-hidden min-h-[450px] md:min-h-[500px] lg:min-h-[550px] sm:flex sm:items-center">
 
@@ -26,8 +38,8 @@ if ( $werken_bij_ons && is_array($werken_bij_ons) ) :
         </div>
       <?php endif; ?>
 
-      <?php if ($btn_label && $btn_url) : ?>
-        <a href="<?php echo esc_url($btn_url); ?>" 
+      <?php if ($btn_label && ($overview_page_url || $btn_url)) : ?>
+        <a href="<?php echo esc_url($overview_page_url ?: $btn_url); ?>" 
            class="inline-block px-6 py-3 rounded-lg bg-white text-blue-900 font-semibold hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white mt-6">
           <?php echo esc_html($btn_label); ?>
         </a>
