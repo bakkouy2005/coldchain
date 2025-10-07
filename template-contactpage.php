@@ -2,6 +2,9 @@
 /**
  * Template Name: Contact
  */
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'send_contact_form') {
+    handle_contact_form();
+}
 add_action('admin_post_nopriv_send_contact_form', 'handle_contact_form');
 add_action('admin_post_send_contact_form', 'handle_contact_form');
 
@@ -151,7 +154,7 @@ $contact_infos = get_field('contact_infos');
     <h3 class="text-4xl font-bold mb-6">Neem contact met ons op</h3>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div class="md:col-span-2  p-6 rounded-lg text-black">
-        <form action="<?php echo admin_url('admin-post.php'); ?>" method="POST" class="space-y-4">
+        <form action="<?php echo esc_url( get_permalink() ); ?>" method="POST" class="space-y-4">
           <input type="hidden" name="action" value="send_contact_form">
           <div>
             <label for="naam" class="block text-sm font-semibold text-gray-700 mb-1">Naam</label>
