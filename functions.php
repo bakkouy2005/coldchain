@@ -259,3 +259,42 @@ function coldchain_register_information_cpt() {
     register_post_type('informatie', $args);
 }
 add_action('init', 'coldchain_register_information_cpt');
+
+
+// =============================
+// ACF: Icon veld voor 'Meer informatie'
+// =============================
+add_action('acf/init', function() {
+    if (function_exists('acf_add_local_field_group')) {
+        acf_add_local_field_group(array(
+            'key' => 'group_informatie_icon',
+            'title' => 'Icon instellingen',
+            'fields' => array(
+                array(
+                    'key' => 'field_informatie_icon_class',
+                    'label' => 'Font Awesome Icon Class',
+                    'name' => 'informatie_icon',
+                    'type' => 'text',
+                    'instructions' => 'Vul hier de Font Awesome class in (bijv. fa-solid fa-snowflake).',
+                    'required' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => 'fa-solid fa-snowflake',
+                    'placeholder' => 'fa-solid fa-snowflake',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'informatie',
+                    ),
+                ),
+            ),
+        ));
+    }
+});
