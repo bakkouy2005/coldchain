@@ -227,3 +227,35 @@ add_filter('af/field/value/name=vacature_functie', function($value, $field, $for
 }, 10, 4);
 
 
+// =============================
+// Custom Post Type: Meer informatie
+// =============================
+function coldchain_register_information_cpt() {
+    $labels = array(
+        'name'               => __('Meer informatie', 'coldchain-development'),
+        'singular_name'      => __('Informatiepagina', 'coldchain-development'),
+        'menu_name'          => __('Meer informatie', 'coldchain-development'),
+        'name_admin_bar'     => __('Informatiepagina', 'coldchain-development'),
+        'add_new'            => __('Nieuwe toevoegen', 'coldchain-development'),
+        'add_new_item'       => __('Nieuwe informatie toevoegen', 'coldchain-development'),
+        'new_item'           => __('Nieuwe informatie', 'coldchain-development'),
+        'edit_item'          => __('Bewerk informatie', 'coldchain-development'),
+        'view_item'          => __('Bekijk informatie', 'coldchain-development'),
+        'all_items'          => __('Alle informatiepagina’s', 'coldchain-development'),
+        'search_items'       => __('Zoek informatie', 'coldchain-development'),
+        'not_found'          => __('Geen informatie gevonden', 'coldchain-development'),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'has_archive'        => true,
+        'rewrite'            => array('slug' => 'meer-informatie'),
+        'menu_icon'          => 'dashicons-info-outline',
+        'supports'           => array('title', 'editor', 'thumbnail', 'excerpt'),
+        'show_in_rest'       => true,
+    );
+
+    register_post_type('informatie', $args);
+}
+add_action('init', 'coldchain_register_information_cpt');

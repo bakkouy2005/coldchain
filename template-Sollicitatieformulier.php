@@ -155,7 +155,7 @@ document.getElementById('closePopup')?.addEventListener('click', function() {
 </script>
 
 
-<?php get_footer(); ?>
+
 
    
    

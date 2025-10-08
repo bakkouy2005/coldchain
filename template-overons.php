@@ -10,8 +10,9 @@ get_header();
    <?php get_template_part('template-parts/overonstext'); ?>
    <?php get_template_part('template-parts/overons_fototext'); ?>
    <?php get_template_part('template-parts/ons_wagenpark'); ?>
-    <?php get_template_part('template-parts/reviews'); ?>
    <?php get_template_part('template-parts/overons_info'); ?>
+    <?php get_template_part('template-parts/reviews'); ?>
+   
    
 </div>
 

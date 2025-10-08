@@ -4,7 +4,7 @@ if( $services ):
     $section_title = $services['section_title'];
     $cards = $services['cards'];
 ?>
-<section class="py-12 sm:py-16 bg-[#1A1A1E] text-white text-center">
+<section class="py-12 sm:py-16 bg-[#0a131f] text-white text-center">
   <div class="container mx-auto px-4">
     <?php if($section_title): ?>
         <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-10"><?php echo esc_html($section_title); ?></h2>
@@ -18,9 +18,9 @@ if( $services ):
                 $desc = $card['description'];
                 $button = $card['button'];
             ?>
-            <div class="relative overflow-hidden bg-white text-black rounded-xl border border-black/5 shadow p-6 sm:p-8 flex flex-col min-h-[280px] text-left">
+            <div class="relative overflow-hidden bg-white text-black rounded-xl shadow p-6 sm:p-8 flex flex-col min-h-[280px] text-left -m-[1px]">
                 <!-- Blauwe diagonale strook rechts -->
-                <div aria-hidden="true" class="pointer-events-none absolute top-[-3rem] bottom-[-3rem] right-[-3rem] w-48 bg-[#5AA3D5] skew-x-[-18deg]"></div>
+                <div aria-hidden="true" class="pointer-events-none absolute top-[-5rem] bottom-[-5rem] right-[-5rem] w-56 bg-[#166ADF] skew-x-[-18deg]"></div>
 
                 <!-- Icoon in de blauwe strook -->
                 <?php if($icon_class): ?>
@@ -44,7 +44,7 @@ if( $services ):
 
                 <?php if($button && !empty($button['text']) && !empty($button['url'])): ?>
                     <a href="<?php echo esc_url($button['url']); ?>"
-                       class="inline-block self-start bg-[#5AA3D5] text-white font-semibold rounded-md px-5 py-3 text-sm sm:text-base shadow hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[#5AA3D5] focus:ring-offset-2 focus:ring-offset-white transition">
+                       class="inline-block self-start bg-[#166ADF] text-white font-semibold rounded-md px-5 py-3 text-sm sm:text-base shadow hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[#5AA3D5] focus:ring-offset-2 focus:ring-offset-white transition">
                         <?php echo esc_html($button['text']); ?>
                     </a>
                 <?php endif; ?>

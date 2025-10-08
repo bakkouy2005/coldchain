@@ -7,7 +7,7 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-    <header class="bg-[#1A1A1E] text-white">
+    <header class="bg-[#0a131f] text-white">
         <div class="container mx-auto px-3 sm:px-4 lg:px-6">
             <div class="flex items-center justify-between py-3 sm:py-4">
                 <!-- Left: Logo (smaller on mobile) -->
@@ -51,7 +51,7 @@
                             'fallback_cb'    => false,
                         ) );
                     ?>
-                    <a href="<?php echo esc_url( home_url('/offerte-page/') ); ?>" class="mt-3 inline-block w-full text-center bg-blue-600 text-white px-3 sm:px-4 py-2 rounded text-sm sm:text-base hover:bg-blue-700">Offerte aanrvagen</a>
+                    <a href="<?php echo esc_url( home_url('/offerte-page') ); ?>" class="mt-3 inline-block w-full text-center bg-blue-600 text-white px-3 sm:px-4 py-2 rounded text-sm sm:text-base hover:bg-blue-700">Offerte aanrvagen</a>
                 </div>
             </div>
         </div>
