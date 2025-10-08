@@ -11,7 +11,7 @@ if ( $overons_info && is_array($overons_info) ) :
 ?>
 <section class="bg-white text-black relative min-h-[450px] md:min-h-[500px] lg:min-h-[550px] sm:flex sm:items-center overflow-hidden">
 
-  <!-- FOTO LINKS OP DESKTOP / TABLET -->
+  <!-- FOTO LINKS OP DESKTOP / TABLET (absolute) -->
   <?php if ($img && ! empty($img['url'])) : ?>
     <div class="hidden sm:block absolute top-0 left-0 h-full w-[45vw] md:w-[40vw] lg:w-[35vw]">
       <img 
@@ -36,16 +36,16 @@ if ( $overons_info && is_array($overons_info) ) :
   <!-- TEKST + KNOP -->
   <div class="container mx-auto px-6 relative z-10 flex flex-col sm:flex-row sm:items-center">
 
-    <!-- Tekst -->
-    <div class="flex flex-col justify-center max-w-2xl w-full
-                sm:ml-[45vw] 
-                md:ml-[42vw] md:max-w-[50%]
-                lg:ml-[35vw] lg:max-w-[48%] lg:relative lg:left-0
-                xl:left-0
-                2xl:transform 2xl:-translate-x-[160px]  <!-- 👈 alleen MONITOR: 10cm naar links -->
-                text-left
-                mb-12 sm:mb-0">
+    <!-- SPACER: reserveert altijd ruimte voor de foto + kleine gap -->
+    <div class="hidden sm:block shrink-0
+                w-[calc(45vw+12px)]
+                md:w-[calc(40vw+16px)]
+                lg:w-[calc(35vw+20px)]
+                xl:w-[calc(35vw+24px)]
+                2xl:w-[calc(35vw+24px)]"></div>
 
+    <!-- Tekst (geen ml/left/transform meer nodig) -->
+    <div class="flex flex-col justify-center max-w-2xl w-full text-left mb-12 sm:mb-0">
       <?php if ($title) : ?>
         <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-snug">
           <?php echo esc_html($title); ?>
@@ -66,7 +66,6 @@ if ( $overons_info && is_array($overons_info) ) :
           </a>
         </div>
       <?php endif; ?>
-
     </div>
 
   </div>
