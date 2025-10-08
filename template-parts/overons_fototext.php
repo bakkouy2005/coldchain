@@ -23,7 +23,10 @@ if ( $overons_fototext && is_array($overons_fototext) ) :
   <div class="container mx-auto px-0 relative z-10">
     <div class="flex flex-col md:flex-row md:gap-8 md:items-stretch">
       <!-- TEKST -->
-      <div class="px-4 py-8 md:py-12 lg:py-16 md: lg: flex items-center w-full md:w-1/2">
+      <div class="px-4 pt-20 pb-12   <!-- 👈 mobiel nog verder omhoog -->
+                  md:pt-44 md:pb-24 
+                  lg:pt-48 lg:pb-28 
+                  flex items-center w-full md:w-1/2">
         <div class="max-w-2xl w-full">
           <?php if ($text) : ?>
             <h2 class="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-semibold text-gray-100 mb-3 leading-snug">

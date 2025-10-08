@@ -34,31 +34,41 @@ if ( $overons_info && is_array($overons_info) ) :
   <?php endif; ?>
 
   <!-- TEKST + KNOP -->
-  <div class="container mx-auto px-6 relative z-10 sm:flex sm:items-center">
-    <div class="flex flex-col justify-center max-w-2xl ml-0 sm:ml-[calc(45vw+1rem)] md:ml-[calc(45vw+2rem)] lg:ml-[calc(35vw+3rem)]">
+  <div class="container mx-auto px-6 relative z-10 flex flex-col sm:flex-row sm:items-center">
+
+    <!-- Tekst -->
+    <div class="flex flex-col justify-center max-w-2xl w-full
+                sm:ml-[45vw] 
+                md:ml-[42vw] md:max-w-[50%]
+                lg:ml-[35vw] lg:max-w-[48%] lg:relative lg:left-0
+                xl:left-0
+                2xl:transform 2xl:-translate-x-[160px]  <!-- 👈 alleen MONITOR: 10cm naar links -->
+                text-left
+                mb-12 sm:mb-0">
 
       <?php if ($title) : ?>
-      <h2 class="text-2xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-snug">
-        <?php echo esc_html($title); ?>
-      </h2>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-snug">
+          <?php echo esc_html($title); ?>
+        </h2>
       <?php endif; ?>
 
       <?php if ($text_area) : ?>
-      <div class="text-gray-800 leading-relaxed text-base sm:text-base md:text-lg mb-6">
-        <?php echo wpautop( wp_kses_post( $text_area ) ); ?>
-      </div>
+        <div class="text-gray-800 leading-relaxed text-base sm:text-lg md:text-xl mb-6">
+          <?php echo wpautop( wp_kses_post( $text_area ) ); ?>
+        </div>
       <?php endif; ?>
 
       <?php if ($btn_label && $btn_url) : ?>
-      <div>
-        <a href="<?php echo esc_url($btn_url); ?>" 
-           class="inline-block w-full sm:w-auto px-5 py-2 rounded-md bg-blue-900 text-white font-semibold hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 text-base text-center">
-          <?php echo esc_html($btn_label); ?>
-        </a>
-      </div>
+        <div class="mt-4">
+          <a href="<?php echo esc_url($btn_url); ?>" 
+             class="inline-block px-5 py-3 rounded-md bg-blue-900 text-white font-semibold hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 text-base">
+            <?php echo esc_html($btn_label); ?>
+          </a>
+        </div>
       <?php endif; ?>
 
     </div>
+
   </div>
 
 </section>
