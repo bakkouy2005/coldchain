@@ -33,7 +33,7 @@ endif;
         <h3 class="text-xl font-bold text-[#5AA3D5] mb-6">Navigatie</h3>
         <?php
           wp_nav_menu([
-            'theme_location' => 'footer_navigation',
+            'theme_location' => 'primary',
             'menu_class' => 'space-y-3 text-sm sm:text-base',
             'container' => false
           ]);

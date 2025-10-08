@@ -25,7 +25,7 @@ if ( $overons_fototext && is_array($overons_fototext) ) :
       <!-- TEKST -->
       <div class="px-4 pt-20 pb-12   <!-- 👈 mobiel nog verder omhoog -->
                   md:pt-44 md:pb-24 
-                  lg:pt-48 lg:pb-28 
+                  lg:pt-40 lg:pb-28 
                   flex items-center w-full md:w-1/2">
         <div class="max-w-2xl w-full">
           <?php if ($text) : ?>
