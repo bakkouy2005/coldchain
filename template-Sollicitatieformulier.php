@@ -163,6 +163,92 @@ document.getElementById('closePopup')?.addEventListener('click', function() {
 
 <?php
 
+// === E-MAIL VERZENDING NA SUCCESVOL FORMULIER ===
+add_action('af/form/submission', function($form, $fields, $args) {
+    // Controleer of dit het juiste formulier is
+    if ($form['key'] !== 'form_68cd65b633b84') {
+        return;
+    }
+
+    // Haal het e-mailadres van de sollicitant op
+    $email_field = array_filter($fields, fn($f) => $f['name'] === 'email');
+    $email_field = reset($email_field);
+    $applicant_email = $email_field['value'] ?? '';
+
+    // Logo
+    $logo_url = get_stylesheet_directory_uri() . '/images/logo.svg';
+
+    // --- TEMPLATE VOOR BEVESTIGING NAAR SOLLICITANT ---
+    $applicant_message = '
+    <html lang="nl" style="margin:0; padding:0;">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Bevestiging Sollicitatie</title>
+    </head>
+    <body style="margin:0; padding:0; background-color:#0a131f; font-family: Arial, sans-serif; color:#ffffff;">
+        <table role="presentation" width="100%" style="background-color:#0a131f; padding:40px 0;">
+            <tr>
+                <td align="center">
+                    <table width="600" style="max-width:600px; background-color:#0a131f; border-radius:8px; text-align:center; padding:30px;">
+                        <tr>
+                            <td style="padding-bottom:30px;">
+                                <img src="' . esc_url($logo_url) . '" alt="Coldchain Logo" width="150" style="display:block; margin:0 auto;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:26px; font-weight:700; padding-bottom:20px;">
+                                Beste sollicitant,
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:16px; font-weight:400; line-height:1.6; color:#cccccc; padding-bottom:30px;">
+                                Bedankt voor uw sollicitatie bij Cold-chain Logistic Services. Wij hebben uw aanvraag ontvangen en nemen zo snel mogelijk contact met u op.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-bottom:30px;">
+                                <img src="http://test.coldchainlogisticservices.nl/wp-content/uploads/2025/10/ChatGPT-Image-6-okt-2025-15_52_23.png" alt="Truck" width="280" style="display:block; margin:0 auto;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:15px; color:#cccccc; padding-bottom:10px;">
+                                Met vriendelijke groet,<br>
+                                Het team van Cold-Chain Logistik Services
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:14px; color:#808080;">
+                                Als u nog vragen hebt neem dan contact op met: <a href="mailto:info@coldchailogistikservices.nl" style="color:#808080; text-decoration:none;">info@coldchailogistikservices.nl</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top:30px; border-top:1px solid #1f2a47; font-size:14px; color:#666e85;">
+                                &copy; ' . date("Y") . ' Coldchain Logistic Services. Alle rechten voorbehouden.
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+    </html>';
+
+    // --- TEMPLATE VOOR ADMIN ---
+    $admin_message = 'Er is een nieuwe sollicitatie binnengekomen via het sollicitatieformulier. Bekijk deze in de WP admin.';
+
+    // E-mail headers
+    $headers = ['Content-Type: text/html; charset=UTF-8'];
+
+    // Stuur mail naar sollicitant
+    if (!empty($applicant_email)) {
+        wp_mail($applicant_email, 'Bevestiging sollicitatie - Coldchain Logistic Services', $applicant_message, $headers);
+    }
+
+    // Stuur mail naar admin en abde.bakk013@gmail.com
+    wp_mail(get_option('admin_email'), 'Nieuwe sollicitatie ontvangen', $admin_message, $headers);
+    wp_mail('abde.bakk013@gmail.com', 'Nieuwe sollicitatie ontvangen', $admin_message, $headers);
+}, 10, 3);
+
 
 get_footer();
 
