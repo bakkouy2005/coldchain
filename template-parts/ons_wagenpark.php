@@ -67,7 +67,7 @@ if( $wagenpark ):
         <?php endforeach; ?>
       </div>
     <?php else: ?>
-      <p class="text-center text-gray-500 mt-8">Er zijn geen voertuigen beschikbaar.</p>
+      
     <?php endif; ?>
 
   </div>
