@@ -257,6 +257,21 @@ function coldchain_register_information_cpt() {
     );
 
     register_post_type('informatie', $args);
+
+    // Maak de 'informatie' posts sorteervolgorde aanpasbaar via drag & drop
+    add_post_type_support('informatie', 'page-attributes');
+
+    // Zorg ervoor dat posts in admin en front-end op menu_order worden gesorteerd
+    add_action('pre_get_posts', function($query) {
+        if (!is_admin() && $query->is_main_query() && $query->get('post_type') === 'informatie') {
+            $query->set('orderby', 'menu_order');
+            $query->set('order', 'ASC');
+        }
+        if (is_admin() && $query->is_main_query() && $query->get('post_type') === 'informatie') {
+            $query->set('orderby', 'menu_order');
+            $query->set('order', 'ASC');
+        }
+    });
 }
 add_action('init', 'coldchain_register_information_cpt');
 
@@ -297,4 +312,70 @@ add_action('acf/init', function() {
             ),
         ));
     }
+});
+
+// =============================
+// Drag & Drop sortering voor 'Meer informatie'
+// =============================
+add_action('admin_menu', function() {
+    add_submenu_page(
+        'edit.php?post_type=informatie',
+        __('Sorteer Informatie', 'coldchain-development'),
+        __('Sorteer Informatie', 'coldchain-development'),
+        'edit_posts',
+        'sort_informatie',
+        'coldchain_sort_informatie_page'
+    );
+});
+
+function coldchain_sort_informatie_page() {
+    ?>
+    <div class="wrap">
+        <h1><?php _e('Sorteer Meer Informatie Pagina’s', 'coldchain-development'); ?></h1>
+        <p><?php _e('Sleep de items hieronder om de volgorde aan te passen.', 'coldchain-development'); ?></p>
+        <ul id="informatie-sort-list" style="list-style:none; margin:0; padding:0;">
+            <?php
+            $posts = get_posts([
+                'post_type' => 'informatie',
+                'numberposts' => -1,
+                'orderby' => 'menu_order',
+                'order' => 'ASC'
+            ]);
+            foreach ($posts as $post) {
+                echo '<li id="post-' . esc_attr($post->ID) . '" style="margin:5px 0; padding:10px; background:#fff; border:1px solid #ccc; cursor:move;">';
+                echo esc_html($post->post_title);
+                echo '</li>';
+            }
+            ?>
+        </ul>
+    </div>
+    <script>
+        jQuery(function($){
+            $('#informatie-sort-list').sortable({
+                update: function(event, ui) {
+                    let order = $(this).sortable('toArray').map(id => id.replace('post-', ''));
+                    $.post(ajaxurl, {
+                        action: 'coldchain_update_informatie_order',
+                        order: order,
+                        _ajax_nonce: '<?php echo wp_create_nonce('update_informatie_order_nonce'); ?>'
+                    });
+                }
+            });
+        });
+    </script>
+    <?php
+}
+
+add_action('wp_ajax_coldchain_update_informatie_order', function() {
+    check_ajax_referer('update_informatie_order_nonce');
+    if (!current_user_can('edit_posts')) wp_die('Geen rechten');
+
+    $order = isset($_POST['order']) ? array_map('intval', $_POST['order']) : [];
+    foreach ($order as $position => $post_id) {
+        wp_update_post([
+            'ID' => $post_id,
+            'menu_order' => $position
+        ]);
+    }
+    wp_die('success');
 });

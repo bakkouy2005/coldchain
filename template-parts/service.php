@@ -3,8 +3,8 @@
 $info_query = new WP_Query([
     'post_type'      => 'informatie',
     'posts_per_page' => 3,
-    'orderby'        => 'date',
-    'order'          => 'DESC',
+    'orderby'        => 'menu_order',
+    'order'          => 'ASC',
 ]);
 ?>
 
