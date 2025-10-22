@@ -210,37 +210,43 @@ $contact_infos = get_field('contact_infos');
       <div class="md:col-span-2  p-6 rounded-lg text-black">
         <form action="<?php echo esc_url( get_permalink() ); ?>" method="POST" class="space-y-4">
           <input type="hidden" name="action" value="send_contact_form">
-          <div>
-            <label for="naam" class="block text-sm font-semibold text-gray-700 mb-1">Naam</label>
-            <input id="naam" type="text" name="naam" class="w-full p-3 rounded-md border" placeholder="Voer uw naam in" required>
-          </div>
-          <div>
-            <label for="achternaam" class="block text-sm font-semibold text-gray-700 mb-1">Achternaam</label>
-            <input id="achternaam" type="text" name="achternaam" class="w-full p-3 rounded-md border" placeholder="Voer uw achternaam in" required>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="naam" class="block text-sm font-semibold text-gray-700 mb-1">Naam</label>
+              <input id="naam" type="text" name="naam" class="w-full p-3 rounded-md border" placeholder="Voer uw naam in" required>
+            </div>
+            <div>
+              <label for="achternaam" class="block text-sm font-semibold text-gray-700 mb-1">Achternaam</label>
+              <input id="achternaam" type="text" name="achternaam" class="w-full p-3 rounded-md border" placeholder="Voer uw achternaam in" required>
+            </div>
           </div>
           <div>
             <label for="bedrijfsnaam" class="block text-sm font-semibold text-gray-700 mb-1">Bedrijfsnaam</label>
             <input id="bedrijfsnaam" type="text" name="bedrijfsnaam" class="w-full p-3 rounded-md border" placeholder="Voer uw bedrijfsnaam in">
           </div>
-          <div>
-            <label for="email" class="block text-sm font-semibold text-gray-700 mb-1">E-mail</label>
-            <input id="email" type="email" name="email" class="w-full p-3 rounded-md border" placeholder="Voer uw e-mail in" required>
-          </div>
-          <div>
-            <label for="telefoon" class="block text-sm font-semibold text-gray-700 mb-1">Telefoon</label>
-            <input id="telefoon" type="text" name="telefoon" class="w-full p-3 rounded-md border" placeholder="Voer uw telefoonnummer in">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="email" class="block text-sm font-semibold text-gray-700 mb-1">E-mail</label>
+              <input id="email" type="email" name="email" class="w-full p-3 rounded-md border" placeholder="Voer uw e-mail in" required>
+            </div>
+            <div>
+              <label for="telefoon" class="block text-sm font-semibold text-gray-700 mb-1">Telefoon</label>
+              <input id="telefoon" type="text" name="telefoon" class="w-full p-3 rounded-md border" placeholder="Voer uw telefoonnummer in">
+            </div>
           </div>
           <div>
             <label for="postcode" class="block text-sm font-semibold text-gray-700 mb-1">Postcode</label>
             <input id="postcode" type="text" name="postcode" class="w-full p-3 rounded-md border" placeholder="Voer uw postcode in">
           </div>
-          <div>
-            <label for="straat" class="block text-sm font-semibold text-gray-700 mb-1">Straat</label>
-            <input id="straat" type="text" name="straat" class="w-full p-3 rounded-md border" placeholder="Voer uw straatnaam in">
-          </div>
-          <div>
-            <label for="huisnummer" class="block text-sm font-semibold text-gray-700 mb-1">Huisnummer</label>
-            <input id="huisnummer" type="text" name="huisnummer" class="w-full p-3 rounded-md border" placeholder="Voer uw huisnummer in">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="straat" class="block text-sm font-semibold text-gray-700 mb-1">Straat</label>
+              <input id="straat" type="text" name="straat" class="w-full p-3 rounded-md border" placeholder="Voer uw straatnaam in">
+            </div>
+            <div>
+              <label for="huisnummer" class="block text-sm font-semibold text-gray-700 mb-1">Huisnummer</label>
+              <input id="huisnummer" type="text" name="huisnummer" class="w-full p-3 rounded-md border" placeholder="Voer uw huisnummer in">
+            </div>
           </div>
           <div>
             <label for="omschrijving" class="block text-sm font-semibold text-gray-700 mb-1">Omschrijving</label>
