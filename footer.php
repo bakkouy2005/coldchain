@@ -67,9 +67,7 @@
 
         <p class="mt-4 text-sm">
           <a href="mailto:info@coldchainlogisticservices.nl" class="block hover:text-[#5AA3D5] transition">info@coldchainlogisticservices.nl</a>
-          <span class="block">KVK: 93165455</span>
-          <span class="block">Besloten Vennootschap – Hoofdvestiging</span>
-          <span class="block">Vestigingsnummer: 000058728104</span>
+          
         </p>
 
        
