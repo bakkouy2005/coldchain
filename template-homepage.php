@@ -8,6 +8,7 @@ get_header();
 <div class="">
     <?php get_template_part('template-parts/hero'); ?>
     <?php get_template_part('template-parts/sterke_punten'); ?>
+    <?php get_template_part('template-parts/four_card_grid'); ?>
     <?php get_template_part('template-parts/service'); ?>
     <?php get_template_part('template-parts/overons_info'); ?>
     <?php get_template_part('template-parts/overons_fototext'); ?>
