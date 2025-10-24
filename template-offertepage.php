@@ -210,9 +210,20 @@ get_header();
                 <div class="space-y-4">
                     <select name="dienst" class="w-full p-3 rounded" required>
                         <option value=""><?php the_field('selecteer_dienst_placeholder'); ?></option>
-                        <?php if(have_rows('diensten')): while(have_rows('diensten')): the_row(); ?>
-                            <option value="<?= esc_attr(get_sub_field('dienst_naam')) ?>"><?= esc_html(get_sub_field('dienst_naam')) ?></option>
-                        <?php endwhile; endif; ?>
+                        <?php
+                        $diensten_query = new WP_Query([
+                          'post_type'      => 'informatie',
+                          'posts_per_page' => -1,
+                          'orderby'        => 'menu_order',
+                          'order'          => 'ASC',
+                        ]);
+                        if ($diensten_query->have_posts()):
+                          while ($diensten_query->have_posts()): $diensten_query->the_post(); ?>
+                            <option value="<?php the_title(); ?>"><?php the_title(); ?></option>
+                          <?php endwhile;
+                          wp_reset_postdata();
+                        endif;
+                        ?>
                     </select>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
