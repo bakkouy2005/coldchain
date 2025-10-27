@@ -381,13 +381,21 @@ add_action('wp_ajax_coldchain_update_informatie_order', function() {
 });
 
 
-// === Advanced Forms: e-mailverwerking sollicitatieformulier ===
-add_action('af/form/submission/form_68cd65b633b84', function( $form, $fields, $args ) {
+// === Advanced Forms universele mailverwerking voor sollicitatieformulier ===
+add_action('af/form/submission', function( $form, $fields, $args ) {
+    // Verzamel velddata in array
     $data = [];
     foreach ($fields as $field) {
         $data[$field['name']] = $field['value'];
     }
 
+    // Herken of dit het sollicitatieformulier is
+    $is_solicitatie = isset($data['voornaam_achternaam']) || isset($data['vacature_functie']);
+    if ( ! $is_solicitatie ) {
+        return; // geen sollicitatieformulier, stop
+    }
+
+    // Gegevens ophalen
     $naam = $data['voornaam_achternaam'] ?? '';
     $email = $data['emailadres'] ?? '';
     $vacature_functie = $data['vacature_functie'] ?? '';
@@ -397,6 +405,7 @@ add_action('af/form/submission/form_68cd65b633b84', function( $form, $fields, $a
     $contactvoorkeur = $data['contactvoorkeur'] ?? '';
     $cv_document = $data['cv_document'] ?? '';
 
+    // Bouw HTML-mailbericht (zelfde stijl als offerte)
     ob_start();
     ?>
     <html>
