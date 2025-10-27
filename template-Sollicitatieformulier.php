@@ -218,9 +218,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="md:flex md:gap-8 items-start">
 
             <!-- Formuliervelden links -->
-            <div id="sollicitatie-form" class="flex-1 space-y-6 mb-8">
+            <div id="sollicitatie-form" class="flex-1 space-y-6 mb-8 ">
                 <?php if ($functie): ?>
-                  <p class="text-white mb-6">
+                  <p class="text-white mb-6 display-none">
                     U solliciteert voor de functie: <strong><?php echo esc_html($functie); ?></strong>
                   </p>
                 <?php endif; ?>
@@ -231,45 +231,79 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
-                <form method="POST" enctype="multipart/form-data" class="space-y-4">
-                    <div>
+                <form method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Naam -->
+                    <div class="flex flex-col">
                         <label class="block text-white mb-2" for="voornaam_achternaam">Naam*</label>
-                        <input class="w-full px-4 py-2 rounded bg-gray-800 text-white" type="text" name="voornaam_achternaam" id="voornaam_achternaam" value="<?php echo esc_attr($_POST['voornaam_achternaam'] ?? ''); ?>" required>
+                        <input class="w-full px-4 py-3 rounded-lg bg-gray-900/70 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#004DFF] focus:border-transparent transition"
+                               type="text" name="voornaam_achternaam" id="voornaam_achternaam"
+                               value="<?php echo esc_attr($_POST['voornaam_achternaam'] ?? ''); ?>" required>
                     </div>
-                    <div>
+                    <!-- E-mail -->
+                    <div class="flex flex-col">
                         <label class="block text-white mb-2" for="emailadres">E-mailadres*</label>
-                        <input class="w-full px-4 py-2 rounded bg-gray-800 text-white" type="email" name="emailadres" id="emailadres" value="<?php echo esc_attr($_POST['emailadres'] ?? ''); ?>" required>
+                        <input class="w-full px-4 py-3 rounded-lg bg-gray-900/70 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#004DFF] focus:border-transparent transition"
+                               type="email" name="emailadres" id="emailadres"
+                               value="<?php echo esc_attr($_POST['emailadres'] ?? ''); ?>" required>
                     </div>
-                    <div>
+                    <!-- Telefoon -->
+                    <div class="flex flex-col">
                         <label class="block text-white mb-2" for="telefoonnummer">Telefoonnummer</label>
-                        <input class="w-full px-4 py-2 rounded bg-gray-800 text-white" type="text" name="telefoonnummer" id="telefoonnummer" value="<?php echo esc_attr($_POST['telefoonnummer'] ?? ''); ?>">
+                        <input class="w-full px-4 py-3 rounded-lg bg-gray-900/70 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#004DFF] focus:border-transparent transition"
+                               type="text" name="telefoonnummer" id="telefoonnummer"
+                               value="<?php echo esc_attr($_POST['telefoonnummer'] ?? ''); ?>">
                     </div>
-                    <div>
+                    <!-- Woonplaats -->
+                    <div class="flex flex-col">
                         <label class="block text-white mb-2" for="woonplaats">Woonplaats</label>
-                        <input class="w-full px-4 py-2 rounded bg-gray-800 text-white" type="text" name="woonplaats" id="woonplaats" value="<?php echo esc_attr($_POST['woonplaats'] ?? ''); ?>">
+                        <input class="w-full px-4 py-3 rounded-lg bg-gray-900/70 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#004DFF] focus:border-transparent transition"
+                               type="text" name="woonplaats" id="woonplaats"
+                               value="<?php echo esc_attr($_POST['woonplaats'] ?? ''); ?>">
                     </div>
-                    <div>
-                        <label class="block text-white mb-2" for="vacature_functie">Functie</label>
-                        <input class="w-full px-4 py-2 rounded bg-gray-800 text-white" type="text" name="vacature_functie" id="vacature_functie" value="<?php echo esc_attr($functie ?: ($_POST['vacature_functie'] ?? '')); ?>" readonly>
-                    </div>
-                    <div>
+                    <!-- Functie (read-only) -->
+                    <input type="hidden" name="vacature_functie" id="vacature_functie" value="<?php echo esc_attr($functie ?: ($_POST['vacature_functie'] ?? '')); ?>">
+                    <!-- Bericht -->
+                    <div class="md:col-span-2 flex flex-col">
                         <label class="block text-white mb-2" for="bericht">Bericht</label>
-                        <textarea class="w-full px-4 py-2 rounded bg-gray-800 text-white" name="bericht" id="bericht" rows="4"><?php echo esc_textarea($_POST['bericht'] ?? ''); ?></textarea>
+                        <textarea class="w-full px-4 py-3 rounded-lg bg-gray-900/70 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#004DFF] focus:border-transparent transition"
+                                  name="bericht" id="bericht" rows="5"><?php echo esc_textarea($_POST['bericht'] ?? ''); ?></textarea>
                     </div>
-                    <div>
+                    <!-- Contactvoorkeur -->
+                    <div class="flex flex-col">
                         <label class="block text-white mb-2" for="contactvoorkeur">Contactvoorkeur</label>
-                        <select class="w-full px-4 py-2 rounded bg-gray-800 text-white" name="contactvoorkeur" id="contactvoorkeur">
+                        <select class="w-full px-4 py-3 rounded-lg bg-gray-900/70 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#004DFF] focus:border-transparent transition"
+                                name="contactvoorkeur" id="contactvoorkeur">
                             <option value="">Geen voorkeur</option>
                             <option value="email" <?php selected($_POST['contactvoorkeur'] ?? '', 'email'); ?>>E-mail</option>
                             <option value="telefoon" <?php selected($_POST['contactvoorkeur'] ?? '', 'telefoon'); ?>>Telefoon</option>
                         </select>
                     </div>
-                    <div>
+                    <!-- CV -->
+                    <div class="flex flex-col">
                         <label class="block text-white mb-2" for="cv_document">CV uploaden*</label>
-                        <input class="w-full text-white" type="file" name="cv_document" id="cv_document" accept=".pdf,.doc,.docx,.odt,.txt" required>
+                        <input class="w-full file:mr-4 file:px-4 file:py-2 file:rounded-lg file:border-0 file:bg-[#004DFF] file:text-white file:font-semibold file:cursor-pointer bg-gray-900/70 text-gray-300 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004DFF] focus:border-transparent transition"
+                               type="file" name="cv_document" id="cv_document" accept=".pdf,.doc,.docx,.odt,.txt" required>
+                        <small class="text-gray-400 mt-1">Toegestane bestanden: pdf, doc, docx, odt, txt.</small>
                     </div>
-                    <div>
-                        <button class="px-6 py-2 rounded-lg font-bold text-white bg-[#004DFF] hover:bg-[#FDB314] transition-colors duration-300" type="submit">Verzenden</button>
+                    <!-- Verzenden -->
+                    <div class="md:col-span-2">
+                        <button class="w-full md:w-auto px-8 py-3 rounded-lg font-bold text-white bg-[#004DFF] hover:bg-[#FDB314] hover:text-[#0A131F] transition-colors duration-300"
+                                type="submit">Verzenden</button>
+                    </div>
+                    <!-- Contact knoppen -->
+                    <div class="md:col-span-2 flex flex-wrap gap-4 pt-2">
+                        <a href="https://wa.me/31600000000" target="_blank"
+                           class="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-green-600 hover:bg-green-500 text-white font-semibold transition">
+                            <!-- WhatsApp icoon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.91 11.91 0 0012.06 0C5.44.05.1 5.39.06 12.01a11.9 11.9 0 001.65 6.06L0 24l6.12-1.6a11.94 11.94 0 005.94 1.59h.01c6.62-.03 11.96-5.37 11.99-11.99a11.9 11.9 0 00-3.54-8.52zM12.06 21.9h-.01a9.9 9.9 0 01-5.04-1.37l-.36-.21-3.64.95.97-3.55-.23-.37a9.9 9.9 0 01-1.37-5.04C2.41 6.52 6.57 2.36 12.08 2.33h.02c5.49 0 9.96 4.46 9.93 9.95-.03 5.48-4.49 9.62-9.97 9.62zm5.46-7.46c-.3-.15-1.77-.88-2.05-.98-.27-.1-.47-.15-.67.15-.2.3-.77.98-.94 1.18-.17.2-.35.23-.65.08-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.29.3-.49.1-.2.05-.38-.02-.53-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.38s-1.03 1.01-1.03 2.47 1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.63.71.23 1.36.2 1.88.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
+                            WhatsApp
+                        </a>
+                        <a href="mailto:info@coldchainlogisticservices.nl"
+                           class="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold transition">
+                            <!-- Mail icoon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            E-mail
+                        </a>
                     </div>
                 </form>
             </div>
@@ -292,6 +326,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
+                <div class="bg-gray-800 p-4 rounded-lg shadow-md">
+                    <h3 class="text-white font-semibold mb-3">Direct contact</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://wa.me/31600000000" target="_blank"
+                           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-600 hover:bg-green-500 text-white font-semibold transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.91 11.91 0 0012.06 0C5.44.05.1 5.39.06 12.01a11.9 11.9 0 001.65 6.06L0 24l6.12-1.6a11.94 11.94 0 005.94 1.59h.01c6.62-.03 11.96-5.37 11.99-11.99a11.9 11.9 0 00-3.54-8.52zM12.06 21.9h-.01a9.9 9.9 0 01-5.04-1.37l-.36-.21-3.64.95.97-3.55-.23-.37a9.9 9.9 0 01-1.37-5.04C2.41 6.52 6.57 2.36 12.08 2.33h.02c5.49 0 9.96 4.46 9.93 9.95-.03 5.48-4.49 9.62-9.97 9.62zm5.46-7.46c-.3-.15-1.77-.88-2.05-.98-.27-.1-.47-.15-.67.15-.2.3-.77.98-.94 1.18-.17.2-.35.23-.65.08-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.29.3-.49.1-.2.05-.38-.02-.53-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.38s-1.03 1.01-1.03 2.47 1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.63.71.23 1.36.2 1.88.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
+                            WhatsApp
+                        </a>
+                        <a href="mailto:info@coldchainlogisticservices.nl"
+                           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            E-mail
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
