@@ -433,9 +433,11 @@ add_action('af/form/submission', function( $form, $fields, $args ) {
     $subject = 'Nieuwe sollicitatie van ' . ($naam ?: 'onbekend');
     $headers = [
         'Content-Type: text/html; charset=UTF-8',
-        'From: Coldchain Website <info@coldchainlogisticservices.nl>',
-        $email ? 'Reply-To: ' . $email : ''
+        'From: Coldchain Website <info@coldchainlogisticservices.nl>'
     ];
+    if ( !empty($email) ) {
+        $headers[] = 'Reply-To: ' . $email;
+    }
 
     // Stuur mail naar beheerder en testadres
     wp_mail([$to, $bcc], $subject, $message, $headers);
