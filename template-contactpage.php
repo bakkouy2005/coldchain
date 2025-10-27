@@ -271,7 +271,8 @@ $contact_infos = get_field('contact_infos');
           <h4 class="text-xl font-bold mb-2 text-left">Liever een offerte aanvragen?</h4>
           <p class="text-sm font-bold mb-4 text-left">Klik hier voor uw aanvraag, ons plaatsingsteam stuurt u binnen één werkdag een offerte voor uw aanvraag.</p>
         </div>
-        <a href="<?php echo esc_url( get_permalink( get_page_by_path('offerte') ) ); ?>" class="mt-auto self-end text-4xl">
+        <!-- ✅ Link aangepast naar opgegeven URL -->
+        <a href="<?php echo esc_url('http://test.coldchainlogisticservices.nl/offerte-page/'); ?>" class="mt-auto self-end text-4xl">
           <i class="fa-solid fa-arrow-right transform rotate-45"></i>
         </a>
       </div>
