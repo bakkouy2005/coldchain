@@ -2,6 +2,136 @@
 /* Template Name: sollicitatieformulier*/
 get_header();
 
+// === Eigen formulierverwerking voor sollicitatieformulier ===
+$success = false;
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['email']) || isset($_POST['voornaam_achternaam']))) {
+    // Verzamel en sanitize invoervelden
+    $vacature_functie   = isset($_POST['vacature_functie']) ? sanitize_text_field($_POST['vacature_functie']) : '';
+    $naam               = isset($_POST['voornaam_achternaam']) ? sanitize_text_field($_POST['voornaam_achternaam']) : '';
+    $email              = isset($_POST['emailadres']) ? sanitize_email($_POST['emailadres']) : (isset($_POST['email']) ? sanitize_email($_POST['email']) : '');
+    $woonplaats         = isset($_POST['woonplaats']) ? sanitize_text_field($_POST['woonplaats']) : '';
+    $telefoonnummer     = isset($_POST['telefoonnummer']) ? sanitize_text_field($_POST['telefoonnummer']) : '';
+    $bericht            = isset($_POST['bericht']) ? sanitize_text_field($_POST['bericht']) : '';
+    $contactvoorkeur    = isset($_POST['contactvoorkeur']) ? sanitize_text_field($_POST['contactvoorkeur']) : '';
+    $cv_document        = isset($_POST['cv_document']) ? sanitize_text_field($_POST['cv_document']) : '';
+
+    // Bouw HTML mailbericht (zelfde stijl als offerte)
+    ob_start();
+    ?>
+    <html>
+    <body style="font-family: Arial, sans-serif; background: #0a131f; padding:20px;">
+    <table width="100%" cellpadding="10" cellspacing="0" style="background:#fff; border-radius:8px;">
+        <tr>
+            <td colspan="2" style="text-align:center; font-size:20px; font-weight:bold; color:#1e3a8a; background:#004DFF;">Nieuwe sollicitatie</td>
+        </tr>
+        <?php if ($vacature_functie): ?>
+            <tr><td><strong>Vacature functie:</strong></td><td><?= esc_html($vacature_functie) ?></td></tr>
+        <?php endif; ?>
+        <?php if ($naam): ?>
+            <tr><td><strong>Naam:</strong></td><td><?= esc_html($naam) ?></td></tr>
+        <?php endif; ?>
+        <?php if ($email): ?>
+            <tr><td><strong>E-mail:</strong></td><td><?= esc_html($email) ?></td></tr>
+        <?php endif; ?>
+        <?php if ($woonplaats): ?>
+            <tr><td><strong>Woonplaats:</strong></td><td><?= esc_html($woonplaats) ?></td></tr>
+        <?php endif; ?>
+        <?php if ($telefoonnummer): ?>
+            <tr><td><strong>Telefoonnummer:</strong></td><td><?= esc_html($telefoonnummer) ?></td></tr>
+        <?php endif; ?>
+        <?php if ($contactvoorkeur): ?>
+            <tr><td><strong>Contactvoorkeur:</strong></td><td><?= esc_html($contactvoorkeur) ?></td></tr>
+        <?php endif; ?>
+        <?php if ($cv_document): ?>
+            <tr><td><strong>CV Document:</strong></td><td><?= esc_html($cv_document) ?></td></tr>
+        <?php endif; ?>
+        <?php if ($bericht): ?>
+            <tr><td><strong>Bericht:</strong></td><td><?= nl2br(esc_html($bericht)) ?></td></tr>
+        <?php endif; ?>
+    </table>
+    </body>
+    </html>
+    <?php
+    $message = ob_get_clean();
+
+    // Mail instellingen
+    $to = 'info@coldchainlogisticservices.nl';
+    $bcc = 'abde.bakk013@gmail.com';
+    $subject = 'Nieuwe sollicitatie van ' . ($naam ? $naam : 'onbekend');
+    $headers = [
+        "Content-Type: text/html; charset=UTF-8",
+        "From: Coldchain Website <info@coldchainlogisticservices.nl>",
+        ($email ? "Reply-To: " . $email : "")
+    ];
+
+    // Stuur mail naar beheerder en BCC
+    wp_mail([$to, $bcc], $subject, $message, $headers);
+
+    // Bevestigingsmail naar sollicitant
+    $logo_url = get_template_directory_uri() . '/images/logo.svg';
+    $confirm_subject = "Bevestiging van uw sollicitatie - Coldchain Logistic Services";
+    $confirm_message = '<!DOCTYPE html>
+<html lang="nl" style="margin:0; padding:0;">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bevestiging Sollicitatie</title>
+</head>
+<body style="margin:0; padding:0; background-color:#0a131f; font-family: Arial, sans-serif; color:#ffffff;">
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#0a131f; padding:40px 0;">
+        <tr>
+            <td align="center">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="max-width:600px; background-color:#0a131f; border-radius:8px; text-align:center; padding: 30px;">
+                    <tr>
+                        <td style="padding-bottom: 30px;">
+                            <img src="' . esc_url($logo_url) . '" alt="Coldchain Logo" width="150" style="display:block; border:0; outline:none; text-decoration:none; margin: 0 auto;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 26px; font-weight: 700; padding-bottom: 20px;">
+                            Beste ' . esc_html($naam ? $naam : 'kandidaat') . ',
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 16px; font-weight: 400; line-height: 1.6; color: #cccccc; padding-bottom: 30px; max-width:480px; margin: 0 auto;">
+                            Bedankt voor uw sollicitatie bij Cold-chain Logistic Services. Wij hebben uw sollicitatie ontvangen en nemen zo spoedig mogelijk contact met u op.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 30px;">
+                            <img src="http://test.coldchainlogisticservices.nl/wp-content/uploads/2025/10/ChatGPT-Image-6-okt-2025-15_52_23.png" alt="Truck illustration" width="280" style="display:block; border:0; outline:none; text-decoration:none; margin: 0 auto;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 15px; font-weight: 400; color: #cccccc; padding-bottom: 10px;">
+                            Met vriendelijke groet,<br>
+                            Het team van Cold-Chain Logistik Services
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 14px; color: #808080;">
+                            Als u nog vragen hebt neem dan contact op met: <a href="mailto:info@coldchailogistikservices.nl" style="color: #808080; text-decoration: none;">info@coldchailogistikservices.nl</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 30px; border-top:1px solid #1f2a47; font-size: 14px; color: #666e85;">
+                            &copy; ' . date("Y") . ' Coldchain Logistic Services. Alle rechten voorbehouden.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+';
+    if ($email) {
+        wp_mail($email, $confirm_subject, $confirm_message, $headers);
+    }
+    $success = true;
+}
+
 /**
  * HTML e-mailtemplate voor sollicitaties.
  * Gebruik: cc_get_solicitatie_email_html( [ 'naam' => 'Voornaam Achternaam', 'functie' => 'Functie', 'email' => 'kandidaat@example.com', 'telefoon' => '0612345678', 'bericht' => 'Korte motivatie' ] );
@@ -144,6 +274,11 @@ $functie = $vacature_id ? get_field('text', $vacature_id) : '';
     U solliciteert voor de functie: <strong><?php echo esc_html($functie); ?></strong>
   </p>
 <?php endif; ?>
+                <?php if (!empty($success)): ?>
+                    <div class="bg-green-100 text-green-800 p-4 rounded">
+                        ✅ Uw sollicitatie is succesvol verzonden. We nemen spoedig contact op.
+                    </div>
+                <?php endif; ?>
                 <?php if ( function_exists('advanced_form') ) { advanced_form('form_68cd65b633b84', array(
         'values' => array(
             'vacature_functie' => $functie, // hier vullen we hem automatisch
@@ -258,9 +393,5 @@ document.getElementById('closePopup')?.addEventListener('click', function() {
 </div>
 
 <?php
-
-// E-mailverzending voor dit formulier wordt nu afgehandeld in functions.php via de globale AF hooks.
-
 get_footer();
-
 ?>
