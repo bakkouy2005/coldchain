@@ -158,7 +158,7 @@ $contact_infos = get_field('contact_infos');
   <section class="relative z-10 -mt-16">
     <div class="container mx-auto px-4">
       <div class=" mx-auto grid grid-cols-1 sm:grid-cols-2 gap-10">
-      <?php foreach ($hero_cards as $card): ?>
+      <?php foreach ($hero_cards as $i => $card): ?>
         <div class="bg-white shadow-xl p-10 md:p-12 rounded-xl text-center">
           <?php if ($card['icon_class']): ?>
             <i class="<?php echo esc_attr($card['icon_class']); ?> text-4xl md:text-5xl text-blue-600 mb-4"></i>
@@ -169,10 +169,21 @@ $contact_infos = get_field('contact_infos');
           <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-6">
             <?php echo esc_html($card['description']); ?>
           </p>
-          <?php if (!empty($card['button']['url'])): ?>
-            <a href="<?php echo esc_url($card['button']['url']); ?>" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700">
-              <?php echo esc_html($card['button']['text']); ?>
+
+          <?php if ($i === 0): // ✅ Alleen bij eerste kaart de BEL KNOP ?>
+            <a href="tel:+31301234567"
+               class="group relative inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-medium transition-all duration-300 min-w-[220px]"
+               title="+31 (0)30 123 45 67"
+               aria-label="Bel ons op +31 (0)30 123 45 67">
+              <span class="transition-opacity duration-200 group-hover:opacity-0">Bel ons</span>
+              <span class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">+31 (0)30 123 45 67</span>
             </a>
+          <?php else: ?>
+            <?php if (!empty($card['button']['url'])): ?>
+              <a href="<?php echo esc_url($card['button']['url']); ?>" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700">
+                <?php echo esc_html($card['button']['text']); ?>
+              </a>
+            <?php endif; ?>
           <?php endif; ?>
         </div>
       <?php endforeach; ?>
