@@ -2,6 +2,92 @@
 /* Template Name: sollicitatieformulier*/
 get_header();
 
+/**
+ * HTML e-mailtemplate voor sollicitaties.
+ * Gebruik: cc_get_solicitatie_email_html( [ 'naam' => 'Voornaam Achternaam', 'functie' => 'Functie', 'email' => 'kandidaat@example.com', 'telefoon' => '0612345678', 'bericht' => 'Korte motivatie' ] );
+ */
+if ( ! function_exists( 'cc_get_solicitatie_email_html' ) ) {
+    function cc_get_solicitatie_email_html( $data = array() ) {
+        $defaults = array(
+            'naam'     => 'Onbekende kandidaat',
+            'functie'  => 'Onbekende functie',
+            'email'    => '-',
+            'telefoon' => '-',
+            'bericht'  => '',
+        );
+        $d = array_merge( $defaults, array_map( 'wp_kses_post', (array) $data ) );
+
+        ob_start();
+        ?>
+        <!doctype html>
+        <html lang="nl">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Nieuwe sollicitatie</title>
+            <style>
+                .wrapper{max-width:640px;margin:0 auto;background:#0A131F;color:#E5E7EB;font-family:Arial,Helvetica,sans-serif;border-radius:12px;overflow:hidden;border:1px solid #1f2937}
+                .header{background:#004DFF;padding:20px 24px}
+                .header h1{margin:0;color:#fff;font-size:20px}
+                .content{padding:24px}
+                .row{margin:0 0 10px}
+                .label{color:#93c5fd;font-weight:bold}
+                .val{color:#E5E7EB}
+                .cta{display:inline-block;margin-top:18px;padding:10px 16px;background:#FDB314;color:#111827;text-decoration:none;border-radius:8px;font-weight:bold}
+                .footer{padding:16px 24px;color:#9CA3AF;font-size:12px;border-top:1px solid #1f2937}
+            </style>
+        </head>
+        <body style="background:#0b1220;padding:24px">
+            <div class="wrapper">
+                <div class="header">
+                    <h1>Nieuwe sollicitatie ontvangen</h1>
+                </div>
+                <div class="content">
+                    <div class="row"><span class="label">Kandidaat:</span> <span class="val"><?php echo esc_html( $d['naam'] ); ?></span></div>
+                    <div class="row"><span class="label">Functie:</span> <span class="val"><?php echo esc_html( $d['functie'] ); ?></span></div>
+                    <div class="row"><span class="label">E-mail:</span> <span class="val"><?php echo esc_html( $d['email'] ); ?></span></div>
+                    <div class="row"><span class="label">Telefoon:</span> <span class="val"><?php echo esc_html( $d['telefoon'] ); ?></span></div>
+                    <?php if ( ! empty( $d['bericht'] ) ) : ?>
+                        <div class="row"><span class="label">Bericht:</span><br> <div class="val"><?php echo nl2br( esc_html( $d['bericht'] ) ); ?></div></div>
+                    <?php endif; ?>
+                    <a class="cta" href="<?php echo esc_url( home_url('/') ); ?>">Bekijk in admin</a>
+                </div>
+                <div class="footer">
+                    Deze e-mail is automatisch gegenereerd door de website.
+                </div>
+            </div>
+        </body>
+        </html>
+        <?php
+        return ob_get_clean();
+    }
+}
+
+/**
+ * Testmail trigger: voeg `?send_test_mail=1` toe aan de URL van deze pagina om een testmail te sturen.
+ * Verstuurt naar het door de gebruiker opgegeven testadres.
+ */
+$cc_test_mail_sent = false;
+if ( isset( $_GET['send_test_mail'] ) && '1' === $_GET['send_test_mail'] ) {
+    $to       = 'abde.bakk013@gmail.com';
+    $subject  = 'Test: Sollicitatie e-mailtemplate';
+    // Gebruik de functie: vul met demogegevens
+    $body     = cc_get_solicitatie_email_html( array(
+        'naam'     => 'Test Kandidaat',
+        'functie'  => isset( $functie ) && $functie ? $functie : 'Chauffeur (test)',
+        'email'    => 'test.kandidaat@example.com',
+        'telefoon' => '0612345678',
+        'bericht'  => 'Dit is een testbericht om te controleren of het sjabloon goed binnenkomt.',
+    ) );
+    $headers  = array(
+        'Content-Type: text/html; charset=UTF-8',
+        // Pas de afzender aan naar je domein/mailbox:
+        'From: Cold Chain Recruitment <noreply@' . preg_replace( '/^www\./', '', parse_url( home_url(), PHP_URL_HOST ) ) . '>',
+        'Reply-To: no-reply@' . preg_replace( '/^www\./', '', parse_url( home_url(), PHP_URL_HOST ) ),
+    );
+    $cc_test_mail_sent = wp_mail( $to, $subject, $body, $headers );
+}
+
 
 $vacature_id = isset($_GET['id']) ? absint($_GET['id']) : 0;
 $functie = $vacature_id ? get_field('text', $vacature_id) : '';
@@ -12,6 +98,16 @@ $functie = $vacature_id ? get_field('text', $vacature_id) : '';
 ?>
 
 <div class="">
+
+<?php if ( isset( $cc_test_mail_sent ) && $cc_test_mail_sent ) : ?>
+    <div style="background:#D1FAE5;color:#065F46;padding:12px 16px;margin:12px;border:1px solid #10B981;border-radius:8px">
+        Testmail is verzonden naar <strong>abde.bakk013@gmail.com</strong>.
+    </div>
+<?php elseif ( isset( $_GET['send_test_mail'] ) && '1' === $_GET['send_test_mail'] ) : ?>
+    <div style="background:#FEE2E2;color:#991B1B;padding:12px 16px;margin:12px;border:1px solid #FCA5A5;border-radius:8px">
+        Versturen van de testmail is niet gelukt. Controleer server mailinstellingen.
+    </div>
+<?php endif; ?>
 
 
 <!-- Hele pagina achtergrond -->

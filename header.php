@@ -13,7 +13,7 @@
                 <!-- Left: Logo (smaller on mobile) -->
                 <div class="flex items-center">
                     <a href="<?php echo esc_url( home_url('/') ); ?>" class="inline-flex items-center" aria-label="Home">
-                        <img src="<?php echo esc_url( get_template_directory_uri() . '/images/logo.svg' ); ?>" alt="Coldchain" class="h-6 sm:h-8 md:h-10 lg:h-12 w-auto" />
+                        <img src="<?php echo esc_url( get_template_directory_uri() . '/images/logo1.svg' ); ?>" alt="Coldchain" class="h-10 sm:h-8 md:h-10 lg:h-12 w-auto" />
                     </a>
                 </div>
 
