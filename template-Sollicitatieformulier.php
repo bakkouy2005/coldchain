@@ -326,66 +326,7 @@ $functie = $vacature_id ? get_field('text', $vacature_id) : '';
     </div>
 </div>
 
-<script>
-document.getElementById('closePopup')?.addEventListener('click', function() {
-    const popup = document.getElementById('popup');
-    const content = document.getElementById('popupContent');
-    if (!popup || !content) return;
-    content.classList.add('translate-y-10', 'opacity-0');
-    content.classList.remove('translate-y-0', 'opacity-100');
-    setTimeout(() => {
-        popup.classList.add('hidden');
-        popup.classList.remove('flex');
-        location.reload();
-    }, 500);
-});
 
-// Toon popup bij succesvolle Advanced Forms submissie
-(function() {
-    const wrapper = document.getElementById('sollicitatie-form');
-    if (!wrapper) return;
-
-    const showPopup = () => {
-        const popup = document.getElementById('popup');
-        const content = document.getElementById('popupContent');
-        if (!popup || !content) return;
-        popup.classList.remove('hidden');
-        popup.classList.add('flex');
-        setTimeout(() => {
-            content.classList.remove('translate-y-10', 'opacity-0');
-            content.classList.add('translate-y-0', 'opacity-100');
-        }, 50);
-    };
-
-    // 1) Directe check: staat er een success-notice in de form?
-    const successSelector = '.af-notice-success, .af-success, .acf-notice.-success, .acf-success-message, .message.success';
-    if (wrapper.querySelector(successSelector)) {
-        showPopup();
-        return;
-    }
-
-    // 2) URL parameter check (bij non-AJAX submit)
-    const params = new URLSearchParams(window.location.search);
-    if (params.has('af_success') || params.get('submitted') === 'true') {
-        showPopup();
-        return;
-    }
-
-    // 3) Observeer DOM voor AJAX success meldingen
-    const observer = new MutationObserver((mutations) => {
-        for (const m of mutations) {
-            if (m.addedNodes && m.addedNodes.length) {
-                if (wrapper.querySelector(successSelector)) {
-                    showPopup();
-                    observer.disconnect();
-                    break;
-                }
-            }
-        }
-    });
-    observer.observe(wrapper, { childList: true, subtree: true });
-})();
-</script>
 
 
 
