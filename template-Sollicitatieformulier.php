@@ -5,6 +5,8 @@ get_header();
 // === Eigen formulierverwerking voor sollicitatieformulier ===
 $success = false;
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['email']) || isset($_POST['voornaam_achternaam']))) {
+    // DEBUG: toon alle onbewerkte POST-data
+    echo '<pre style="color:white;">'; print_r($_POST); echo '</pre>';
     // Verzamel en sanitize invoervelden
     $vacature_functie   = isset($_POST['vacature_functie']) ? sanitize_text_field($_POST['vacature_functie']) : '';
     $naam               = isset($_POST['voornaam_achternaam']) ? sanitize_text_field($_POST['voornaam_achternaam']) : '';
