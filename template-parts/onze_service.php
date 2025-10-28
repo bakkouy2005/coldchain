@@ -39,7 +39,7 @@ if ( $onze_service && is_array($onze_service) ):
           <?php if ( $index === 1 && ! empty($btn_label) && ! empty($btn_url) ): ?>
             <div class="mt-8">
               <a href="<?php echo esc_url($btn_url); ?>" 
-                 class="inline-block bg-[#243866] hover:bg-[#2f4da1] transition-colors duration-300 text-white font-medium px-6 py-3 rounded-full text-base md:text-lg shadow-md hover:shadow-lg">
+                 class="inline-block px-5 py-3 rounded-md bg-blue-900 text-white font-semibold hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 text-base transition-all duration-300 shadow-md hover:shadow-lg">
                  <?php echo esc_html($btn_label); ?>
               </a>
             </div>
