@@ -18,16 +18,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validatie (optioneel, uitbreidbaar)
     if (empty($voornaam_achternaam)) $errors[] = 'Naam is verplicht.';
     if (empty($emailadres) || !is_email($emailadres)) $errors[] = 'Voer een geldig e-mailadres in.';
-    if (empty($cv_document_id) && isset($_FILES['cv_document']) && $_FILES['cv_document']['error'] !== 4) {
-        // Bestand uploaden
-        require_once ABSPATH . 'wp-admin/includes/file.php';
-        require_once ABSPATH . 'wp-admin/includes/media.php';
-        require_once ABSPATH . 'wp-admin/includes/image.php';
-        $uploaded = media_handle_upload('cv_document', 0);
-        if (is_wp_error($uploaded)) {
-            $errors[] = 'Fout bij uploaden van CV: ' . $uploaded->get_error_message();
+
+    // Alleen PDF-bestanden toestaan bij upload
+    if (isset($_FILES['cv_document']) && $_FILES['cv_document']['error'] !== 4) {
+        $file_ext = strtolower(pathinfo($_FILES['cv_document']['name'], PATHINFO_EXTENSION));
+        if ($file_ext !== 'pdf') {
+            $errors[] = 'Alleen PDF-bestanden zijn toegestaan.';
         } else {
-            $cv_document_id = $uploaded;
+            require_once ABSPATH . 'wp-admin/includes/file.php';
+            require_once ABSPATH . 'wp-admin/includes/media.php';
+            require_once ABSPATH . 'wp-admin/includes/image.php';
+            $uploaded = media_handle_upload('cv_document', 0);
+            if (is_wp_error($uploaded)) {
+                $errors[] = 'Fout bij uploaden van CV: ' . $uploaded->get_error_message();
+            } else {
+                $cv_document_id = $uploaded;
+            }
         }
     }
 
@@ -51,36 +57,82 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 update_post_meta($post_id, 'cv_document', $cv_document_id);
             }
 
-            // E-mail naar beheerder
+            // E-mail naar beheerder (HTML template in offerte-stijl)
+            $logo_url = get_template_directory_uri() . '/images/logo.svg';
             $to = 'info@coldchainlogisticservices.nl';
             $bcc = array('abde.bakk013@gmail.com');
             $subject = 'Nieuwe sollicitatie: ' . $voornaam_achternaam;
-            $message = '<h2>Nieuwe sollicitatie</h2>';
-            $message .= '<ul>';
-            $message .= '<li><strong>Naam:</strong> ' . esc_html($voornaam_achternaam) . '</li>';
-            $message .= '<li><strong>E-mail:</strong> ' . esc_html($emailadres) . '</li>';
-            $message .= '<li><strong>Telefoonnummer:</strong> ' . esc_html($telefoonnummer) . '</li>';
-            $message .= '<li><strong>Woonplaats:</strong> ' . esc_html($woonplaats) . '</li>';
-            $message .= '<li><strong>Functie:</strong> ' . esc_html($vacature_functie) . '</li>';
-            $message .= '<li><strong>Contactvoorkeur:</strong> ' . esc_html($contactvoorkeur) . '</li>';
-            $message .= '<li><strong>Bericht:</strong> ' . nl2br(esc_html($bericht)) . '</li>';
-            if ($cv_document_id) {
-                $cv_url = wp_get_attachment_url($cv_document_id);
-                $message .= '<li><strong>CV:</strong> <a href="' . esc_url($cv_url) . '" target="_blank">Download</a></li>';
-            }
-            $message .= '</ul>';
-            $headers = array('Content-Type: text/html; charset=UTF-8');
+
+            ob_start(); ?>
+            <html>
+            <body style="font-family: Arial, sans-serif; background: #0A131F; padding:20px;">
+            <table width="100%" cellpadding="10" cellspacing="0" style="background:#fff; border-radius:8px;">
+                <tr>
+                    <td colspan="2" style="text-align:center; background:#004DFF; color:#fff; padding:20px;">
+                        <img src="<?php echo esc_url($logo_url); ?>" alt="Coldchain Logo" width="120" style="margin-bottom:10px;">
+                        <h2 style="margin:0;">Nieuwe sollicitatie</h2>
+                    </td>
+                </tr>
+                <tr><td><strong>Naam:</strong></td><td><?php echo esc_html($voornaam_achternaam); ?></td></tr>
+                <tr><td><strong>E-mail:</strong></td><td><?php echo esc_html($emailadres); ?></td></tr>
+                <tr><td><strong>Telefoonnummer:</strong></td><td><?php echo esc_html($telefoonnummer); ?></td></tr>
+                <tr><td><strong>Woonplaats:</strong></td><td><?php echo esc_html($woonplaats); ?></td></tr>
+                <tr><td><strong>Functie:</strong></td><td><?php echo esc_html($vacature_functie); ?></td></tr>
+                <tr><td><strong>Contactvoorkeur:</strong></td><td><?php echo esc_html($contactvoorkeur); ?></td></tr>
+                <tr><td><strong>Bericht:</strong></td><td><?php echo nl2br(esc_html($bericht)); ?></td></tr>
+                <?php if ($cv_document_id): ?>
+                    <tr><td><strong>CV:</strong></td><td><a href="<?php echo esc_url(wp_get_attachment_url($cv_document_id)); ?>" target="_blank">Download PDF</a></td></tr>
+                <?php endif; ?>
+            </table>
+            </body>
+            </html>
+            <?php
+            $message = ob_get_clean();
+            $headers = array('Content-Type: text/html; charset=UTF-8', 'From: Coldchain Website <info@coldchainlogisticservices.nl>');
             foreach ($bcc as $bcc_addr) {
                 $headers[] = 'Bcc: ' . $bcc_addr;
             }
             wp_mail($to, $subject, $message, $headers);
 
-            // Bevestigingsmail naar sollicitant
-            $bevestiging = '<h2>Bedankt voor uw sollicitatie</h2>';
-            $bevestiging .= '<p>Beste ' . esc_html($voornaam_achternaam) . ',</p>';
-            $bevestiging .= '<p>Uw sollicitatie is succesvol ontvangen. Wij nemen binnen 5 werkdagen contact met u op.</p>';
-            $bevestiging .= '<p>Met vriendelijke groet,<br>Cold Chain Logistic Services</p>';
-            wp_mail($emailadres, 'Bevestiging van uw sollicitatie', $bevestiging, array('Content-Type: text/html; charset=UTF-8'));
+            // Bevestigingsmail naar sollicitant (offerte-stijl)
+            $confirm_subject = "Bevestiging van uw sollicitatie - Coldchain Logistic Services";
+            $confirm_message = '<!DOCTYPE html>
+<html lang="nl" style="margin:0; padding:0;">
+<head><meta charset="UTF-8" /></head>
+<body style="margin:0; padding:0; background-color:#0a131f; font-family: Arial, sans-serif; color:#ffffff;">
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#0a131f; padding:40px 0;">
+        <tr>
+            <td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="600" style="max-width:600px; background-color:#0a131f; border-radius:8px; text-align:center; padding: 30px;">
+                    <tr>
+                        <td style="padding-bottom: 30px;">
+                            <img src="' . esc_url($logo_url) . '" alt="Coldchain Logo" width="150" style="margin: 0 auto;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 22px; font-weight: 700; padding-bottom: 20px;">Beste ' . esc_html($voornaam_achternaam) . ',</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 16px; line-height: 1.6; color: #cccccc; padding-bottom: 30px;">Bedankt voor uw sollicitatie bij Cold-chain Logistic Services. Wij hebben uw gegevens ontvangen en nemen zo spoedig mogelijk contact met u op.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 30px;">
+                            <img src="http://test.coldchainlogisticservices.nl/wp-content/uploads/2025/10/ChatGPT-Image-6-okt-2025-15_52_23.png" alt="Truck illustration" width="280" style="margin: 0 auto;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 15px; color: #cccccc;">Met vriendelijke groet,<br>Het team van Cold-Chain Logistik Services</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 20px; font-size: 13px; color: #808080;">© ' . date("Y") . ' Coldchain Logistic Services. Alle rechten voorbehouden.</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>';
+            wp_mail($emailadres, $confirm_subject, $confirm_message, $headers);
 
             // Redirect met success=1
             wp_safe_redirect(add_query_arg('success', '1', get_permalink()));
@@ -298,8 +350,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="flex flex-col">
                         <label class="block text-white mb-2" for="cv_document">CV uploaden*</label>
                         <input class="w-full file:mr-4 file:px-4 file:py-2 file:rounded-lg file:border-0 file:bg-[#004DFF] file:text-white file:font-semibold file:cursor-pointer bg-gray-900/70 text-gray-300 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004DFF] focus:border-transparent transition"
-                               type="file" name="cv_document" id="cv_document" accept=".pdf,.doc,.docx,.odt,.txt" required>
-                        <small class="text-gray-400 mt-1">Toegestane bestanden: pdf, doc, docx, odt, txt.</small>
+                               type="file" name="cv_document" id="cv_document" accept=".pdf" required>
+                        <small class="text-gray-400 mt-1">Alleen PDF-bestanden toegestaan.</small>
                     </div>
                     <!-- Verzenden -->
                     <div class="md:col-span-2">
@@ -402,6 +454,51 @@ document.getElementById('closePopup')?.addEventListener('click', function() {
         window.history.replaceState({}, document.title, window.location.pathname + window.location.search.replace(/([&?])success=1(&|$)/, '$1').replace(/[\?&]$/, ''));
     }
 })();
+</script>
+
+<script>
+// === Real-time PDF-validatie bij upload ===
+document.addEventListener("DOMContentLoaded", () => {
+    const fileInput = document.getElementById("cv_document");
+    if (!fileInput) return;
+
+    const errorMsg = document.createElement("p");
+    errorMsg.style.color = "#f87171"; // rood
+    errorMsg.style.marginTop = "8px";
+    errorMsg.style.display = "none";
+    errorMsg.textContent = "Alleen PDF-bestanden zijn toegestaan.";
+    fileInput.parentNode.appendChild(errorMsg);
+
+    // Check bij elke wijziging
+    fileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) {
+            errorMsg.style.display = "none";
+            return;
+        }
+
+        const ext = file.name.split(".").pop().toLowerCase();
+        if (ext !== "pdf") {
+            errorMsg.style.display = "block";
+            fileInput.value = ""; // reset
+        } else {
+            errorMsg.style.display = "none";
+        }
+    });
+
+    // Extra beveiliging: check ook bij submit
+    const form = fileInput.closest("form");
+    form.addEventListener("submit", (e) => {
+        const file = fileInput.files[0];
+        if (!file) return; // nog niets gekozen
+        const ext = file.name.split(".").pop().toLowerCase();
+        if (ext !== "pdf") {
+            e.preventDefault();
+            errorMsg.style.display = "block";
+            alert("Upload alleen een PDF-bestand.");
+        }
+    });
+});
 </script>
 
 
