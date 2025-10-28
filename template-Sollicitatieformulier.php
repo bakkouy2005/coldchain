@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </tr>
                     <tr>
                         <td style="padding-bottom: 30px;">
-                            <img src="http://test.coldchainlogisticservices.nl/wp-content/uploads/2025/10/ChatGPT-Image-6-okt-2025-15_52_23.png" alt="Truck illustration" width="280" style="margin: 0 auto;">
+                            <img src="http://test.coldchainlogisticservices.nl/wp-content/uploads/2025/10/ChatGPT-Image-28.-Okt.-2025-14_31_36.png" alt="Truck illustration" width="280" style="margin: 0 auto;">
                         </td>
                     </tr>
                     <tr>
