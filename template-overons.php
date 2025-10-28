@@ -7,8 +7,8 @@ get_header();
 
 <div class="">
     <?php get_template_part('template-parts/overonshero'); ?>
+    <?php get_template_part('template-parts/transport_tekst'); ?>
    <?php get_template_part('template-parts/overonstext'); ?>
-   <?php get_template_part('template-parts/transport_tekst'); ?>
    <?php get_template_part('template-parts/four_card_grid'); ?>
    <?php get_template_part('template-parts/overons_fototext'); ?>
    <?php get_template_part('template-parts/ons_wagenpark'); ?>
