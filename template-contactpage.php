@@ -52,7 +52,7 @@ function handle_contact_form() {
 
     // Bevestigingsmail voor gebruiker
     $confirm_subject = 'Bevestiging van uw contactaanvraag - Coldchain Logistic Services';
-    $logo_url = get_template_directory_uri() . '/images/logo.svg';
+    $logo_url = get_template_directory_uri() . '/images/logo1.svg';
     $confirm_message = '
     <html lang="nl" style="margin:0; padding:0;">
     <head>

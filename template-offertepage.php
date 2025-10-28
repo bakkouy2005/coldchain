@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
         wp_mail('abde.bakk013@gmail.com', $subject, $message, $headers);
 
         // Bevestigingsmail naar gebruiker
-        $logo_url = get_template_directory_uri() . '/images/logo.svg';
+        $logo_url = get_template_directory_uri() . '/images/logo1.svg';
         $confirm_subject = "Bevestiging van uw offerte aanvraag - Coldchain Logistic Services";
         $confirm_message = '<!DOCTYPE html>
 <html lang="nl" style="margin:0; padding:0;">
