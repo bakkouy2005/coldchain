@@ -1,6 +1,11 @@
 <?php
 /* Template Name: sollicitatieformulier*/
 
+// Functie ophalen uit URL vóór de verwerking
+$vacature_id = isset($_GET['id']) ? absint($_GET['id']) : 0;
+$functie = $vacature_id ? get_field('text', $vacature_id) : '';
+
+// Verwerking van formulier
 // Verwerking van formulier
 $success = false;
 $errors = array();
@@ -10,7 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $emailadres = sanitize_email($_POST['emailadres'] ?? '');
     $telefoonnummer = sanitize_text_field($_POST['telefoonnummer'] ?? '');
     $woonplaats = sanitize_text_field($_POST['woonplaats'] ?? '');
-    $vacature_functie = sanitize_text_field($_POST['vacature_functie'] ?? '');
+    $vacature_functie = !empty($_POST['vacature_functie']) 
+        ? sanitize_text_field($_POST['vacature_functie']) 
+        : sanitize_text_field($functie);
     $bericht = sanitize_textarea_field($_POST['bericht'] ?? '');
     $contactvoorkeur = sanitize_text_field($_POST['contactvoorkeur'] ?? '');
     $cv_document_id = 0;
@@ -145,9 +152,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 get_header();
 
-$vacature_id = isset($_GET['id']) ? absint($_GET['id']) : 0;
-$functie = $vacature_id ? get_field('text', $vacature_id) : '';
-
 // Verwerking van formulier
 $success = false;
 $errors = array();
@@ -272,7 +276,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Formuliervelden links -->
             <div id="sollicitatie-form" class="flex-1 space-y-6 mb-8 ">
                 <?php if ($functie): ?>
-                  <p class="text-white mb-6 display-none">
+                  <p class="text-white mb-6">
                     U solliciteert voor de functie: <strong><?php echo esc_html($functie); ?></strong>
                   </p>
                 <?php endif; ?>
