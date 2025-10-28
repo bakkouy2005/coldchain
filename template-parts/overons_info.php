@@ -44,7 +44,7 @@ if ( $overons_info && is_array($overons_info) ) :
                 xl:w-[calc(35vw+24px)]
                 2xl:w-[calc(35vw+24px)]"></div>
 
-    <!-- Tekst (geen ml/left/transform meer nodig) -->
+    <!-- Tekst -->
     <div class="flex flex-col justify-center max-w-2xl w-full text-left mb-12 sm:mb-0">
       <?php if ($title) : ?>
         <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-snug">
@@ -59,9 +59,9 @@ if ( $overons_info && is_array($overons_info) ) :
       <?php endif; ?>
 
       <?php if ($btn_label && $btn_url) : ?>
-        <div class="mt-4">
+        <div class="mt-4 sm:self-start">
           <a href="<?php echo esc_url($btn_url); ?>" 
-             class="inline-block px-5 py-3 rounded-md bg-blue-900 text-white font-semibold hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 text-base">
+             class="inline-block px-5 py-3 rounded-md bg-blue-900 text-white font-semibold hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 text-base mx-auto sm:mx-0 md:ml-4 transition-all duration-300">
             <?php echo esc_html($btn_label); ?>
           </a>
         </div>
