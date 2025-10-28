@@ -62,15 +62,16 @@
         <p class="text-white font-semibold mb-2">Cold Chain Logistic Services B.V.</p>
         <p>Mississippidreef 4<br>3565 CG Utrecht</p>
 
-        <p class="mt-4 font-semibold text-white">+31 (0)30 123 45 67</p>
-        <p class="text-zinc-400">24/7 bereikbaar</p>
+        <!-- ✅ Telefoonnummers onder elkaar -->
+        <div class="mt-4 space-y-1">
+          <p class="font-semibold text-white">+31 6 22 60 12 20</p>
+          <p class="font-semibold text-white">+31 6 24 24 10 20</p>
+        </div>
+        <p class="text-zinc-400 mt-1">24/7 bereikbaar</p>
 
         <p class="mt-4 text-sm">
           <a href="mailto:info@coldchainlogisticservices.nl" class="block hover:text-[#5AA3D5] transition">info@coldchainlogisticservices.nl</a>
-          
         </p>
-
-       
       </div>
 
     </div>
