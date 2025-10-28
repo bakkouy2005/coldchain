@@ -171,12 +171,12 @@ $contact_infos = get_field('contact_infos');
           </p>
 
           <?php if ($i === 0): // ✅ Alleen bij eerste kaart de BEL KNOP ?>
-            <a href="tel:+31301234567"
+            <a href="tel:+31622601220"
                class="group relative inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-medium transition-all duration-300 min-w-[220px]"
-               title="+31 (0)30 123 45 67"
-               aria-label="Bel ons op +31 (0)30 123 45 67">
+               title="+31 6 22 60 12 20"
+               aria-label="Bel ons op +31 6 22 60 12 20">
               <span class="transition-opacity duration-200 group-hover:opacity-0">Bel ons</span>
-              <span class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">+31 (0)30 123 45 67</span>
+              <span class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">+31 6 22 60 12 20</span>
             </a>
           <?php else: ?>
             <?php if (!empty($card['button']['url'])): ?>
@@ -271,7 +271,6 @@ $contact_infos = get_field('contact_infos');
           <h4 class="text-xl font-bold mb-2 text-left">Liever een offerte aanvragen?</h4>
           <p class="text-sm font-bold mb-4 text-left">Klik hier voor uw aanvraag, ons plaatsingsteam stuurt u binnen één werkdag een offerte voor uw aanvraag.</p>
         </div>
-        <!-- ✅ Link aangepast naar opgegeven URL -->
         <a href="<?php echo esc_url('http://test.coldchainlogisticservices.nl/offerte-page/'); ?>" class="mt-auto self-end text-4xl">
           <i class="fa-solid fa-arrow-right transform rotate-45"></i>
         </a>
