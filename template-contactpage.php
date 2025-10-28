@@ -144,7 +144,7 @@ $contact_infos = get_field('contact_infos');
       <h2 class="text-4xl md:text-6xl font-bold mb-4">
         <?php echo esc_html($hero_title); ?>
       </h2>
-      <p class="text-lg md:text-xl">
+      <p class="text-lg md:text-xl break-words">
         <?php echo esc_html($hero_desc); ?>
       </p>
         </div>
@@ -159,14 +159,14 @@ $contact_infos = get_field('contact_infos');
     <div class="container mx-auto px-4">
       <div class=" mx-auto grid grid-cols-1 sm:grid-cols-2 gap-10">
       <?php foreach ($hero_cards as $i => $card): ?>
-        <div class="bg-white shadow-xl p-10 md:p-12 rounded-xl text-center">
+        <div class="bg-white shadow-xl p-10 md:p-12 rounded-xl text-center overflow-hidden">
           <?php if ($card['icon_class']): ?>
             <i class="<?php echo esc_attr($card['icon_class']); ?> text-4xl md:text-5xl text-blue-600 mb-4"></i>
           <?php endif; ?>
-          <h3 class="font-semibold text-2xl md:text-3xl mb-4">
+          <h3 class="font-semibold text-2xl md:text-3xl mb-4 break-words">
             <?php echo esc_html($card['title']); ?>
           </h3>
-          <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-6">
+          <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-6 break-words">
             <?php echo esc_html($card['description']); ?>
           </p>
 
@@ -203,14 +203,14 @@ $contact_infos = get_field('contact_infos');
   <section class="py-12 ">
     <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-4">
       <?php foreach ($contact_infos as $info): ?>
-        <div class="bg-white shadow-xl p-12 rounded-md text-center">
+        <div class="bg-white shadow-xl p-12 rounded-md text-center overflow-hidden">
           <?php if ($info['icon_class']): ?>
             <i class="<?php echo esc_attr($info['icon_class']); ?> text-2xl text-blue-600 mb-2"></i>
           <?php endif; ?>
-          <h4 class="font-semibold mb-1">
+          <h4 class="font-semibold mb-1 break-words">
             <?php echo esc_html($info['title']); ?>
           </h4>
-          <p class="text-gray-600 text-sm">
+          <p class="text-gray-600 text-sm break-all sm:break-words whitespace-normal">
             <?php echo esc_html($info['value']); ?>
           </p>
         </div>
