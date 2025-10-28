@@ -179,10 +179,16 @@ $contact_infos = get_field('contact_infos');
               <span class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">+31 6 22 60 12 20</span>
             </a>
           <?php else: ?>
-            <?php if (!empty($card['button']['url'])): ?>
-              <a href="<?php echo esc_url($card['button']['url']); ?>" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700">
-                <?php echo esc_html($card['button']['text']); ?>
+            <?php if ($i === 1): // ✅ Rechter knop hardcoded naar contactformulier ?>
+              <a href="#contact-form" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700">
+                Contactformulier
               </a>
+            <?php else: ?>
+              <?php if (!empty($card['button']['url'])): ?>
+                <a href="<?php echo esc_url($card['button']['url']); ?>" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700">
+                  <?php echo esc_html($card['button']['text']); ?>
+                </a>
+              <?php endif; ?>
             <?php endif; ?>
           <?php endif; ?>
         </div>
@@ -214,7 +220,7 @@ $contact_infos = get_field('contact_infos');
 <?php endif; ?>
 
 <!-- CONTACT FORM -->
-<section id="contact-form" class="py-12 bg-[#0A131F] text-white scroll-mt-24">
+<section id="contact-form" class="py-12 bg-[#0A131F] text-white">
   <div class="container mx-auto px-5">
     <h3 class="text-4xl font-bold mb-6">Neem contact met ons op</h3>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -271,7 +277,6 @@ $contact_infos = get_field('contact_infos');
           <h4 class="text-xl font-bold mb-2 text-left">Liever een offerte aanvragen?</h4>
           <p class="text-sm font-bold mb-4 text-left">Klik hier voor uw aanvraag, ons plaatsingsteam stuurt u binnen één werkdag een offerte voor uw aanvraag.</p>
         </div>
-        <!-- ✅ Link aangepast naar opgegeven URL -->
         <a href="<?php echo esc_url('http://test.coldchainlogisticservices.nl/offerte-page/'); ?>" class="mt-auto self-end text-4xl">
           <i class="fa-solid fa-arrow-right transform rotate-45"></i>
         </a>
@@ -280,36 +285,18 @@ $contact_infos = get_field('contact_infos');
   </div>
 </section>
 
-<!-- Smooth scroll naar #contact-form -->
+<!-- Smooth scroll voor #contact-form -->
 <script>
-  (function() {
-    function scrollToContactForm() {
-      var el = document.getElementById('contact-form');
-      if (!el) return;
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href="#contact-form"]');
+    if (!a) return;
+    e.preventDefault();
+    var el = document.getElementById('contact-form');
+    if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.pushState(null, '', '#contact-form');
     }
-
-    // 1) Als URL al #contact-form bevat bij laden
-    if (window.location.hash === '#contact-form') {
-      window.addEventListener('load', function() {
-        // kleine delay zodat layout geladen is
-        setTimeout(scrollToContactForm, 50);
-      });
-    }
-
-    // 2) Intercept clicks op links die naar #contact-form verwijzen
-    document.addEventListener('click', function(e) {
-      var a = e.target.closest('a[href$="#contact-form"]');
-      if (!a) return;
-      // zelfde pagina?
-      var samePage = (a.pathname === window.location.pathname) && (a.host === window.location.host);
-      if (samePage) {
-        e.preventDefault();
-        history.pushState(null, '', '#contact-form');
-        scrollToContactForm();
-      }
-    });
-  })();
+  });
 </script>
 
 <?php get_footer(); ?>
