@@ -269,15 +269,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                   name="bericht" id="bericht" rows="5"><?php echo esc_textarea($_POST['bericht'] ?? ''); ?></textarea>
                     </div>
                     <!-- Contactvoorkeur -->
-                    <div class="flex flex-col">
-                        <label class="block text-white mb-2" for="contactvoorkeur">Contactvoorkeur</label>
-                        <select class="w-full px-4 py-3 rounded-lg bg-gray-900/70 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#004DFF] focus:border-transparent transition"
-                                name="contactvoorkeur" id="contactvoorkeur">
-                            <option value="">Geen voorkeur</option>
-                            <option value="email" <?php selected($_POST['contactvoorkeur'] ?? '', 'email'); ?>>E-mail</option>
-                            <option value="telefoon" <?php selected($_POST['contactvoorkeur'] ?? '', 'telefoon'); ?>>Telefoon</option>
-                        </select>
-                    </div>
+                    <div class="md:col-span-2 flex flex-col">
+    <label class="block text-white mb-2">Contactvoorkeur</label>
+    <div class="flex flex-wrap gap-6 text-white">
+        <?php $pref = $_POST['contactvoorkeur'] ?? ''; ?>
+        <label class="inline-flex items-center gap-2">
+            <input type="radio" name="contactvoorkeur" value="email"
+                   <?php checked($pref, 'email'); ?>
+                   class="accent-[#004DFF]">
+            <span>E-mail</span>
+        </label>
+        <label class="inline-flex items-center gap-2">
+            <input type="radio" name="contactvoorkeur" value="telefoon"
+                   <?php checked($pref, 'telefoon'); ?>
+                   class="accent-[#004DFF]">
+            <span>Telefoon</span>
+        </label>
+        
+        <label class="inline-flex items-center gap-2">
+            <input type="radio" name="contactvoorkeur" value="whatsapp"
+                   <?php checked($pref, 'whatsapp'); ?>
+                   class="accent-[#004DFF]">
+            <span>WhatsApp</span>
+        </label>
+    </div>
+</div>
                     <!-- CV -->
                     <div class="flex flex-col">
                         <label class="block text-white mb-2" for="cv_document">CV uploaden*</label>
