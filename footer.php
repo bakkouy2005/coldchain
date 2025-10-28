@@ -80,11 +80,13 @@
 
     <div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
       <div class="flex items-center gap-3">
-        <img
-          src="<?php echo esc_url( get_theme_file_uri('images/logo.svg') ); ?>"
-          alt="<?php echo esc_attr( get_bloginfo('name') ); ?> logo"
-          class="h-8"
-        >
+      <img
+  src="<?php echo esc_url( get_template_directory_uri() . '/images/logo1.svg' ); ?>"
+  alt="<?php echo esc_attr( get_bloginfo('name') ); ?> logo"
+  class="h-14 sm:h-12 md:h-14 lg:h-16 w-auto"
+/>
+
+
       </div>
       <p class="text-sm text-zinc-500">&copy; <?php echo esc_html( date('Y') ); ?> <?php echo esc_html( get_bloginfo('name') ); ?>. Alle rechten voorbehouden.</p>
     </div>
