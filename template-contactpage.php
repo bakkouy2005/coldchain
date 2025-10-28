@@ -214,7 +214,7 @@ $contact_infos = get_field('contact_infos');
 <?php endif; ?>
 
 <!-- CONTACT FORM -->
-<section class="py-12 bg-[#0A131F] text-white">
+<section id="contact-form" class="py-12 bg-[#0A131F] text-white scroll-mt-24">
   <div class="container mx-auto px-5">
     <h3 class="text-4xl font-bold mb-6">Neem contact met ons op</h3>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -271,6 +271,7 @@ $contact_infos = get_field('contact_infos');
           <h4 class="text-xl font-bold mb-2 text-left">Liever een offerte aanvragen?</h4>
           <p class="text-sm font-bold mb-4 text-left">Klik hier voor uw aanvraag, ons plaatsingsteam stuurt u binnen één werkdag een offerte voor uw aanvraag.</p>
         </div>
+        <!-- ✅ Link aangepast naar opgegeven URL -->
         <a href="<?php echo esc_url('http://test.coldchainlogisticservices.nl/offerte-page/'); ?>" class="mt-auto self-end text-4xl">
           <i class="fa-solid fa-arrow-right transform rotate-45"></i>
         </a>
@@ -278,5 +279,37 @@ $contact_infos = get_field('contact_infos');
     </div>
   </div>
 </section>
+
+<!-- Smooth scroll naar #contact-form -->
+<script>
+  (function() {
+    function scrollToContactForm() {
+      var el = document.getElementById('contact-form');
+      if (!el) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // 1) Als URL al #contact-form bevat bij laden
+    if (window.location.hash === '#contact-form') {
+      window.addEventListener('load', function() {
+        // kleine delay zodat layout geladen is
+        setTimeout(scrollToContactForm, 50);
+      });
+    }
+
+    // 2) Intercept clicks op links die naar #contact-form verwijzen
+    document.addEventListener('click', function(e) {
+      var a = e.target.closest('a[href$="#contact-form"]');
+      if (!a) return;
+      // zelfde pagina?
+      var samePage = (a.pathname === window.location.pathname) && (a.host === window.location.host);
+      if (samePage) {
+        e.preventDefault();
+        history.pushState(null, '', '#contact-form');
+        scrollToContactForm();
+      }
+    });
+  })();
+</script>
 
 <?php get_footer(); ?>
