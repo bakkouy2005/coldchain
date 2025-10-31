@@ -184,9 +184,7 @@ setup_postdata($vacature_post);
               <?php endif; ?>
             </div>
           <?php endif; ?>
-          <?php if( !empty($button) && !empty($button['url']) ): ?>
-            <a href="<?php echo esc_url($button['url']); ?>" class="inline-block bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] text-[#243866] font-semibold px-8 py-4 rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 w-max text-left">Soliciteer nu</a>
-          <?php endif; ?>
+          
         </div>
       </div>
       <script>
