@@ -184,7 +184,6 @@ setup_postdata($vacature_post);
               <?php endif; ?>
             </div>
           <?php endif; ?>
-          
         </div>
       </div>
       <script>

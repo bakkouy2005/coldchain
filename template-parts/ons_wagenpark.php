@@ -7,13 +7,12 @@ if( $wagenpark ):
 <section class="bg-gray-50 py-24">
   <div class="container mx-auto px-6">
 
-    <!-- Titel met dikkere, strakke accentlijn -->
+    <!-- Titel -->
     <?php if( $title ): ?>
       <div class="text-center mb-16">
         <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
           <?php echo esc_html($title); ?>
         </h2>
-        <!-- Dikkere accentlijn -->
         <div class="mx-auto h-2 w-32 bg-[#0A131F] relative overflow-hidden rounded-full">
           <div class="absolute top-0 left-0 h-2 w-1/2 bg-[#0A131F] animate-slide"></div>
         </div>
@@ -32,16 +31,19 @@ if( $wagenpark ):
         ?>
         <div class="bg-white border border-gray-200 rounded-3xl shadow-lg overflow-hidden transform hover:scale-[1.03] hover:shadow-2xl transition-all duration-400">
           
-          <!-- Afbeelding -->
-          <?php if( $img ): ?>
-            <div class="relative overflow-hidden aspect-[4/3]">
+          <!-- Afbeelding of fallback truck icoon -->
+          <div class="relative overflow-hidden aspect-[4/3] bg-gray-100 flex items-center justify-center">
+            <?php if( $img ): ?>
               <img 
                 src="<?php echo esc_url($img['url']); ?>" 
                 alt="<?php echo esc_attr($img['alt'] ?? $name); ?>" 
                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
               />
-            </div>
-          <?php endif; ?>
+            <?php else: ?>
+              <!-- Font Awesome vrachtwagen icoon -->
+              <i class="fa-solid fa-truck text-gray-400 text-7xl hover:text-gray-500 transition-colors duration-300"></i>
+            <?php endif; ?>
+          </div>
 
           <!-- Content -->
           <div class="p-6 space-y-3">
@@ -51,7 +53,7 @@ if( $wagenpark ):
 
             <div class="space-y-1 text-gray-700 text-sm">
               <?php if( $type ): ?>
-                <p><span class="font-medium">Type:</span> <?php echo esc_html($type); ?></p>
+                <p><span class="font-medium">Aantal pallets:</span> <?php echo esc_html($type); ?></p>
               <?php endif; ?>
 
               <?php if( $capacity ): ?>
@@ -66,14 +68,12 @@ if( $wagenpark ):
         </div>
         <?php endforeach; ?>
       </div>
-    <?php else: ?>
-      
     <?php endif; ?>
 
   </div>
 </section>
 
-<!-- Animatie voor de accentlijn -->
+<!-- Animatie voor accentlijn -->
 <style>
 @keyframes slide {
   0% { transform: translateX(-100%); }
@@ -84,5 +84,8 @@ if( $wagenpark ):
   animation: slide 2.5s linear infinite;
 }
 </style>
+
+<!-- Voeg Font Awesome toe (bijv. in header.php of functions.php) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-QZKLe0RqvE0O+oVgAKvQWqFrh6vJpQv85q5T1v9s9tL+Q3Wl5qS2Aq5VHu/yWQhr9g5Fz2N9OxjPdrYk1XUQ4A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <?php endif; ?>
