@@ -14,9 +14,7 @@ get_header();
    <?php get_template_part('template-parts/ons_wagenpark'); ?>
    <?php get_template_part('template-parts/overons_info'); ?>
    <?php get_template_part('template-parts/onze_service'); ?>
-   
-      
-   
+   <?php get_template_part('template-parts/cold_info'); ?>
    
 </div>
 
