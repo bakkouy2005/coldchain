@@ -61,7 +61,7 @@ if ( $overons_info && is_array($overons_info) ) :
       <?php if ($btn_label && $btn_url) : ?>
         <div class="mt-4 sm:self-start md:mt-8"> <!-- ✅ toegevoegd md:mt-8 -->
           <a href="<?php echo esc_url($btn_url); ?>" 
-             class="inline-block px-5 py-3 rounded-md bg-blue-900 text-white font-semibold hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 text-base mx-auto sm:mx-0 md:ml-4 transition-all duration-300">
+             class="inline-block px-5 py-3 rounded-md bg-blue-900 text-white font-semibold hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 text-base mx-auto sm:mx-0 md: transition-all duration-300">
             <?php echo esc_html($btn_label); ?>
           </a>
         </div>
