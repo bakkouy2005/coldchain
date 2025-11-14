@@ -13,6 +13,7 @@ function coldchain_development_setup() {
     // Menu locaties
     register_nav_menus( array(
         'primary' => __( 'Primary Menu', 'coldchain-development' ),
+        'footer'  => __( 'Footer Menu', 'coldchain-development' ),
     ) );
 }
 add_action( 'after_setup_theme', 'coldchain_development_setup' );

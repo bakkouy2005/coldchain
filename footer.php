@@ -91,7 +91,7 @@
       <nav class="hidden lg:flex flex-1 justify-center text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg" aria-label="Primary">
                     <?php
                         wp_nav_menu( array(
-                            'theme_location' => 'Footer',
+                            'theme_location' => 'footer',
                             'container'      => false,
                             'menu_class'     => 'flex items-center gap-6',
                             'fallback_cb'    => false,
