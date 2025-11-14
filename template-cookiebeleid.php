@@ -11,7 +11,6 @@ get_header();
 
 </div>
 
-<div class="container mx-auto px-6 pb-12 prose prose-lg prose-headings:font-bold prose-p:text-gray-800">
 
 <?php
 
@@ -24,7 +23,7 @@ endif;
 
 
 ?>
-</div>
+
 
 
 
