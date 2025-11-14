@@ -88,6 +88,7 @@
 
 
       </div>
+      <a href="http://test.coldchainlogisticservices.nl/cookiebeleid-eu/">Cookies</a>
       <p class="text-sm text-zinc-500">&copy; <?php echo esc_html( date('Y') ); ?> <?php echo esc_html( get_bloginfo('name') ); ?>. Alle rechten voorbehouden.</p>
     </div>
   </div>
