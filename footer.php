@@ -88,7 +88,16 @@
 
 
       </div>
-      <a href="http://test.coldchainlogisticservices.nl/cookiebeleid-eu/">Cookies</a>
+      <nav class="hidden lg:flex flex-1 justify-center text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg" aria-label="Primary">
+                    <?php
+                        wp_nav_menu( array(
+                            'theme_location' => 'Footer',
+                            'container'      => false,
+                            'menu_class'     => 'flex items-center gap-6',
+                            'fallback_cb'    => false,
+                        ) );
+                    ?>
+                </nav>
       <p class="text-sm text-zinc-500">&copy; <?php echo esc_html( date('Y') ); ?> <?php echo esc_html( get_bloginfo('name') ); ?>. Alle rechten voorbehouden.</p>
     </div>
   </div>
