@@ -17,7 +17,7 @@ if ( $algemene_voorwaarden_info ) {
             
             // Intro tekst bovenaan (gecentreerd en responsive)
             if ( $intro_text ) {
-                echo '<div class="max-w-3xl mx-auto mb-12 text-center">';
+                echo '<div class="max-w-3xl mx-auto mb-12 text-start">';
                     echo '<div class="prose prose-lg mx-auto text-gray-700">' . wp_kses_post( $intro_text ) . '</div>';
                 echo '</div>';
             }
