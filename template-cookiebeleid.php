@@ -3,6 +3,15 @@
 
 get_header();
 
+?>
+
+<div class="">
+    <?php> get_title() ?>
+
+</div>
+
+<?php
+
 if ( have_posts() ) :
     while ( have_posts() ) :
         the_post();
