@@ -93,7 +93,7 @@
                         wp_nav_menu( array(
                             'theme_location' => 'footer',
                             'container'      => false,
-                            'menu_class'     => 'flex items-center gap-6',
+                            'menu_class'     => 'flex items-center gap-4 text-zinc-300 text-xs no-underline [&_a]:no-underline [&_a]:text-zinc-300 [&_a:hover]:text-[#5AA3D5]',
                             'fallback_cb'    => false,
                         ) );
                     ?>
