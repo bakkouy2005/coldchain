@@ -11,6 +11,8 @@ get_header();
 
 </div>
 
+<div class="container mx-auto px-6 pb-12">
+
 <?php
 
 if ( have_posts() ) :
@@ -19,5 +21,8 @@ if ( have_posts() ) :
         the_content(); // This will render the page content and process shortcodes like [cmplz-document]
     endwhile;
 endif;
+
+
+?>
 
 get_footer();
