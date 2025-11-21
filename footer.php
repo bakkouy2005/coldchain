@@ -60,7 +60,8 @@
         <h3 class="text-xl font-bold text-[#5AA3D5] mb-6">Contactgegevens</h3>
 
         <p class="text-white font-semibold mb-2">Cold Chain Logistic Services B.V.</p>
-        <p>Mississippidreef 4<br>3565 CG Utrecht</p>
+        <p>Mississippidreef 4<br>3565 CG Utrecht</p><br><p>Hekven 19<br>4824 AD Breda</p>
+        
 
         <!-- ✅ Telefoonnummers onder elkaar -->
         <div class="mt-4 space-y-1">
