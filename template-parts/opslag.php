@@ -46,7 +46,7 @@ if ( $opslag && is_array($opslag) ) :
                 <dl class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                     <div class="rounded-xl border border-slate-200 bg-white px-4 py-3">
                         <dt class="text-xs font-medium text-slate-500 mb-1">Temperaturen</dt>
-                        <dd class="text-sm font-semibold text-slate-900">Koel &amp; vries</dd>
+                        <dd class="text-sm font-semibold text-slate-900">Koel, vries &amp; Ambient </dd>
                     </div>
                     <div class="rounded-xl border border-slate-200 bg-white px-4 py-3">
                         <dt class="text-xs font-medium text-slate-500 mb-1">Locaties</dt>
