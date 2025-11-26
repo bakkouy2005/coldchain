@@ -12,11 +12,11 @@ if ( $opslag && is_array($opslag) ) :
 ?>
 
 <section class="py-16 lg:py-24 bg-white">
-    <div class="max-w-6xl mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
             <!-- Tekst kolom -->
-            <div class="order-2 lg:order-1">
+            <div class="order-2 lg:order-1 lg:pr-8">
                 <!-- klein label / eyebrow, kun je aanpassen of weghalen -->
                 <p class="text-xs font-semibold tracking-[0.18em] uppercase text-slate-500 mb-3">
                     Opslag &amp; fulfilment
