@@ -18,14 +18,14 @@ if ( $opslag_betekent && is_array($opslag_betekent) ):
             <?php if ( $text || $text_area ) : ?>
                 <div class="max-w-3xl mb-10 lg:mb-12">
                     <?php if ( $text ) : ?>
-                        <h2 class="text-3xl lg:text-4xl font-bold text-white leading-tight mb-4">
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-snug mb-4">
                             <?php echo esc_html( $text ); ?>
                         </h2>
                     <?php endif; ?>
 
                     <?php if ( $text_area ) : ?>
                         <div class="h-1 w-16 mb-5 rounded-full" style="background-color:#243866;"></div>
-                        <div class="prose prose-slate prose-lg max-w-none text-white">
+                        <div class="text-white leading-relaxed text-base sm:text-lg md:text-xl">
                             <?php echo wp_kses_post( $text_area ); ?>
                         </div>
                     <?php endif; ?>

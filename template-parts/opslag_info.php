@@ -34,7 +34,7 @@ if ( $opslag_info && ! empty( $opslag_info['repeater'] ) && is_array( $opslag_in
                         <?php endif; ?>
 
                         <?php if ( $item_text ) : ?>
-                            <h3 class="text-lg lg:text-xl font-semibold text-slate-900 mb-3 leading-snug">
+                            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 mb-4 leading-snug">
                                 <?php echo esc_html( $item_text ); ?>
                             </h3>
                             <div class="h-0.5 w-12 mb-4 rounded-full" style="background-color:#243866;"></div>
@@ -48,7 +48,7 @@ if ( $opslag_info && ! empty( $opslag_info['repeater'] ) && is_array( $opslag_in
                             // Genereer unieke ID voor dit item
                             $unique_id = 'text-' . md5( $item_text . $item_text_area );
                         ?>
-                            <div class="prose prose-slate prose-sm lg:prose-base max-w-none text-slate-700 leading-relaxed mb-4 flex-grow">
+                            <div class="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed mb-4 flex-grow">
                                 <?php if ( $is_long ) : ?>
                                     <!-- Verkorte versie (eerste 20 woorden) -->
                                     <div id="<?php echo $unique_id; ?>-short" class="text-content-short">

@@ -19,7 +19,7 @@ if ( $opslag_punten && is_array( $opslag_punten ) ) :
                 <!-- Tekstkolom -->
                 <div class="order-2 lg:order-1">
                     <?php if ( $text ) : ?>
-                        <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 leading-tight mb-4">
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 leading-snug mb-4">
                             <?php echo esc_html( $text ); ?>
                         </h2>
                     <?php endif; ?>
