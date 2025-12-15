@@ -184,7 +184,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
 get_header(); 
 ?>
 
-<section class="bg-[#0A131F] text-white py-12">
+<style>
+    body {
+        background-color: #0A131F !important;
+    }
+</style>
+
+<section class="bg-[#0A131F] text-white py-12 min-h-screen">
   <div class="container mx-auto px-4">
     <h1 class="text-3xl md:text-4xl font-bold mb-4"><?php the_field('pagina_titel'); ?></h1>
     <p class="mb-6"><?php the_field('intro_tekst'); ?></p>
