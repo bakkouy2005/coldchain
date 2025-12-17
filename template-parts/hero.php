@@ -44,7 +44,7 @@ if( $hero ):
             </h1>
             
             <!-- Buttons -->
-            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center mt-6 sm:mt-8 transition-all duration-500 ease-out">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center mt-24 sm:mt-32 md:mt-40 lg:mt-48 xl:mt-56 transition-all duration-500 ease-out">
                 <?php if ( $button1 && is_array($button1) ) : 
                     $btn1_url = $button1['url1'] ?? '';
                     $btn1_text = $button1['text1'] ?? '';
