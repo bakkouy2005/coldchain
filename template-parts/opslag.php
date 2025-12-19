@@ -4,11 +4,13 @@
 $opslag = get_field('opslag');
 
 if ( $opslag && is_array($opslag) ) :        
+    $text_title = $opslag['text_title'] ?? '';
     $text       = $opslag['text'] ?? '';       
     $text_area  = $opslag['text_area'] ?? ''; 
     $button1    = $opslag['button1'] ?? null; 
     $button2    = $opslag['button2'] ?? null; 
     $img        = $opslag['img'] ?? [];
+    $repeater = $opslag['repeater'] ?? [];
 ?>
 
 <section class="py-16 lg:py-24 bg-white">
@@ -17,10 +19,11 @@ if ( $opslag && is_array($opslag) ) :
             
             <!-- Tekst kolom -->
             <div class="order-2 lg:order-1 lg:pr-8">
-                <!-- klein label / eyebrow, kun je aanpassen of weghalen -->
-                <p class="text-xs font-semibold tracking-[0.18em] uppercase text-slate-500 mb-3">
-                    Opslag &amp; fulfilment
-                </p>
+                <?php if ( $text_title ) : ?>
+                    <p class="text-xs font-semibold tracking-[0.18em] uppercase text-slate-500 mb-3">
+                        <?php echo esc_html( $text_title ); ?>
+                    </p>
+                <?php endif; ?>
 
                 <?php if ( $text ) : ?>
                     <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight">
@@ -42,21 +45,31 @@ if ( $opslag && is_array($opslag) ) :
                     </p>
                 <?php endif; ?>
 
-                <!-- kleine, rustige highlights (optioneel, puur layout) -->
-                <dl class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                    <div class="rounded-xl border border-slate-200 bg-white px-4 py-3">
-                        <dt class="text-xs font-medium text-slate-500 mb-1">Temperaturen</dt>
-                        <dd class="text-sm font-semibold text-slate-900">Koel, vries &amp; Ambient </dd>
-                    </div>
-                    <div class="rounded-xl border border-slate-200 bg-white px-4 py-3">
-                        <dt class="text-xs font-medium text-slate-500 mb-1">Locaties</dt>
-                        <dd class="text-sm font-semibold text-slate-900">Utrecht &amp; Breda</dd>
-                    </div>
-                    <div class="rounded-xl border border-slate-200 bg-white px-4 py-3">
-                        <dt class="text-xs font-medium text-slate-500 mb-1">Beschikbaarheid</dt>
-                        <dd class="text-sm font-semibold text-slate-900">24/7</dd>
-                    </div>
-                </dl>
+                <!-- Highlights (via ACF repeater) -->
+                <?php if ( ! empty( $repeater ) && is_array( $repeater ) ) : ?>
+                    <dl class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                        <?php foreach ( $repeater as $item ) : 
+                            $text1 = $item['text1'] ?? '';
+                            $text_area2 = $item['text_area2'] ?? '';
+                            if ( $text1 || $text_area2 ) :
+                        ?>
+                            <div class="rounded-xl border border-slate-200 bg-white px-4 py-3">
+                                <?php if ( $text1 ) : ?>
+                                    <dt class="text-xs font-medium text-slate-500 mb-1">
+                                        <?php echo esc_html( $text1 ); ?>
+                                    </dt>
+                                <?php endif; ?>
+                                <?php if ( $text_area2 ) : ?>
+                                    <dd class="text-sm font-semibold text-slate-900">
+                                        <?php echo esc_html( $text_area2 ); ?>
+                                    </dd>
+                                <?php endif; ?>
+                            </div>
+                        <?php 
+                            endif;
+                        endforeach; ?>
+                    </dl>
+                <?php endif; ?>
 
                 <!-- Buttons -->
                 <?php if ( $button1 || $button2 ) : ?>
