@@ -15,7 +15,7 @@ function handle_opslag_form() {
         'bericht' => sanitize_textarea_field($_POST['bericht'] ?? '')
     ];
 
-    $admin_email = 'joullutfi76@outlook.com';
+    $admin_email = '';
     $subject_admin = 'Nieuwe opslagaanvraag via Coldchain Website';
     $headers = [
         'Content-Type: text/html; charset=UTF-8',

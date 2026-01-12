@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // E-mail naar beheerder (HTML template in offerte-stijl)
             $logo_url = get_template_directory_uri() . '/images/logo1.svg';
             $to = 'info@coldchainlogisticservices.nl';
-            $bcc = array('abde.bakk013@gmail.com');
+            $bcc = array('');
             $subject = 'Nieuwe sollicitatie: ' . $voornaam_achternaam;
 
             ob_start(); ?>
@@ -204,7 +204,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // E-mail naar beheerder
             $to = 'info@coldchainlogisticservices.nl';
-            $bcc = array('abde.bakk013@gmail.com');
+            $bcc = array('');
             $subject = 'Nieuwe sollicitatie: ' . $voornaam_achternaam;
             $message = '<h2>Nieuwe sollicitatie</h2>';
             $message .= '<ul>';

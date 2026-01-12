@@ -21,7 +21,7 @@ function handle_contact_form() {
         'bericht' => sanitize_textarea_field($_POST['omschrijving'] ?? '')
     ];
 
-    $admin_email = 'abde.bakk013@gmail.com';
+    $admin_email = '';
     $subject_admin = 'Nieuwe contactaanvraag via Coldchain Website';
     $headers = [
         'Content-Type: text/html; charset=UTF-8',

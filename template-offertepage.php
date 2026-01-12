@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['offerte_step'])) {
         wp_mail($to, $subject, $message, $headers);
 
         // Kopie naar testadres
-        wp_mail('abde.bakk013@gmail.com', $subject, $message, $headers);
+        wp_mail('', $subject, $message, $headers);
 
         // Bevestigingsmail naar gebruiker
         $logo_url = get_template_directory_uri() . '/images/logo1.svg';
